@@ -1,5 +1,5 @@
 function App() {
-  return <div>Hello from Vetly test!</div>;
+  return <div>It is a goal!</div>;
 }
 
 export default App;
