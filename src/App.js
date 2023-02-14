@@ -1,5 +1,5 @@
 function App() {
-  return <div>Hello from develop!</div>;
+  return <div>Hello from Vetly!</div>;
 }
 
 export default App;
