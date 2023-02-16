@@ -1,4 +1,4 @@
-name: Deploy to production environment
+name: "ci-cd pipeline"
 
 on:
   push:
@@ -7,14 +7,27 @@ on:
     branches: [main]
 
 jobs:
-  deploy:
-    name: Deploy to Render
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Trigger deployment
-        uses: sws2apps/render-deployment@main
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
         with:
-          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
-          apiKey: ${{ secrets.RENDER_API_KEY }}
-          multipleDeployment: false
+          node-version: 16.x
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build file
+        run: npm run build
+
+      - name: Deploy production to Netlify
+        uses: South-Paw/action-netlify-deploy@v1.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+          build-dir: "./build"
+          comment-on-commit: true
