@@ -1,5 +1,9 @@
+import Signin from "./pages/Signin";
+
 function App() {
-  return <div>Hello from Vetly!!!</div>;
+  return(
+    <Signin />
+    );
 }
 
 export default App;
