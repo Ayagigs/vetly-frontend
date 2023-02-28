@@ -1,13 +1,12 @@
+import Signup from "./pages/signup/Signup"
 
-import SignUpForm from './components/SignUpForm';
-import Header from "./components/header";
+
 
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-     <SignUpForm/>
+      <Signup/>
     </div>
   );
 }

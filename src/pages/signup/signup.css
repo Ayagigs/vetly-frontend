@@ -1,0 +1,85 @@
+.signup-parent {
+    width           : 100%;
+    height          : 100vh;
+    background-color: #ffffff;
+    display         : flex;
+}
+
+.signup-wrapper {
+    width           : 50%;
+    height          : 100vmax;
+    background-color: #CDE2FE;
+
+
+
+}
+
+.logo-container {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    margin         : 0 auto;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+}
+
+.logo-container h3 {
+    color      : #011632;
+    text-align : center;
+    font-size  : 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+    margin-left: 10px;
+    
+
+
+
+}
+
+.form-container {
+    display         : flex;
+    flex-direction  : row;
+    border          : 1px solid white;
+    width           : 60%;
+    margin          : 100px auto 0px auto;
+    height          : auto;
+    background-color: #ffffff;
+
+
+
+}
+
+.signup-area {
+    margin: 10px auto;
+    padding: 10px 10px 10px 10px;
+
+
+}
+
+.form-header {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color      : #011632;
+    font-size  : 22px;
+    font-weight: 700;
+    text-align : left;
+
+}
+
+#FormControl {
+    width      : 80%;
+    height     : 80%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+
+}
+
+
+.signup-image {
+    display       : flex;
+    flex-direction: column;
+    width         : 50%;
+
+}
