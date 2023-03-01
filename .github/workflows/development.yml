@@ -1,4 +1,4 @@
-name: "ci-cd pipeline"
+name: "Deploy to https://dev-vetlyapp.netlify.app/"
 
 on:
   push:

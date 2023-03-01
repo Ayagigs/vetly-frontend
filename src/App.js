@@ -1,14 +1,13 @@
-
-import SignUpForm from './components/SignUpForm';
-import Header from "./components/header";
-
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/home/Home";
+import Signup from "./pages/signup/Signup";
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-     <SignUpForm/>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/sign-up" element={<Signup />} />
+    </Routes>
   );
 }
 
