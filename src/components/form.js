@@ -17,6 +17,9 @@ const Form = (props) => {
 			<div className="inputs">{inputItems}</div>
 			<Button />
       </div>
+      <div className="formbottom">
+        
+      </div>
 		</form>
 	);
 };

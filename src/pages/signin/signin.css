@@ -25,7 +25,7 @@
 form {
 	width: 408px;
 	height: 550px;
-	background-color: whitesmoke;
+	background-color: white;
 	padding: 48px 48px;
 	display: flex;
 	flex-direction: column;
@@ -78,9 +78,11 @@ label > input::placeholder {
 }
 
 .formtop > button {
-	background-color: red;
+	background-color: rgba(5, 112, 251, 1);
+  color: white;
 	height: 48px;
 	width: 312px;
 	border-radius: 4px;
 	padding: 12px 32px 12px 32px;
+  margin-top: 24px;
 }
