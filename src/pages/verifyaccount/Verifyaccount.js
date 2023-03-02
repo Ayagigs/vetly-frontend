@@ -20,7 +20,7 @@ const Verifyaccount = () => {
 
             </div>
             <div className="mail-container">
-                Didn'get a mail? <Link>Resend</Link>
+                Didn't get a mail? <Link>Resend</Link>
             </div>
         </div>
 
