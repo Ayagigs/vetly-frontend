@@ -35,7 +35,7 @@
   border: 1px solid white;
   width: 60%;
   margin: 10px auto 0px auto;
-  height: 65%;
+  height: 80%;
   background-color: #ffffff;
   padding: 10px;
 }
@@ -62,6 +62,7 @@
 .signup-image {
   display: flex;
   width: 100%;
+  
 }
 
 .signup-frame {
