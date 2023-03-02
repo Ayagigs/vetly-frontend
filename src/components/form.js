@@ -3,6 +3,7 @@
 import Input from "./input";
 import data from "../components/Data";
 import Button from "./button";
+import Social from "./social";
 const Form = (props) => {
 	const inputItems = data.map((item) => {
 		return <Input key={item.id} {...item} />;
@@ -18,7 +19,7 @@ const Form = (props) => {
 			<Button />
       </div>
       <div className="formbottom">
-        
+        <Social/>
       </div>
 		</form>
 	);

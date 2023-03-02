@@ -3,7 +3,7 @@
 import React from "react";
 import Logo from "../../components/logo";
 import Form from "../../components/form";
-
+import frame from "../../assets/frame.png"
 import "../signin/signin.css";
 const Signin = () => {
 	return (
@@ -12,7 +12,9 @@ const Signin = () => {
 				<Logo />
 				<Form />
 			</div>
-			<div className="signinrght"></div>
+			<div className="signinrght">
+				<img src={frame} alt="" />
+			</div>
 		</div>
 	);
 };
