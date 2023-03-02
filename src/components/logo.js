@@ -1,6 +1,8 @@
+import logo from "../assets/vlogo.png"
+
 const Logo = () => {
   return (
-    <img src="" alt="" />
+    <img src={logo} alt="" />
   )
 }
 
