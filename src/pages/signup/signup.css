@@ -16,8 +16,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 100px auto 35px auto;
-  padding-top: 20px;
+  margin: 100px auto 10px auto;
 }
 
 .logo-container h3 {
@@ -35,9 +34,9 @@
   border: 1px solid white;
   width: 60%;
   margin: 10px auto 0px auto;
-  height: 80%;
+  height: 77%;
   background-color: #ffffff;
-  padding: 10px;
+  padding: 5px;
 }
 
 .signup-area {
@@ -55,7 +54,7 @@
 
 #FormControl {
   width: 80%;
-  height: 80%;
+  height: 60%;
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
