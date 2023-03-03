@@ -45,6 +45,10 @@
 	font-size: 13px;
 }
 
+.msginput label input {
+	width: 363px;
+}
+
 .msgbtn button {
 	height: 40px;
 	width: 363px;
