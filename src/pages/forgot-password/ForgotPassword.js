@@ -1,5 +1,7 @@
-import "./verify.css"
-import Logo from "../../components/logo"
+/** @format */
+
+import "./verify.css";
+import Logo from "../../components/Logo";
 import Input from "../../components/input";
 const ForgotPassword = (props) => {
 	return (

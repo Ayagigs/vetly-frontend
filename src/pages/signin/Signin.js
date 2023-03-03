@@ -1,9 +1,9 @@
 /** @format */
 
 import React from "react";
-import Logo from "../../components/logo";
+import Logo from "../../components/Logo";
 import Form from "../../components/form";
-import frame from "../../assets/frame.png"
+import frame from "../../assets/frame.png";
 import "../signin/signin.css";
 const Signin = () => {
 	return (
