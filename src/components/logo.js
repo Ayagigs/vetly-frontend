@@ -1,4 +1,4 @@
-import vLogo from "../images/vlogo.png"
+import vLogo from "../assests/vlogo.png"
 import "../App.css";
 const Logo = () => {
   return(
