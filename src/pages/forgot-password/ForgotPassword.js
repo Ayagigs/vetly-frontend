@@ -1,8 +1,8 @@
 import "./verify.css"
 import Logo from "../../components/logo"
 import Input from "../../components/input";
-const Verify = (props) => {
-  return (
+const ForgotPassword = (props) => {
+	return (
 		<div className="verifymsg">
 			<Logo />
 			<div className="msgitem">
@@ -21,9 +21,11 @@ const Verify = (props) => {
 					<button>Continue</button>
 				</div>
 
-				<a className="lgpage" href="/">Return to login page</a>
+				<a className="lgpage" href="/">
+					Return to login page
+				</a>
 			</div>
 		</div>
 	);
-}
-export default Verify
+};
+export default ForgotPassword;
