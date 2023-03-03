@@ -1,4 +1,4 @@
-const Data = [
+const data = [ 
   {
     id: 1,
     label: "Email",
@@ -9,6 +9,5 @@ const Data = [
     label: "Password",
     placeholder: "Enter password",
   },
-];
-
-export default Data
+]
+export default data
