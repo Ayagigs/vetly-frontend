@@ -1,8 +1,10 @@
-import logo from "../assets/vlogo.png"
-
+import vLogo from "../images/vlogo.png"
+import "../App.css";
 const Logo = () => {
-  return (
-    <img className="logo" src={logo} alt="" />
+  return(
+    <div className="logo">
+      <img src= {vLogo} alt="" />
+    </div>
   )
 }
 

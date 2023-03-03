@@ -1,26 +1,17 @@
 /** @format */
-
-import Input from "./input";
-import data from "../components/Data";
-import Button from "./button";
-import Social from "./social";
-const Form = (props) => {
-	const inputItems = data.map((item) => {
-		return <Input key={item.id} {...item} />;
-	});
+import Finput from "./Finputs";
+import Data from "./Data";
+ const Form = () => {
+		const inputs = Data.map((item) => {
+			return <Finput key={item.id} {...item} />;
+		});
 	return (
-		<form>
-      <div className="formtop">
-			<div className="header">
-				<h1>Sign in</h1>
+		<form action="">
+			<div className="headertxt">
+				<h3>Sign in</h3>
 				<p>Welcome back! Please enter your details.</p>
 			</div>
-			<div className="inputs">{inputItems}</div>
-			<Button />
-      </div>
-      <div className="formbottom">
-        <Social/>
-      </div>
+				{inputs}
 		</form>
 	);
 };
