@@ -2,14 +2,8 @@ import React from "react";
 import "./signup.css";
 import logo from "../../assets/logo.png";
 import frame from "../../assets/frame.png";
-import {
-  FormControl,
-  Text,
-  FormLabel,
-  Input,
-  Button,
-  Link,
-} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { FormControl, Text, FormLabel, Input, Button } from "@chakra-ui/react";
 import facebook from "../../assets/facebook.png";
 import google from "../../assets/google.png";
 
@@ -120,7 +114,7 @@ const Signup = () => {
                 fontFamily="inherit"
               >
                 Already have an account?
-                <Link colorScheme="blue.500">Sign in</Link>
+                <Link to="/signin">Sign in</Link>
               </Text>
             </form>
           </div>
