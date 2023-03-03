@@ -1,12 +1,12 @@
 /** @format */
 
 import "./verify.css";
-import Logo from "../../components/Logo";
+import Vlogo from "../../components/vlogo";
 import Input from "../../components/input";
 const ForgotPassword = (props) => {
 	return (
 		<div className="verifymsg">
-			<Logo />
+			<Vlogo />
 			<div className="msgitem">
 				<div className="msghdr">
 					<h2>Reset your password</h2>
