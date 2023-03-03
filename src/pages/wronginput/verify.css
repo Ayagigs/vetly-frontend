@@ -1,0 +1,67 @@
+/** @format */
+
+* {
+	font-family: "Inter", sans-serif;
+}
+
+.verifymsg {
+	/* background-color: lightblue; */
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 5rem 0px;
+	/* justify-content: center; */
+}
+
+.msgitem {
+	/* background-color: aliceblue; */
+	height: 430px;
+	width: 427px;
+	border-radius: 8px;
+	padding: 64px 32px 64px 32px;
+	border: 1px solid rgba(93, 94, 95, 1);
+  margin-top: 30px;
+}
+
+.msghdr {
+	text-align: center;
+	margin-bottom: 48px;
+}
+
+.msghdr > h2 {
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 30px;
+}
+
+.msghdr > p {
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 24px;
+}
+
+.msginput label p {
+	font-size: 13px;
+}
+
+.msgbtn button {
+	height: 40px;
+	width: 363px;
+	border-radius: 4px;
+	padding: 12px 32px 12px 32px;
+  background: rgba(5, 112, 251, 1);
+  color: white;
+  margin-bottom: 48px;
+}
+
+.lgpage {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(5, 112, 251, 1);
+
+}
