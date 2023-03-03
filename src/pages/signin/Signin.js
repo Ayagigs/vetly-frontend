@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import Logo from "../../components/Logo";
+import Vlogo from "../../components/vlogo";
 import Form from "../../components/form";
 import frame from "../../assets/frame.png";
 import "../signin/signin.css";
@@ -9,7 +9,7 @@ const Signin = () => {
 	return (
 		<div className="Signinitems">
 			<div className="signinlft">
-				<Logo />
+				<Vlogo />
 				<Form />
 			</div>
 			<div className="signinrght">
