@@ -97,4 +97,9 @@ export const AvatarContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  & img {
+    width: 5.3rem;
+    height: auto;
+  }
 `;
