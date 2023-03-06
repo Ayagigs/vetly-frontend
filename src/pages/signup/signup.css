@@ -1,71 +1,69 @@
 .signup-parent {
-  width: 100%;
-  height: 100vh;
+  width           : 100%;
+  height          : 100vh;
   background-color: #ffffff;
-  display: -webkit-inline-flex;
-  margin: auto;
+  display         : -webkit-inline-flex;
+  margin          : auto;
 }
 
 .signup-wrapper {
-  width: 100%;
-  height: 100vh;
+  width           : 100%;
+  height          : 100vh;
   background-color: #cde2fe;
 }
 
 .logo-container {
-  display: flex;
+  display        : flex;
   justify-content: center;
-  align-items: center;
-  margin: 100px auto 10px auto;
+  align-items    : center;
+  margin         : 100px auto 35px auto;
+  padding-top    : 20px;
 }
 
 .logo-container h3 {
-  color: #011632;
-  text-align: center;
-  font-size: 25px;
+  color      : #011632;
+  text-align : center;
+  font-size  : 25px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 600;
   margin-left: 10px;
 }
 
-.form-container {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid white;
-  width: 60%;
-  margin: 10px auto 0px auto;
-  height: 77%;
+.frm-container form {
+  display         : flex;
+  flex-direction  : column;
+  border          : 1px solid white;
+  width           : 60%;
+  margin          : 10px auto 10px auto;
+  height          : 65%;
   background-color: #ffffff;
-  padding: 5px;
+  padding-left    : 50px;
 }
 
+
+
 .signup-area {
-  margin: 10px auto;
+  margin : 10px auto;
   padding: 10px 10px 10px 10px;
 }
 
 .form-header {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: #011632;
-  font-size: 22px;
+  color      : #011632;
+  font-size  : 22px;
   font-weight: 700;
-  text-align: left;
+  text-align : left;
 }
 
-#FormControl {
-  width: 80%;
-  height: 60%;
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
+
 
 .signup-image {
   display: flex;
-  width: 100%;
-  
+  width  : 100%;
 }
 
 .signup-frame {
-  width: 100%;
-  height: auto;
+  width     : 100%;
+  height    : auto;
   object-fit: fill;
 }
