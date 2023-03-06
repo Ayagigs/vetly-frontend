@@ -7,6 +7,7 @@ import Signin from "./pages/signin/Signin";
 import Verifyaccount from "./pages/verifyaccount/Verifyaccount";
 import ForgotPassword from "./pages/forgot-password/ForgotPassword";
 import Resetpassword from "./pages/resetpassword/Resetpassword";
+import ApplicantDashboard from "./pages/applicant-dashboard/ApplicantDashboard";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/verify-account" element={<Verifyaccount />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<Resetpassword />} />
+      <Route path="/applicant" element={<ApplicantDashboard />} />
     </Routes>
   );
 }
