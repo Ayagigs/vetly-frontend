@@ -82,6 +82,7 @@ const Resetpassword = () => {
                     <Link
                         fontFamily="inherit"
                         paddingTop="10"
+                        fontSize="14"
                     >
                         Return to login page</Link>
                 </form>
