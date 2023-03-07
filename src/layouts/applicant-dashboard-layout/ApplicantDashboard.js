@@ -13,8 +13,8 @@ import {
 import searchIcon from "../../assets/search-icon.png";
 import avatar from "../../assets/avatar.png";
 import { Route, Routes } from "react-router-dom";
-import Vetting from "../../components/vetting/Vetting";
-import ApplicantHome from "../../components/home/ApplicantHome";
+import Vetting from "../../pages/applicant-vetting/Vetting";
+import ApplicantHome from "../../pages/applicant-home/ApplicantHome";
 
 const ApplicantDashboard = () => {
   return (

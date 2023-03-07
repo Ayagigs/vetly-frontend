@@ -7,7 +7,7 @@ import Signin from "./pages/signin/Signin";
 import Verifyaccount from "./pages/verifyaccount/Verifyaccount";
 import ForgotPassword from "./pages/forgot-password/ForgotPassword";
 import Resetpassword from "./pages/resetpassword/Resetpassword";
-import ApplicantDashboard from "./pages/applicant-dashboard/ApplicantDashboard";
+import ApplicantDashboard from "./layouts/applicant-dashboard-layout/ApplicantDashboard";
 
 function App() {
   return (
