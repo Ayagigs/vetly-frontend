@@ -9,6 +9,8 @@ export const ParentContainer = styled.div`
 export const MainContentArea = styled.div`
   flex: 1;
   border: 1px solid #cde2fe;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ApplicantDashboardHeader = styled.header`

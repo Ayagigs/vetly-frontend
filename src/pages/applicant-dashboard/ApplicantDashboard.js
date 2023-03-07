@@ -12,6 +12,9 @@ import {
 } from "./applicant.dashboard.styles";
 import searchIcon from "../../assets/search-icon.png";
 import avatar from "../../assets/avatar.png";
+import { Route, Routes } from "react-router-dom";
+import Vetting from "../../components/vetting/Vetting";
+import ApplicantHome from "../../components/home/ApplicantHome";
 
 const ApplicantDashboard = () => {
   return (
@@ -31,7 +34,7 @@ const ApplicantDashboard = () => {
                 </button>
                 <input
                   type="text"
-                  class="search-input"
+                  className="search-input"
                   placeholder="Type to search..."
                 />
               </SearchBarForm>
@@ -41,6 +44,20 @@ const ApplicantDashboard = () => {
             </AvatarContainer>
           </ApplicantHeaderContainer>
         </ApplicantDashboardHeader>
+
+        <div
+          className=""
+          style={{
+            height: "100%",
+            overflowX: "hidden",
+            overflowY: "auto",
+          }}
+        >
+          <Routes>
+            <Route index element={<ApplicantHome />} />
+            <Route path="/vetting" element={<Vetting />} />
+          </Routes>
+        </div>
       </MainContentArea>
     </ParentContainer>
   );
