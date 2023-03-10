@@ -15,6 +15,7 @@ const FormButton = ({
         color={color}
         borderColor={borderColor}
         onClick={() => handleClick()}
+        type="button"
       >
         {text}
       </NavigateButton>

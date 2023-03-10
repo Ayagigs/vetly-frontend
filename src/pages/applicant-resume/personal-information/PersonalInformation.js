@@ -10,23 +10,34 @@ import {
 } from "./person.information.styles";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../../../components/custom-button/FormButton";
+import { useSelector, useDispatch } from "react-redux";
+import { getResumeState, updateResume } from "../../../slices/resume";
 
-const initialState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phoneNumber: "",
-  contactAddress: "",
-  city: "",
-  country: "",
-};
+// const initialState = {
+//   firstName: "",
+//   lastName: "",
+//   email: "",
+//   phoneNumber: "",
+//   contactAddress: "",
+//   city: "",
+//   country: "",
+// };
 
 const PersonalInformation = () => {
-  const [personalInfo, setPersonalInfo] = useState(initialState);
+  const [personalInfo, setPersonalInfo] = useState(useSelector(getResumeState));
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const { activeHeaders } = useSelector(getResumeState);
   const routeToNextPage = () => {
     navigate("/applicant/resume/work-experience");
+
+    const newActiveHeaders = [...activeHeaders, 1];
+    const resume = {
+      ...personalInfo,
+      activeHeaders: newActiveHeaders,
+    };
+    dispatch(updateResume(resume));
   };
 
   const handleChange = (e) => {

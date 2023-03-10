@@ -32,6 +32,8 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
   flex: 25%;
-//   border-bottom: 5px solid #0570fb;
+  border-bottom: ${(props) => {
+    return props.active === 1 ? "4px solid #0570FB" : "none";
+  }};
   cursor: pointer;
 `;

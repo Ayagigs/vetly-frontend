@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../../../components/custom-button/FormButton";
 import FormTextInput from "../../../components/custom-input/FormTextInput";
+import { getResumeState, updateResume } from "../../../slices/resume";
 import {
   DivideWrapper,
   Heading,
@@ -24,6 +26,9 @@ const WorkExperience = () => {
   const [workExperience, setWorkExperience] = useState(initialState);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const data = useSelector(getResumeState);
 
   const routeToNextPage = () => {
     navigate("/applicant/resume/education");
@@ -31,6 +36,12 @@ const WorkExperience = () => {
 
   const routeToPreviousPage = () => {
     navigate("/applicant/resume/personal-information");
+    const newActiveHeaders = data.activeHeaders.filter((el) => el !== 1);
+    const resume = {
+      ...data,
+      activeHeaders: newActiveHeaders,
+    };
+    dispatch(updateResume(resume));
   };
 
   const handleChange = (e) => {
