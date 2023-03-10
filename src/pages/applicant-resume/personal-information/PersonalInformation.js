@@ -7,9 +7,9 @@ import {
   Heading,
   DivideWrapper,
   Side,
-  NavigateButton,
 } from "./person.information.styles";
 import { useNavigate } from "react-router-dom";
+import FormButton from "../../../components/custom-button/FormButton";
 
 const initialState = {
   firstName: "",
@@ -24,6 +24,7 @@ const initialState = {
 const PersonalInformation = () => {
   const [personalInfo, setPersonalInfo] = useState(initialState);
   const navigate = useNavigate();
+
   const routeToNextPage = () => {
     navigate("/applicant/resume/work-experience");
   };
@@ -45,7 +46,7 @@ const PersonalInformation = () => {
     city,
     country,
   } = personalInfo;
- 
+
   return (
     <PersonalInformationParent>
       <PersonalInfoWrapper>
@@ -115,8 +116,12 @@ const PersonalInformation = () => {
           </DivideWrapper>
 
           <DivideWrapper>
-            <NavigateButton>Previous</NavigateButton>
-            <NavigateButton onClick={routeToNextPage}>Next</NavigateButton>
+            <FormButton text="Previous" color="#0570fb" />
+            <FormButton
+              text="Next"
+              backgroundColor="#0570fb"
+              handleClick={routeToNextPage}
+            />
           </DivideWrapper>
         </ResumeForm>
       </PersonalInfoWrapper>
