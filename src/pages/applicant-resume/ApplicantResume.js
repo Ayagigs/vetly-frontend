@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import  { useState } from "react";
 import { Outlet } from "react-router-dom";
 import {
   ApplicantResumeParent,
@@ -8,7 +8,7 @@ import {
 } from "./application.resume.styles";
 
 const ApplicantResume = () => {
-  const [activeHeader, setActiveHeader] = useState(0);
+  // const [activeHeader, setActiveHeader] = useState(0);
   return (
     <ApplicantResumeParent>
       <ResumeWrapper>

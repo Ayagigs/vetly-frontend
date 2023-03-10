@@ -24,36 +24,26 @@ export const ResumeForm = styled.form`
   margin-top: 1rem;
 `;
 
-export const FormLabel = styled.label`
-  color: #0d0d0d;
-  font-weight: 500;
-  font-size: 1.2rem;
-  line-height: 1.6rem;
-  margin-top: 2rem;
-`;
-
-export const FormControl = styled.div`
+export const DivideWrapper = styled.div`
   display: flex;
   width: 75%;
-  border: 1px solid #0d0d0d;
-  border-radius: 5px;
-  height: 3.8rem;
-  padding: 0 1rem;
-  background: #fff;
+  gap: 2rem;
   margin-top: 1rem;
+`;
 
-  & .form-input {
-    border: 0;
-    outline: none;
-    flex: 1;
-    background: #fff;
-    color: #726e6e;
-    font-size: 1.5rem;
-  }
+export const Side = styled.div`
+  width: 50%;
+`;
 
-  & .form-input::placeholder {
-    color: #5d5e5f;
-    line-height: 28px;
-    font-size: 1.3rem;
-  }
+export const NavigateButton = styled.button`
+  margin-top: 1rem;
+  background: #0570fb;
+  border-radius: 4px;
+  padding: 12px 32px;
+  width: 25.7rem;
+  height: 4.8rem;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 24px;
 `;

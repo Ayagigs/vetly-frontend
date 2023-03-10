@@ -10,7 +10,7 @@ export const FormLabel = styled.label`
 
 export const FormControl = styled.div`
   display: flex;
-  width: 75%;
+  width: ${(props) => (props.width ? props.width : "75%")};
   border: 1px solid #0d0d0d;
   border-radius: 5px;
   height: 3.8rem;
