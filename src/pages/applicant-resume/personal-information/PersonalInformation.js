@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import FormButton from "../../../components/custom-button/FormButton";
 import { useSelector, useDispatch } from "react-redux";
 import { getResumeState, updateResume } from "../../../slices/resume";
+import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 
 // const initialState = {
 //   firstName: "",
@@ -56,6 +57,7 @@ const PersonalInformation = () => {
     contactAddress,
     city,
     country,
+    dateOfBirth,
   } = personalInfo;
 
   return (
@@ -97,6 +99,14 @@ const PersonalInformation = () => {
             placeholder="enter contact address"
             value={contactAddress}
             name="contactAddress"
+            handleChange={handleChange}
+          />
+
+          <FormDateInput
+            labelName="Date Of Birth"
+            placeholder=""
+            value={dateOfBirth}
+            name="dateOfBirth"
             handleChange={handleChange}
           />
 

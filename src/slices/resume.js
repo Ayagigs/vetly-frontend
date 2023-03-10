@@ -8,6 +8,7 @@ const initialState = {
   contactAddress: "",
   city: "",
   country: "",
+  dateOfBirth: '',
   activeHeaders: [0]
 };
 

@@ -32,4 +32,17 @@ export const FormControl = styled.div`
     line-height: 28px;
     font-size: 1.3rem;
   }
+
+  & #date {
+    width: 100%;
+    outline: 0;
+    padding: 0 8px;
+    border: 1px solid #b3b3b3;
+    border-radius: 3px;
+    transition: 300ms border-color ease;
+  }
+
+  & #date:focus {
+    border-color: #000;
+  }
 `;
