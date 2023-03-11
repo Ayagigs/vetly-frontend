@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../../../components/custom-button/FormButton";
+import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 import FormTextInput from "../../../components/custom-input/FormTextInput";
 import { getResumeState, updateResume } from "../../../slices/resume";
 import {
@@ -20,6 +21,8 @@ const initialState = {
   phoneNumber: "",
   city: "",
   country: "",
+  from: "",
+  to: "",
 };
 
 const WorkExperience = () => {
@@ -31,11 +34,11 @@ const WorkExperience = () => {
   const data = useSelector(getResumeState);
 
   const routeToNextPage = () => {
-    navigate("/applicant/resume/education");
+    navigate("/applicant/resume/build/education");
   };
 
   const routeToPreviousPage = () => {
-    navigate("/applicant/resume/personal-information");
+    navigate("/applicant/resume/build/personal-information");
     const newActiveHeaders = data.activeHeaders.filter((el) => el !== 1);
     const resume = {
       ...data,
@@ -52,7 +55,7 @@ const WorkExperience = () => {
     }));
   };
 
-  const { occupation, company, email, phoneNumber, city, country } =
+  const { occupation, company, email, phoneNumber, city, country, from, to } =
     workExperience;
   return (
     <WorkExperienceParent>
@@ -110,6 +113,32 @@ const WorkExperience = () => {
                 width="100%"
                 value={country}
                 name="country"
+                handleChange={handleChange}
+              />
+            </Side>
+          </DivideWrapper>
+
+          <DivideWrapper>
+            <Side>
+              {" "}
+              <FormDateInput
+                labelName="From"
+                placeholder=""
+                width="100%"
+                value={from}
+                name="from"
+                handleChange={handleChange}
+              />
+            </Side>
+
+            <Side>
+              {" "}
+              <FormDateInput
+                labelName="To"
+                placeholder=""
+                width="100%"
+                value={to}
+                name="to"
                 handleChange={handleChange}
               />
             </Side>

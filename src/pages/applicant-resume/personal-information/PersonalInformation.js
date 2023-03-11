@@ -31,7 +31,7 @@ const PersonalInformation = () => {
 
   const { activeHeaders } = useSelector(getResumeState);
   const routeToNextPage = () => {
-    navigate("/applicant/resume/work-experience");
+    navigate("/applicant/resume/build/work-experience");
 
     const newActiveHeaders = [...activeHeaders, 1];
     const resume = {
