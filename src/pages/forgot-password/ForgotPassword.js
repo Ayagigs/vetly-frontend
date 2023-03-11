@@ -2,7 +2,7 @@
 
 import "./verify.css";
 import Vlogo from "../../components/vlogo";
-import Input from "../../components/input";
+// import Input from "../../components/input";
 const ForgotPassword = (props) => {
   return (
     <div className="verifymsg">
