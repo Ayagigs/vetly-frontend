@@ -21,6 +21,7 @@ import WorkExperience from "../../pages/applicant-resume/work-experience/WorkExp
 import Education from "../../pages/applicant-resume/education/Education";
 import Skills from "../../pages/applicant-resume/skills/Skills";
 import ResumeHome from "../../pages/applicant-resume/home/ResumeHome";
+import ResumeUpload from "../../pages/applicant-resume/upload/ResumeUpload";
 
 const ApplicantDashboard = () => {
   return (
@@ -63,6 +64,7 @@ const ApplicantDashboard = () => {
             <Route index element={<ApplicantHome />} />
             <Route path="/vetting" element={<Vetting />} />
             <Route path="/resume" element={<ResumeHome />}>
+              <Route path="upload" element={<ResumeUpload />} />
               <Route path="build" element={<ApplicantBuildResume />}>
                 <Route index element={<PersonalInformation />} />
                 <Route
