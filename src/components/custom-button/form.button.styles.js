@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NavigateButton = styled.button`
-  margin-top: 1rem;
+  margin-top: 2.1rem;
   background: ${(props) =>
     props.backgroundColor ? props.backgroundColor : "#fff"};
   border-radius: 4px;
@@ -13,6 +13,7 @@ export const NavigateButton = styled.button`
   font-size: 1.4rem;
   line-height: 24px;
   border: 1px solid #0570fb;
+  display: block;
 `;
 
 //#0570fb;
