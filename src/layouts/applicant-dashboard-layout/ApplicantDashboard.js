@@ -62,6 +62,7 @@ const ApplicantDashboard = () => {
         >
           <Routes>
             <Route index element={<ApplicantHome />} />
+            <Route path="/" element={<ApplicantHome />} />
             <Route path="/vetting" element={<Vetting />} />
             <Route path="/resume" element={<ResumeHome />}>
               <Route path="upload" element={<ResumeUpload />} />
