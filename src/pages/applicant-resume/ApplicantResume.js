@@ -23,7 +23,7 @@ const ApplicantResume = () => {
           <Header active={+(2 === activeHeaders[2])}>
             Education & Training
           </Header>
-          <Header>Personal Skill</Header>
+          <Header active={+(3 === activeHeaders[3])}>Personal Skill</Header>
         </HeaderContainer>
 
         <Outlet />

@@ -36,6 +36,12 @@ const Education = () => {
 
   const routeToNextPage = () => {
     navigate("/applicant/resume/build/skills");
+    const newActiveHeaders = [...data?.activeHeaders, 3];
+    const resume = {
+      ...education,
+      activeHeaders: newActiveHeaders,
+    };
+    dispatch(updateResume(resume));
   };
 
   const routeToPreviousPage = () => {

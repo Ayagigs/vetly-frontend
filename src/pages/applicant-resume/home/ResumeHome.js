@@ -25,9 +25,6 @@ const ResumeHome = () => {
     <>
       {!isOutletActive ? (
         <ResumeParent>
-          {/* <br />
-          <button onClick={routeToResumeBuildPage}>click</button>
-          <br /> */}
           <Wrapper>
             <HeadingContainer>
               <h1>
