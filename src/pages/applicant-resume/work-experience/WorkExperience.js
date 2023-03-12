@@ -36,6 +36,13 @@ const WorkExperience = () => {
 
   const routeToNextPage = () => {
     navigate("/applicant/resume/build/education");
+
+    const newActiveHeaders = [...data?.activeHeaders, 2];
+    const resume = {
+      ...workExperience,
+      activeHeaders: newActiveHeaders,
+    };
+    dispatch(updateResume(resume));
   };
 
   const routeToPreviousPage = () => {
