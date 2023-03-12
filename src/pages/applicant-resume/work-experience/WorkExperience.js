@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import FormButton from "../../../components/custom-button/FormButton";
 import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 import FormTextInput from "../../../components/custom-input/FormTextInput";
+import FormTextArea from "../../../components/custom-textarea/FormTextArea";
 import { getResumeState, updateResume } from "../../../slices/resume";
 import {
   DivideWrapper,
@@ -35,6 +36,13 @@ const WorkExperience = () => {
 
   const routeToNextPage = () => {
     navigate("/applicant/resume/build/education");
+
+    const newActiveHeaders = [...data?.activeHeaders, 2];
+    const resume = {
+      ...workExperience,
+      activeHeaders: newActiveHeaders,
+    };
+    dispatch(updateResume(resume));
   };
 
   const routeToPreviousPage = () => {
@@ -143,6 +151,8 @@ const WorkExperience = () => {
               />
             </Side>
           </DivideWrapper>
+
+          <FormTextArea labelName="More activities and responsibilities" />
 
           <DivideWrapper>
             <FormButton

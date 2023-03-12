@@ -20,8 +20,10 @@ const ApplicantResume = () => {
             Personal Information
           </Header>
           <Header active={+(1 === activeHeaders[1])}>Work Experience</Header>
-          <Header>Education & Training</Header>
-          <Header>Personal Skill</Header>
+          <Header active={+(2 === activeHeaders[2])}>
+            Education & Training
+          </Header>
+          <Header active={+(3 === activeHeaders[3])}>Personal Skill</Header>
         </HeaderContainer>
 
         <Outlet />
