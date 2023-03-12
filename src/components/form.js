@@ -8,7 +8,7 @@ const Form = () => {
     return <Finput key={item.id} {...item} />;
   });
   return (
-    <form action="">
+    <form action="" className="signin-form">
       <div className="formtop">
         <div className="header">
           <h1>Sign in</h1>

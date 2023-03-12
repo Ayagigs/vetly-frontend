@@ -15,6 +15,13 @@ import avatar from "../../assets/avatar.png";
 import { Route, Routes } from "react-router-dom";
 import Vetting from "../../pages/applicant-vetting/Vetting";
 import ApplicantHome from "../../pages/applicant-home/ApplicantHome";
+import ApplicantBuildResume from "../../pages/applicant-resume/ApplicantResume";
+import PersonalInformation from "../../pages/applicant-resume/personal-information/PersonalInformation";
+import WorkExperience from "../../pages/applicant-resume/work-experience/WorkExperience";
+import Education from "../../pages/applicant-resume/education/Education";
+import Skills from "../../pages/applicant-resume/skills/Skills";
+import ResumeHome from "../../pages/applicant-resume/home/ResumeHome";
+import ResumeUpload from "../../pages/applicant-resume/upload/ResumeUpload";
 
 const ApplicantDashboard = () => {
   return (
@@ -56,6 +63,19 @@ const ApplicantDashboard = () => {
           <Routes>
             <Route index element={<ApplicantHome />} />
             <Route path="/vetting" element={<Vetting />} />
+            <Route path="/resume" element={<ResumeHome />}>
+              <Route path="upload" element={<ResumeUpload />} />
+              <Route path="build" element={<ApplicantBuildResume />}>
+                <Route index element={<PersonalInformation />} />
+                <Route
+                  path="personal-information"
+                  element={<PersonalInformation />}
+                />
+                <Route path="work-experience" element={<WorkExperience />} />
+                <Route path="education" element={<Education />} />
+                <Route path="skills" element={<Skills />} />
+              </Route>
+            </Route>
           </Routes>
         </div>
       </MainContentArea>
