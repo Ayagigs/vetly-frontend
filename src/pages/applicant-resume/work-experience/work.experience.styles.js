@@ -20,7 +20,7 @@ export const Heading = styled.h3`
 
 export const WorkExperienceForm = styled.form`
   width: 100%;
-  height: 60%;
+  height: auto;
   margin-top: 1rem;
 `;
 

@@ -154,6 +154,12 @@ const WorkExperience = () => {
 
           <FormTextArea labelName="More activities and responsibilities" />
 
+          <FormButton
+            text="Add more experience"
+            color="#0570fb"
+            width={"75%"}
+          />
+
           <DivideWrapper>
             <FormButton
               text="Previous"
