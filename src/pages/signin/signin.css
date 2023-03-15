@@ -66,7 +66,7 @@
   font-family: "Inter", sans-serif;
 }
 
-.form-label > input {
+.formtop > input {
   width: 310px;
   height: 36px;
   border-radius: 4px;
