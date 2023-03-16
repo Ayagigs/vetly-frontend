@@ -13,9 +13,9 @@ import { ProtectedRoute } from "./custom-routes/ProtectedRoutes";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      {/* <Route path="/" element={<Home />} /> */}
       <Route path="/sign-up" element={<Signup />} />
-      <Route path="/sign-in" element={<Signin />} />
+      <Route path="/" element={<Signin />} />
       <Route path="/verify-account" element={<Verifyaccount />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<Resetpassword />} />
@@ -23,7 +23,7 @@ function App() {
       <Route
         path="/applicant/*"
         element={
-          <ProtectedRoute redirectPath="/sign-in">
+          <ProtectedRoute redirectPath="/">
             <ApplicantDashboard />
           </ProtectedRoute>
         }
