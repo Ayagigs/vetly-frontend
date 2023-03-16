@@ -1,7 +1,7 @@
 /** @format */
 
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/home/Home";
+// import Home from "./pages/home/Home";
 import Signup from "./pages/signup/Signup";
 import Signin from "./pages/signin/Signin";
 import Verifyaccount from "./pages/verifyaccount/Verifyaccount";
