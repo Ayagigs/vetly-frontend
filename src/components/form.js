@@ -9,24 +9,22 @@ const Form = () => {
 	const [data, setData] = useState({
 		email: "",
 		password: "",
-		user_type: "applicant"
+		user_type: "applicant",
 	});
 
 	const submit = (e) => {
 		e.preventDefault();
-		axios
-			.post(url, data)
-			.then((res) => {
-				console.log(res.data);
-			});
-		console.log(data);
+		axios.post(url, data).then((res) => {
+			return res.data;
+		});
+		return data;
 	};
 
 	const postUser = (e) => {
 		const newData = { ...data };
 		newData[e.target.id] = e.target.value;
 		setData(newData);
-		console.log(newData);
+		return newData;
 	};
 
 	return (
