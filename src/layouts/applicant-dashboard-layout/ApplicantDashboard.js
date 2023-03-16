@@ -22,6 +22,7 @@ import Education from "../../pages/applicant-resume/education/Education";
 import Skills from "../../pages/applicant-resume/skills/Skills";
 import ResumeHome from "../../pages/applicant-resume/home/ResumeHome";
 import ResumeUpload from "../../pages/applicant-resume/upload/ResumeUpload";
+import { getUserName } from "../../utils";
 
 const ApplicantDashboard = () => {
   return (
@@ -31,8 +32,8 @@ const ApplicantDashboard = () => {
         <ApplicantDashboardHeader>
           <ApplicantHeaderContainer>
             <InfoContainer>
-              <h2>Hello, Victor</h2>
-              <p>Today is Monday, 06/02/2023</p>
+              <h2>Hello, {getUserName()}</h2>
+              <p>Today is {new Date().toLocaleDateString()}</p>
             </InfoContainer>
             <SearchBarContainer>
               <SearchBarForm>
