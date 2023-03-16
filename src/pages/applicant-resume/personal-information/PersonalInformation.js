@@ -11,7 +11,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import FormButton from "../../../components/custom-button/FormButton";
 import { useSelector, useDispatch } from "react-redux";
-import { getResumeState, updateResume } from "../../../slices/resume";
+import {
+  getPersonaalInfo,
+  getResumeState,
+  updateResume,
+} from "../../../slices/resume";
 import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 
 // const initialState = {
@@ -25,17 +29,25 @@ import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 // };
 
 const PersonalInformation = () => {
-  const [personalInfo, setPersonalInfo] = useState(useSelector(getResumeState));
+  const [personalInfo, setPersonalInfo] = useState(
+    useSelector(getPersonaalInfo)
+  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { activeHeaders } = useSelector(getResumeState);
+  // console.log(useSelector(getPersonaalInfo));
+
+  const { activeHeaders, ...rest } = useSelector(getResumeState);
+
+  console.log(rest);
+
   const routeToNextPage = () => {
     navigate("/applicant/resume/build/work-experience");
 
     const newActiveHeaders = [...activeHeaders, 1];
     const resume = {
-      ...personalInfo,
+      ...rest,
+      personalInfo,
       activeHeaders: newActiveHeaders,
     };
     dispatch(updateResume(resume));
@@ -68,35 +80,35 @@ const PersonalInformation = () => {
         <ResumeForm>
           <FormTextInput
             labelName="First Name"
-            placeholder="enter first name"
+            placeholder="Enter first name"
             value={firstName}
             name="firstName"
             handleChange={handleChange}
           />
           <FormTextInput
             labelName="Last Name"
-            placeholder="enter last name"
+            placeholder="Enter last name"
             value={lastName}
             name="lastName"
             handleChange={handleChange}
           />
           <FormTextInput
             labelName="Email Address"
-            placeholder="enter email address"
+            placeholder="Enter email address"
             value={email}
             name="email"
             handleChange={handleChange}
           />
           <FormTextInput
             labelName="Phone Number"
-            placeholder="enter phone number"
+            placeholder="Enter phone number"
             value={phoneNumber}
             name="phoneNumber"
             handleChange={handleChange}
           />
           <FormTextInput
             labelName="Contact Address"
-            placeholder="enter contact address"
+            placeholder="Enter contact address"
             value={contactAddress}
             name="contactAddress"
             handleChange={handleChange}
@@ -115,7 +127,7 @@ const PersonalInformation = () => {
               {" "}
               <FormTextInput
                 labelName="City"
-                placeholder="enter city"
+                placeholder="Enter city"
                 width="100%"
                 value={city}
                 name="city"
@@ -127,7 +139,7 @@ const PersonalInformation = () => {
               {" "}
               <FormTextInput
                 labelName="Country"
-                placeholder="enter country"
+                placeholder="Enter country"
                 width="100%"
                 value={country}
                 name="country"
