@@ -5,7 +5,11 @@ import FormButton from "../../../components/custom-button/FormButton";
 import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 import FormTextInput from "../../../components/custom-input/FormTextInput";
 import FormTextArea from "../../../components/custom-textarea/FormTextArea";
-import { getResumeState, updateResume } from "../../../slices/resume";
+import {
+  getEducationState,
+  getResumeState,
+  updateResume,
+} from "../../../slices/resume";
 import {
   DivideWrapper,
   Heading,
@@ -15,19 +19,8 @@ import {
   Side,
 } from "./education.styles";
 
-const initialState = {
-  educationExperience: "",
-  organization: "",
-  website: "",
-  finalGrade: "",
-  city: "",
-  country: "",
-  from: "",
-  to: "",
-};
-
 const Education = () => {
-  const [education, seteducation] = useState(initialState);
+  const [education, seteducation] = useState(useSelector(getEducationState));
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,6 +31,7 @@ const Education = () => {
     navigate("/applicant/resume/build/skills");
     const newActiveHeaders = [...data?.activeHeaders, 3];
     const resume = {
+      ...data,
       ...education,
       activeHeaders: newActiveHeaders,
     };
@@ -49,6 +43,7 @@ const Education = () => {
     const newActiveHeaders = data.activeHeaders.filter((el) => el !== 2);
     const resume = {
       ...data,
+      education,
       activeHeaders: newActiveHeaders,
     };
     dispatch(updateResume(resume));
@@ -62,15 +57,46 @@ const Education = () => {
     }));
   };
 
+  const clearInputs = () => {
+    seteducation((prev) => ({
+      ...prev,
+      educationExperience: "",
+      educationOrganization: "",
+      educationWebsite: "",
+      finalGrade: "",
+      educationCity: "",
+      country: "",
+      educationStartDate: "",
+      educationEndDate: "",
+    }));
+  };
+
+  const handleAddNewEducation = () => {
+    clearInputs();
+    
+    let { listOfEducationExperiences, ...rest } = data;
+
+    listOfEducationExperiences = listOfEducationExperiences.concat({
+      id: listOfEducationExperiences.length + 1,
+      ...education,
+    });
+
+    const resume = {
+      ...rest,
+      listOfEducationExperiences,
+    };
+    dispatch(updateResume(resume));
+  };
+
   const {
     educationExperience,
-    organization,
-    website,
+    educationOrganization,
+    educationWebsite,
     finalGrade,
-    city,
+    educationCity,
     country,
-    from,
-    to,
+    educationStartDate,
+    educationEndDate,
   } = education;
   return (
     <Parent>
@@ -88,15 +114,15 @@ const Education = () => {
           <FormTextInput
             labelName="Organization providing education and training"
             placeholder=""
-            value={organization}
-            name="organization"
+            value={educationOrganization}
+            name="educationOrganization"
             handleChange={handleChange}
           />
           <FormTextInput
             labelName="Website"
             placeholder="enter email address"
-            value={website}
-            name="website"
+            value={educationWebsite}
+            name="educationWebsite"
             handleChange={handleChange}
           />
 
@@ -107,8 +133,8 @@ const Education = () => {
                 labelName="City"
                 placeholder="enter city"
                 width="100%"
-                value={city}
-                name="city"
+                value={educationCity}
+                name="educationCity"
                 handleChange={handleChange}
               />
             </Side>
@@ -133,8 +159,8 @@ const Education = () => {
                 labelName="From"
                 placeholder=""
                 width="100%"
-                value={from}
-                name="from"
+                value={educationStartDate}
+                name="educationStartDate"
                 handleChange={handleChange}
               />
             </Side>
@@ -145,8 +171,8 @@ const Education = () => {
                 labelName="To"
                 placeholder=""
                 width="100%"
-                value={to}
-                name="to"
+                value={educationEndDate}
+                name="educationEndDate"
                 handleChange={handleChange}
               />
             </Side>
@@ -166,6 +192,7 @@ const Education = () => {
             text="Add more experience"
             color="#0570fb"
             width={"75%"}
+            handleClick={handleAddNewEducation}
           />
 
           <DivideWrapper>
