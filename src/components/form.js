@@ -45,6 +45,8 @@ const Form = () => {
       setSuccess(true);
       localStorage.setItem("currentUser", JSON.stringify(data?.user));
       localStorage.setItem("userToken", data?.token);
+
+    //   navigate("/applicant/");
     } catch (error) {
       console.log(error.message);
     }

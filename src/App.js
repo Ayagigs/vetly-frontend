@@ -8,6 +8,7 @@ import Verifyaccount from "./pages/verifyaccount/Verifyaccount";
 import ForgotPassword from "./pages/forgot-password/ForgotPassword";
 import Resetpassword from "./pages/resetpassword/Resetpassword";
 import ApplicantDashboard from "./layouts/applicant-dashboard-layout/ApplicantDashboard";
+import { ProtectedRoute } from "./custom-routes/ProtectedRoutes";
 
 function App() {
   return (
@@ -18,7 +19,15 @@ function App() {
       <Route path="/verify-account" element={<Verifyaccount />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<Resetpassword />} />
-      <Route path="/applicant/*" element={<ApplicantDashboard />} />
+      {/* <Route path="/applicant/*" element={<ApplicantDashboard />} /> */}
+      <Route
+        path="/applicant/*"
+        element={
+          <ProtectedRoute redirectPath="/sign-in">
+            <ApplicantDashboard />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
