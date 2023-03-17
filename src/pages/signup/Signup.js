@@ -102,9 +102,14 @@ const Signup = () => {
               fontSize="12"
               fontWeight="500"
               fontFamily="inherit"
-
             >
-              <img src={facebook} alt="facebook" paddingLeft="5" height={10} width={10} />
+              <img
+                src={facebook}
+                alt="facebook"
+                paddingLeft="5"
+                height={10}
+                width={10}
+              />
               Sign up with Facebook
             </Button>
             <Text
@@ -115,7 +120,7 @@ const Signup = () => {
               marginTop={2}
             >
               Already have an account?
-              <Link to="/signin">Sign in</Link>
+              <Link to="/">Sign in</Link>
             </Text>
           </form>
         </div>

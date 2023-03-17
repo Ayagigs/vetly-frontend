@@ -36,9 +36,9 @@ const Social = () => {
         </div>
       </div>
 
-      <a href="/" className="forgottenpaswrd">
+      <Link to="/forgot-password" className="forgottenpaswrd">
         Forgot password?
-      </a>
+      </Link>
 
       <p className="crtaccnt">
         Don’t have an account?
