@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ApplicantSidebarLogoContainer,
   ApplicantSidebarParent,
@@ -10,6 +11,15 @@ import vetLogo from "../../assets/logo.png";
 import vettingIcon from "../../assets/vetting-icon.png";
 
 const ApplicantSidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("userToken");
+
+    navigate("/");
+  };
+
   return (
     <ApplicantSidebarParent>
       <ApplicantSidebarLogoContainer>
@@ -54,7 +64,9 @@ const ApplicantSidebar = () => {
           <h3>Setting</h3>
         </StyledNavLink>
       </SidebarLinksContainer>
-      <LogoutArea></LogoutArea>
+      <LogoutArea onClick={handleLogout}>
+        <h3>Logout</h3>
+      </LogoutArea>
     </ApplicantSidebarParent>
   );
 };

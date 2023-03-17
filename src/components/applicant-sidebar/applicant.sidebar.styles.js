@@ -88,5 +88,18 @@ export const SidebarLink = styled.div`
 
 export const LogoutArea = styled.div`
   flex: 10%;
-  // border: 1px solid blue;
+  display: flex;
+  // justify-content: center;
+  align-item: center;
+  cursor: pointer;
+
+  & h3 {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #b21015;
+    padding: 2rem;
+    width: 60%;
+    text-align: center;
+  }
 `;
