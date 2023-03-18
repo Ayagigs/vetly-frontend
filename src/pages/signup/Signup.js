@@ -33,11 +33,11 @@ const Signup = () => {
 
   useEffect(() => {
     if (success) {
-      return toast({
+      toast({
         position: "top-left",
         render: () => (
           <Box color="white" p={3} bg="green.500" fontSize={15}>
-            Sign in successful. Please check your mail.
+            Sign up successful. Please check your mail.
           </Box>
         ),
       });
@@ -183,7 +183,7 @@ const Signup = () => {
                 marginBottom={"5px"}
                 onClick={handleSubmit}
               >
-                {!loading ? "Sign in" : <Spinner size="sm" color="white.500" />}
+                {!loading ? "Sign up" : <Spinner size="sm" color="white.500" />}
               </Button>
             </FormControl>
 
