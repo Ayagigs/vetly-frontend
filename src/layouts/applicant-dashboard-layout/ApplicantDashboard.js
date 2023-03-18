@@ -1,5 +1,5 @@
 import React from "react";
-import ApplicantSidebar from "../../components/applicant-sidebar/ApplicantSidebar";
+import Sidebar from "../../components/sidebar/Sidebar";
 import {
   ApplicantDashboardHeader,
   ApplicantHeaderContainer,
@@ -23,11 +23,12 @@ import Skills from "../../pages/applicant-resume/skills/Skills";
 import ResumeHome from "../../pages/applicant-resume/home/ResumeHome";
 import ResumeUpload from "../../pages/applicant-resume/upload/ResumeUpload";
 import { getUserName } from "../../utils";
+import { sideBarLinks } from "./routes";
 
 const ApplicantDashboard = () => {
   return (
     <ParentContainer>
-      <ApplicantSidebar />
+      <Sidebar routes={sideBarLinks} />
       <MainContentArea>
         <ApplicantDashboardHeader>
           <ApplicantHeaderContainer>

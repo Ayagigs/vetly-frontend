@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-export const ApplicantSidebarParent = styled.aside`
+export const SidebarParent = styled.aside`
   width: 18%;
   height: 100%;
   background: #ffffff;
@@ -10,7 +10,7 @@ export const ApplicantSidebarParent = styled.aside`
   flex-direction: column;
 `;
 
-export const ApplicantSidebarLogoContainer = styled.div`
+export const SidebarLogoContainer = styled.div`
   width: 100%;
   height: 13%;
   display: flex;
