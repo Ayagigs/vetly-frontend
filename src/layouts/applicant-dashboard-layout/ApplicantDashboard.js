@@ -23,7 +23,7 @@ import Skills from "../../pages/applicant-resume/skills/Skills";
 import ResumeHome from "../../pages/applicant-resume/home/ResumeHome";
 import ResumeUpload from "../../pages/applicant-resume/upload/ResumeUpload";
 import { getUserName } from "../../utils";
-import { sideBarLinks } from "./routes";
+import { sideBarLinks } from "./applicant.routes";
 
 const ApplicantDashboard = () => {
   return (

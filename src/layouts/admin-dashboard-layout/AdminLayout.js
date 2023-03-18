@@ -2,7 +2,7 @@ import React from "react";
 import { Routes } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { MainContentArea, ParentContainer } from "./admin.dashboard.styles";
-import { sideBarLinks } from "./routes";
+import { sideBarLinks } from "./admin.routes";
 
 const AdminLayout = () => {
   return (

@@ -2,7 +2,7 @@ import React from "react";
 import { Routes } from "react-router-dom";
 import { MainContentArea, ParentContainer } from "./business.dashboard.styles";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { sideBarLinks } from "./routes";
+import { sideBarLinks } from "./business.routes";
 
 const BusinessLayout = () => {
   return (
