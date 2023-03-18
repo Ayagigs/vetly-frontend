@@ -3,7 +3,14 @@ import "./signup.css";
 import logo from "../../assets/logo.png";
 import frame from "../../assets/frame.png";
 import { Link } from "react-router-dom";
-import { FormControl, Text, FormLabel, Input, Button } from "@chakra-ui/react";
+import {
+  FormControl,
+  Text,
+  FormLabel,
+  Input,
+  Button,
+  Select,
+} from "@chakra-ui/react";
 import facebook from "../../assets/facebook.png";
 import google from "../../assets/google.png";
 
@@ -19,13 +26,18 @@ const Signup = () => {
           <form>
             <div className="form-header">
               Create your account
-              <Text fontWeight="400" fontSize="12">
+              <Text fontWeight="400" fontSize="12" lineHeight={"16px"}>
                 Enter the fields below to get started
               </Text>
             </div>
 
-            <FormControl>
-              <FormLabel fontSize="12" fontWeight="500" fontFamily="inherit">
+            <FormControl marginBottom={"7px"}>
+              <FormLabel
+                fontSize="12"
+                fontWeight="500"
+                fontFamily="inherit"
+                paddingBlock="2px"
+              >
                 Full name
               </FormLabel>
               <Input
@@ -33,11 +45,12 @@ const Signup = () => {
                 fontSize="12"
                 fontWeight="400"
                 fontFamily="inherit"
+                height={"3.2rem"}
                 placeholder="Enter Full name"
               />
             </FormControl>
 
-            <FormControl>
+            <FormControl marginBottom={"7px"}>
               <FormLabel fontSize="12" fontWeight="500" fontFamily="inherit">
                 Email
               </FormLabel>
@@ -46,11 +59,12 @@ const Signup = () => {
                 fontSize="12"
                 fontWeight="400"
                 fontFamily="inherit"
+                height={"3.2rem"}
                 placeholder="Enter email"
               />
             </FormControl>
 
-            <FormControl mt={4}>
+            <FormControl mt={4} marginBottom={"7px"}>
               <FormLabel fontSize="12" fontWeight="500" fontFamily="inherit">
                 Password
               </FormLabel>
@@ -59,20 +73,41 @@ const Signup = () => {
                 fontSize="12"
                 fontWeight="400"
                 fontFamily="inherit"
+                height={"3.2rem"}
                 placeholder="Create a password"
               />
             </FormControl>
 
-            <Button
-              colorScheme="blue"
-              width="full"
-              mt={4}
-              fontSize="12"
-              fontWeight="500"
-              fontFamily="inherit"
-            >
-              Sign up
-            </Button>
+            <FormControl marginBottom={"7px"}>
+              <FormLabel fontSize="12" fontWeight="500" fontFamily="inherit">
+                User Type
+              </FormLabel>
+              <Select placeholder="Select option" height={"3.2rem"}>
+                <option value="applicant">Applicant</option>
+                <option value="admin">Admin</option>
+                <option value="business">Business</option>
+              </Select>
+            </FormControl>
+
+            <FormControl marginBottom={"7px"}>
+              {" "}
+              <Button
+                colorScheme={"blue"}
+                color={"#fff"}
+                width="full"
+                mt={4}
+                fontSize="12"
+                fontWeight="500"
+                fontFamily="inherit"
+                backgroundColor={"#0570FB"}
+                height={"4rem"}
+                marginBottom={"5px"}
+              >
+                Sign up
+              </Button>
+            </FormControl>
+
+            {/* <FormButton text="Sign Up" backgroundColor="#0570fb" /> */}
             <div style={{ display: "flex", alignItems: "center" }}>
               <div
                 style={{ flex: 1, backgroundColor: "#000000", height: "1px" }}
@@ -84,34 +119,46 @@ const Signup = () => {
                 style={{ flex: 1, backgroundColor: "#000000", height: "1px" }}
               />
             </div>
-            <Button
-              colorScheme="gray"
-              width="full"
-              mt={4}
-              fontSize="12"
-              fontWeight="500"
-              fontFamily="inherit"
-            >
-              <img src={google} alt="google" height={10} width={10} />
-              Sign up with Google
-            </Button>
-            <Button
-              colorScheme="gray"
-              width="full"
-              mt={4}
-              fontSize="12"
-              fontWeight="500"
-              fontFamily="inherit"
-            >
-              <img
-                src={facebook}
-                alt="facebook"
-                paddingLeft="5"
-                height={10}
-                width={10}
-              />
-              Sign up with Facebook
-            </Button>
+
+            <FormControl marginBottom={"7px"}>
+              <Button
+                colorScheme="white"
+                width="full"
+                mt={4}
+                fontSize="12"
+                fontWeight="500"
+                fontFamily="inherit"
+                height={"4rem"}
+                color={"#000"}
+                border={"1px solid #000"}
+              >
+                <img src={google} alt="google" height={10} width={10} />
+                Sign up with Google
+              </Button>
+            </FormControl>
+
+            <FormControl marginBottom={"7px"}>
+              <Button
+                colorScheme="white"
+                width="full"
+                mt={4}
+                fontSize="12"
+                fontWeight="500"
+                fontFamily="inherit"
+                height={"4rem"}
+                color={"#000"}
+                border={"1px solid #000"}
+              >
+                <img
+                  src={facebook}
+                  alt="facebook"
+                  height={10}
+                  width={10}
+                />
+                Sign up with Facebook
+              </Button>
+            </FormControl>
+
             <Text
               textAlign="center"
               fontSize="12"
