@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./signup.css";
 import logo from "../../assets/logo.png";
 import frame from "../../assets/frame.png";
@@ -10,11 +10,75 @@ import {
   Input,
   Button,
   Select,
+  Spinner,
+  useToast,
+  Box,
 } from "@chakra-ui/react";
 import facebook from "../../assets/facebook.png";
 import google from "../../assets/google.png";
+import { APIConfig } from "../../config/apiConfig";
 
 const Signup = () => {
+  const [form, setForm] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+    user_type: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  const toast = useToast();
+
+  useEffect(() => {
+    if (success) {
+      return toast({
+        position: "top-left",
+        render: () => (
+          <Box color="white" p={3} bg="green.500" fontSize={15}>
+            Sign in successful. Please check your mail.
+          </Box>
+        ),
+      });
+    }
+
+    if (error)
+      toast({
+        position: "top-right",
+        render: () => (
+          <Box color="white" p={3} bg="red.500" fontSize={15}>
+            {error}
+          </Box>
+        ),
+      });
+  }, [success, toast, error]);
+
+  const { fullname, email, password, user_type } = form;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const { data } = await APIConfig.post("auth/register", form);
+      console.log(data);
+      setLoading(false);
+      setSuccess(true);
+    } catch (error) {
+      setLoading(false);
+      setError(error.response.data.message);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   return (
     <div className="signup-parent">
       <div className="signup-wrapper">
@@ -47,6 +111,9 @@ const Signup = () => {
                 fontFamily="inherit"
                 height={"3.2rem"}
                 placeholder="Enter Full name"
+                name="fullname"
+                value={fullname}
+                onChange={handleChange}
               />
             </FormControl>
 
@@ -61,6 +128,9 @@ const Signup = () => {
                 fontFamily="inherit"
                 height={"3.2rem"}
                 placeholder="Enter email"
+                name="email"
+                value={email}
+                onChange={handleChange}
               />
             </FormControl>
 
@@ -75,6 +145,9 @@ const Signup = () => {
                 fontFamily="inherit"
                 height={"3.2rem"}
                 placeholder="Create a password"
+                name="password"
+                value={password}
+                onChange={handleChange}
               />
             </FormControl>
 
@@ -82,7 +155,13 @@ const Signup = () => {
               <FormLabel fontSize="12" fontWeight="500" fontFamily="inherit">
                 User Type
               </FormLabel>
-              <Select placeholder="Select option" height={"3.2rem"}>
+              <Select
+                placeholder="Select option"
+                height={"3.2rem"}
+                onChange={handleChange}
+                name="user_type"
+                value={user_type}
+              >
                 <option value="applicant">Applicant</option>
                 <option value="admin">Admin</option>
                 <option value="business">Business</option>
@@ -102,8 +181,9 @@ const Signup = () => {
                 backgroundColor={"#0570FB"}
                 height={"4rem"}
                 marginBottom={"5px"}
+                onClick={handleSubmit}
               >
-                Sign up
+                {!loading ? "Sign in" : <Spinner size="sm" color="white.500" />}
               </Button>
             </FormControl>
 
@@ -149,12 +229,7 @@ const Signup = () => {
                 color={"#000"}
                 border={"1px solid #000"}
               >
-                <img
-                  src={facebook}
-                  alt="facebook"
-                  height={10}
-                  width={10}
-                />
+                <img src={facebook} alt="facebook" height={10} width={10} />
                 Sign up with Facebook
               </Button>
             </FormControl>
