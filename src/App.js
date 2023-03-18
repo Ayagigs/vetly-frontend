@@ -21,8 +21,8 @@ function App() {
       <Route path="/verify-account" element={<Verifyaccount />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<Resetpassword />} />
-      <Route path="/business" element={<BusinessLayout />} />
-      <Route path="/admin" element={<AdminLayout />} />
+      <Route path="/business/*" element={<BusinessLayout />} />
+      <Route path="/admin/*" element={<AdminLayout />} />
       <Route
         path="/applicant/*"
         element={
