@@ -42,6 +42,7 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setLoading(true);
     try {
       const { data } = await APIConfig.post("auth/login", form);

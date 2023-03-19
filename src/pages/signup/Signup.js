@@ -26,6 +26,7 @@ const Signup = () => {
     fullname: "",
     email: "",
     password: "",
+    confirmPassword: "",
     user_type: "",
   });
   const [loading, setLoading] = useState(false);
@@ -58,10 +59,34 @@ const Signup = () => {
       });
   }, [success, toast, error]);
 
-  const { fullname, email, password, user_type } = form;
+  const { fullname, email, password, confirmPassword, user_type } = form;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!fullname || !user_type || !email || !password || !confirmPassword) {
+      toast({
+        position: "top-right",
+        render: () => (
+          <Box color="white" p={3} bg="red.500" fontSize={15}>
+            All fields are required!
+          </Box>
+        ),
+      });
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      toast({
+        position: "top-right",
+        render: () => (
+          <Box color="white" p={3} bg="red.500" fontSize={15}>
+            Passwords do not match
+          </Box>
+        ),
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -154,9 +179,26 @@ const Signup = () => {
                 fontWeight="400"
                 fontFamily="inherit"
                 height={"3.2rem"}
-                placeholder="Create a password"
+                placeholder="Enter a password"
                 name="password"
                 value={password}
+                onChange={handleChange}
+              />
+            </FormControl>
+
+            <FormControl mt={4} marginBottom={"7px"}>
+              <FormLabel fontSize="12" fontWeight="500" fontFamily="inherit">
+                Confirm Password
+              </FormLabel>
+              <Input
+                type="password"
+                fontSize="12"
+                fontWeight="400"
+                fontFamily="inherit"
+                height={"3.2rem"}
+                placeholder="Enter a password"
+                name="confirmPassword"
+                value={confirmPassword}
                 onChange={handleChange}
               />
             </FormControl>
