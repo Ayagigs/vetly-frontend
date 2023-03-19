@@ -14,9 +14,12 @@ import {
   useToast,
   Box,
 } from "@chakra-ui/react";
+// import { useDispatch } from "react-redux";
+
 import facebook from "../../assets/facebook.png";
 import google from "../../assets/google.png";
 import { APIConfig } from "../../config/apiConfig";
+// import { setUser } from "../../slices/users";
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -30,14 +33,15 @@ const Signup = () => {
   const [error, setError] = useState("");
 
   const toast = useToast();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     if (success) {
-      return toast({
+      toast({
         position: "top-left",
         render: () => (
           <Box color="white" p={3} bg="green.500" fontSize={15}>
-            Sign in successful. Please check your mail.
+            Sign up successful. Please check your mail for verification.
           </Box>
         ),
       });
@@ -63,6 +67,12 @@ const Signup = () => {
     try {
       const { data } = await APIConfig.post("auth/register", form);
       console.log(data);
+      // dispatch(
+      //   setUser({
+      //     fullname: data.fullname,
+      //     email: data.local.email,
+      //   })
+      // );
       setLoading(false);
       setSuccess(true);
     } catch (error) {
@@ -183,7 +193,7 @@ const Signup = () => {
                 marginBottom={"5px"}
                 onClick={handleSubmit}
               >
-                {!loading ? "Sign in" : <Spinner size="sm" color="white.500" />}
+                {!loading ? "Sign up" : <Spinner size="sm" color="white.500" />}
               </Button>
             </FormControl>
 
