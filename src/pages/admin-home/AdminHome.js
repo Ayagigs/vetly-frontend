@@ -1,9 +1,19 @@
 import React from 'react'
+import {
+AdminHomeParent,
+CenterWrapper,
+
+} from "./admin.home.styles";
+
 
 const AdminHome = () => {
   return (
-    <div>AdminHome</div>
-  )
-}
+    <AdminHomeParent>
+      <CenterWrapper>
+        
+      </CenterWrapper>
+    </AdminHomeParent>
+  );
+};
 
 export default AdminHome
