@@ -5,7 +5,15 @@ import AdminHome from "../../pages/admin-home/AdminHome";
 import RegisteredCompanies from "../../pages/registered-companies/RegisteredCompanies";
 import RegisteredUsers from "../../pages/registered-users/RegisteredUsers";
 import TeamMembers from "../../pages/team-members/TeamMembers";
-import { MainContentArea, ParentContainer } from "./admin.dashboard.styles";
+import {
+  AdminDashboardHeader,
+  AdminHeaderContainer,
+  InfoContainer,
+  MainContentArea,
+  NotificationContainer,
+  ParentContainer
+} from "./admin.dashboard.styles";
+import notification from "../../assets/notification.png";
 import { sideBarLinks } from "./admin.routes";
 
 const AdminLayout = () => {
@@ -14,7 +22,16 @@ const AdminLayout = () => {
       <Sidebar routes={sideBarLinks} />
 
       <MainContentArea>
-        {/* Build the admin dashboard header here. See the applicant dashboard for inspiration */}
+        <AdminDashboardHeader>
+          <AdminHeaderContainer>
+            <InfoContainer>
+              <h2>Welcome Teemah</h2>
+            </InfoContainer>
+            <NotificationContainer>
+              <img src={notification} alt="notification" />
+            </NotificationContainer>
+          </AdminHeaderContainer>
+        </AdminDashboardHeader>
 
         <div
           className=""
