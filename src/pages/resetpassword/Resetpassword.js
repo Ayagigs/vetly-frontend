@@ -1,10 +1,81 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./resetpassword.css";
 import logo from "../../assets/logo.png";
-import { FormControl, Text, FormLabel, Input, Button } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import {
+  FormControl,
+  Text,
+  FormLabel,
+  Input,
+  Button,
+  useToast,
+  Box,
+  Spinner,
+} from "@chakra-ui/react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+
+import { APIConfig } from "../../config/apiConfig";
 
 const Resetpassword = () => {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const { token } = useParams();
+
+  const toast = useToast();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (success) {
+      toast({
+        position: "top-left",
+        render: () => (
+          <Box color="white" p={3} bg="green.500" fontSize={15}>
+            Password Reset Successfull!.
+          </Box>
+        ),
+        onCloseComplete: () => {
+          navigate("/");
+        },
+      });
+    }
+
+    if (error)
+      toast({
+        position: "top-right",
+        render: () => (
+          <Box color="white" p={3} bg="red.500" fontSize={15}>
+            {error}
+          </Box>
+        ),
+      });
+  }, [success, toast, navigate, error]);
+
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    setLoading(true);
+    try {
+      const { data } = await APIConfig.post("auth/change-password", {
+        password,
+        token,
+      });
+
+      setLoading(false);
+      setSuccess(true);
+      console.log(data);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
   return (
     <div className="reset-parent">
       <div className="logo-container">
@@ -38,8 +109,8 @@ const Resetpassword = () => {
               fontSize="12"
               fontWeight="400"
               fontFamily="inherit"
-              placeholder="**********"
               height={"3.2rem"}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
 
@@ -52,8 +123,8 @@ const Resetpassword = () => {
               fontSize="12"
               fontWeight="400"
               fontFamily="inherit"
-              placeholder="**********"
               height={"3.2rem"}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </FormControl>
 
@@ -67,10 +138,17 @@ const Resetpassword = () => {
             fontFamily="inherit"
             backgroundColor={"#0570FB"}
             height={"3.2rem"}
+            onClick={handleResetPassword}
           >
-            Reset your password
+            {!loading ? (
+              "Reset your password"
+            ) : (
+              <Spinner size="sm" color="white.500" />
+            )}
           </Button>
-          <NavLink to="/" className="navigate">Return to login page</NavLink>
+          <NavLink to="/" className="navigate">
+            Return to login page
+          </NavLink>
         </form>
       </div>
     </div>
