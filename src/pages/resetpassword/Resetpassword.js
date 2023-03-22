@@ -70,7 +70,7 @@ const Resetpassword = () => {
           >
             Reset your password
           </Button>
-          <NavLink to="/sign-in" className="navigate">Return to login page</NavLink>
+          <NavLink to="/" className="navigate">Return to login page</NavLink>
         </form>
       </div>
     </div>
