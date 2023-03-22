@@ -1,92 +1,94 @@
 /** @format */
 
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-
-import { createTheme as createMaterialTheme } from "@mui/material/styles";
-import { ThemeProvider as MaterialThemeProvider } from "@mui/material/styles";
-import MaterialCheckbox from "@mui/material/Checkbox";
-
+import { useState } from "react";
 import {
+	createStyles,
 	Table,
-	Header,
-	HeaderRow,
-	Body,
-	Row,
-	HeaderCell,
-	Cell,
-} from "@table-library/react-table-library/table";
-import { useTheme } from "@table-library/react-table-library/theme";
+	Checkbox,
+	ScrollArea,
+	Group,
+	Avatar,
+	Text,
+	rem,
+} from "@mantine/core";
 
-import {
-	HeaderCellSelect,
-	CellSelect,
-	SelectClickTypes,
-	SelectTypes,
-	useRowSelect,
-} from "@table-library/react-table-library/select";
+const useStyles = createStyles((theme) => ({
+	rowSelected: {
+		backgroundColor:
+			theme.colorScheme === "dark"
+				? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.2)
+				: theme.colors[theme.primaryColor][0],
+	},
+}));
 
-import { nodes } from "../../data";
 
-const RegisteredUserTable = () => {
-	const data = { nodes };
 
-	const theme = useTheme({
-		Table: `
-        --data-table-library_grid-template-columns:  24px repeat(5, minmax(0, 1fr));
-      `,
+
+
+export function TableSelection({ data }) {
+	const { classes, cx } = useStyles();
+	const [selection, setSelection] = useState(["1"]);
+	const toggleRow = (id: string) =>
+		setSelection((current) =>
+			current.includes(id)
+				? current.filter((item) => item !== id)
+				: [...current, id],
+		);
+	const toggleAll = () =>
+		setSelection((current) =>
+			current.length === data.length ? [] : data.map((item) => item.id),
+		);
+
+	const rows = data.map((item) => {
+		const selected = selection.includes(item.id);
+		return (
+			<tr key={item.id} className={cx({ [classes.rowSelected]: selected })}>
+				<td>
+					<Checkbox
+						checked={selection.includes(item.id)}
+						onChange={() => toggleRow(item.id)}
+						transitionDuration={0}
+					/>
+				</td>
+				<td>
+					<Group spacing="sm" style={{border: "none", padding: "10px"}}>
+						<Avatar size={50} src={item.avatar} radius={26} />
+						<Text style={{ fontSize: "14px" }} weight={500}>
+							{item.name}
+						</Text>
+					</Group>
+				</td>
+
+				<td style={{ fontSize: "14px", color: "#5D5E5F" }}>{item.email}</td>
+				<td style={{ fontSize: "14px", color: "#5D5E5F" }}>{item.date}</td>
+				<td style={{ fontSize: "14px", color: "#22A57E" }}>{item.status}</td>
+			</tr>
+		);
 	});
 
-	const select = useRowSelect(
-		data,
-		{
-			onChange: onSelectChange,
-		},
-		{
-			clickType: SelectClickTypes.ButtonClick,
-		},
-	);
-
-	function onSelectChange(action, state) {
-		console.log(action, state);
-	}
-
 	return (
-		<Table data={data} theme={theme} layout={{ custom: true }} select={select}>
-			{(tableList) => (
-				<>
-					<Header>
-						<HeaderRow>
-							<HeaderCellSelect />
-							<HeaderCell>Name</HeaderCell>
-							<HeaderCell>Email</HeaderCell>
-							<HeaderCell>Date</HeaderCell>
-							<HeaderCell>Status</HeaderCell>
-						</HeaderRow>
-					</Header>
-
-					<Body>
-						{tableList.map((item) => (
-							<Row key={item.id} item={item}>
-								<CellSelect item={item} />
-								<Cell>{item.name}</Cell>
-								<Cell>
-									{item.deadline.toLocaleDateString("en-US", {
-										year: "numeric",
-										month: "2-digit",
-										day: "2-digit",
-									})}
-								</Cell>
-								<Cell>{item.type}</Cell>
-								<Cell>{item.isComplete.toString()}</Cell>
-								<Cell>{item.nodes?.length}</Cell>
-							</Row>
-						))}
-					</Body>
-				</>
-			)}
-		</Table>
+		<ScrollArea>
+			<Table miw={800} verticalSpacing="sm">
+				<thead>
+					<tr>
+						<th style={{ width: rem(40) }}>
+							<Checkbox
+								onChange={toggleAll}
+								checked={selection.length === data.length}
+								indeterminate={
+									selection.length > 0 && selection.length !== data.length
+								}
+								transitionDuration={0}
+							/>
+						</th>
+						<th style={{ fontSize: "12px" }}>Name</th>
+						<th style={{ fontSize: "12px" }}>Email</th>
+						<th style={{ fontSize: "12px" }}>Date</th>
+						<th style={{ fontSize: "12px" }}>Status</th>
+					</tr>
+				</thead>
+				<tbody>{rows}</tbody>
+			</Table>
+		</ScrollArea>
 	);
-};
-
-export default RegisteredUserTable;
+}

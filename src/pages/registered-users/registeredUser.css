@@ -1,7 +1,7 @@
 /** @format */
 
 .registereduser {
-	height: 100vh;
+	/* height: 100vh; */
 	padding: 20px 3%;
 }
 
@@ -26,4 +26,8 @@
   outline: none;
   text-indent: 10px;
   font-size: 12px;
+}
+
+.registeredusertable {
+	margin-top: 50px;
 }

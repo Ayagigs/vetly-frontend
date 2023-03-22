@@ -9,7 +9,7 @@
     "@emotion/styled": "^11.10.6",
     "@fontsource/open-sans": "^4.5.14",
     "@fontsource/raleway": "^4.5.12",
-    "@mantine/core": "^6.0.2",
+    "@mantine/core": "^6.0.4",
     "@reduxjs/toolkit": "^1.9.3",
     "@table-library/react-table-library": "^4.1.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -23,6 +23,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
+    "react-table": "^7.8.0",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
