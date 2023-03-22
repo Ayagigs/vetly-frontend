@@ -7,5 +7,13 @@ export const getUserName = () => {
     ? JSON.parse(localStorage.getItem("currentUser"))
     : "";
 
-  return user.fullname.split(" ")[0];
+  return user?.fullname?.split(" ")[0];
+};
+
+export const getUserToken = () => {
+  const token = localStorage.getItem("userToken")
+    ? localStorage.getItem("userToken")
+    : "";
+
+  return token;
 };

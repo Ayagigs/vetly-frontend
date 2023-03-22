@@ -14,15 +14,16 @@ const initialState = {
     gender: "",
   },
   // work experience inputs
-  workExperience: {
-    position: "",
+  work_experience: {
+    occupation: "",
     company: "",
-    workEmail: "",
-    workPhoneNumber: "",
-    workCity: "",
-    workCountry: "",
-    workStartDate: "",
-    workEndDate: "",
+    email_address: "",
+    phone_number: "",
+    city: "",
+    country: "",
+    from: "",
+    to: "",
+    main_activities: "",
   },
 
   listOfWorkExperiences: [],
@@ -66,7 +67,7 @@ export const getResumeState = (state) => state.resume.value;
 export const getPersonaalInfo = (state) => state.resume.value.personalInfo;
 
 export const getWorkExperienceState = (state) =>
-  state.resume.value.workExperience;
+  state.resume.value.work_experience;
 
 export const getEducationState = (state) => state.resume.value.education;
 
