@@ -74,7 +74,7 @@ const WorkExperience = () => {
     const newActiveHeaders = [...data?.activeHeaders, 2];
     const resume = {
       ...data,
-      work_experience: workExperience,
+      workExperience,
       activeHeaders: newActiveHeaders,
     };
     dispatch(updateResume(resume));
@@ -85,7 +85,7 @@ const WorkExperience = () => {
     const newActiveHeaders = data.activeHeaders.filter((el) => el !== 1);
     const resume = {
       ...data,
-      work_experience: workExperience,
+      workExperience,
       activeHeaders: newActiveHeaders,
     };
     dispatch(updateResume(resume));
@@ -110,6 +110,7 @@ const WorkExperience = () => {
       country: "",
       from: "",
       to: "",
+      main_activities: "",
     }));
   };
 
@@ -122,16 +123,16 @@ const WorkExperience = () => {
 
     setIsNewExperienceAdded(true);
 
-    let { listOfWorkExperiences, ...rest } = data;
+    let { work_experience, ...rest } = data;
 
-    listOfWorkExperiences = listOfWorkExperiences.concat({
-      id: listOfWorkExperiences.length + 1,
+    work_experience = work_experience.concat({
+      id: work_experience.length + 1,
       ...workExperience,
     });
 
     const resume = {
       ...rest,
-      listOfWorkExperiences,
+      work_experience,
     };
     dispatch(updateResume(resume));
   };
@@ -238,6 +239,7 @@ const WorkExperience = () => {
             labelName="More activities and responsibilities"
             name="main_activities"
             value={main_activities}
+            handleChange={handleChange}
           />
 
           <FormButton

@@ -18,7 +18,6 @@ import {
 } from "../../../slices/resume";
 import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 
-
 const PersonalInformation = () => {
   const [personalInfo, setPersonalInfo] = useState(
     useSelector(getPersonaalInfo)
@@ -27,6 +26,7 @@ const PersonalInformation = () => {
   const dispatch = useDispatch();
 
   // console.log(useSelector(getPersonaalInfo));
+  console.log(personalInfo);
 
   const { activeHeaders, ...rest } = useSelector(getResumeState);
 
