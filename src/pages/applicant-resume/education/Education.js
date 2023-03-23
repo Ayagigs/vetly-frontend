@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { Box, useToast } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../../../components/custom-button/FormButton";
@@ -10,6 +11,7 @@ import {
   getResumeState,
   updateResume,
 } from "../../../slices/resume";
+import { isSomeObjectValuesEmpty } from "../../../utils";
 import {
   DivideWrapper,
   Heading,
@@ -21,21 +23,47 @@ import {
 
 const Education = () => {
   const [education, seteducation] = useState(useSelector(getEducationState));
+  const [isFormEmpty, setIsFormEmpty] = useState(false);
+
+  const toast = useToast();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (isFormEmpty) {
+      toast({
+        position: "top-right",
+        render: () => (
+          <Box color="white" p={3} bg="red.500" fontSize={15}>
+            Fill All fields
+          </Box>
+        ),
+        onCloseComplete: () => {
+          setIsFormEmpty(false);
+        },
+      });
+    }
+  }, [isFormEmpty, toast]);
+
   const data = useSelector(getResumeState);
+  // console.log(data);
 
   const routeToNextPage = () => {
-    navigate("/applicant/resume/build/skills");
+    const isEmpty = isSomeObjectValuesEmpty(education);
+    if (isEmpty) {
+      setIsFormEmpty(true);
+      return;
+    }
     const newActiveHeaders = [...data?.activeHeaders, 3];
     const resume = {
       ...data,
-      ...education,
+      education,
       activeHeaders: newActiveHeaders,
     };
     dispatch(updateResume(resume));
+
+    navigate("/applicant/resume/build/skills");
   };
 
   const routeToPreviousPage = () => {
@@ -65,15 +93,16 @@ const Education = () => {
       educationWebsite: "",
       finalGrade: "",
       educationCity: "",
-      country: "",
+      educationCountry: "",
       educationStartDate: "",
       educationEndDate: "",
+      main_activities: "",
     }));
   };
 
   const handleAddNewEducation = () => {
     clearInputs();
-    
+
     let { listOfEducationExperiences, ...rest } = data;
 
     listOfEducationExperiences = listOfEducationExperiences.concat({
@@ -94,9 +123,10 @@ const Education = () => {
     educationWebsite,
     finalGrade,
     educationCity,
-    country,
+    educationCountry,
     educationStartDate,
     educationEndDate,
+    main_activities,
   } = education;
   return (
     <Parent>
@@ -145,8 +175,8 @@ const Education = () => {
                 labelName="Country"
                 placeholder="enter country"
                 width="100%"
-                value={country}
-                name="country"
+                value={educationCountry}
+                name="educationCountry"
                 handleChange={handleChange}
               />
             </Side>
@@ -186,7 +216,12 @@ const Education = () => {
             handleChange={handleChange}
           />
 
-          <FormTextArea labelName="More activities and responsibilities" />
+          <FormTextArea
+            labelName="More activities and responsibilities"
+            name="main_activities"
+            value={main_activities}
+            handleChange={handleChange}
+          />
 
           <FormButton
             text="Add more experience"

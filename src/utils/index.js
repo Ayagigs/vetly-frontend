@@ -2,6 +2,11 @@ export const isObjectValuesEmpty = (obj) => {
   return Object.values(obj).every((value) => !Boolean(value));
 };
 
+export const isSomeObjectValuesEmpty = (obj) => {
+  console.log(Object.values(obj));
+  return Object.values(obj).some((value) => !Boolean(value));
+};
+
 export const getUserName = () => {
   const user = localStorage.getItem("currentUser")
     ? JSON.parse(localStorage.getItem("currentUser"))

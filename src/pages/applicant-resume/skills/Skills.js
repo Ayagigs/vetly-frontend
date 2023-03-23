@@ -26,10 +26,9 @@ const Skills = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const data = useSelector(getResumeState);
+  let data = useSelector(getResumeState);
 
   const routeToPreviousPage = () => {
-    navigate("/applicant/resume/build/education");
     const newActiveHeaders = data.activeHeaders.filter((el) => el !== 3);
     const resume = {
       ...data,
@@ -37,6 +36,20 @@ const Skills = () => {
       activeHeaders: newActiveHeaders,
     };
     dispatch(updateResume(resume));
+    navigate("/applicant/resume/build/education");
+  };
+
+  const handleSaveResume = () => {
+    const resume = {
+      ...data,
+      work_experience: data.work_experience.concat(data.workExperience),
+      education_training: data.education_training.concat(data.education),
+      personal_skill: [personalSkills],
+    };
+    dispatch(updateResume(resume));
+
+    console.log(data);
+    navigate("/applicant/resume/build/preview");
   };
 
   return (
@@ -58,7 +71,11 @@ const Skills = () => {
               color="#0570fb"
               handleClick={routeToPreviousPage}
             />
-            <FormButton text="Save" backgroundColor="#0570fb" />
+            <FormButton
+              text="Save"
+              backgroundColor="#0570fb"
+              handleClick={handleSaveResume}
+            />
           </DivideWrapper>
         </SkillsForm>
       </Wrapper>
