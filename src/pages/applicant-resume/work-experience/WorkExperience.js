@@ -102,14 +102,15 @@ const WorkExperience = () => {
   const clearInputs = () => {
     setWorkExperience((prev) => ({
       ...prev,
-      position: "",
+      occupation: "",
       company: "",
-      workEmail: "",
-      workPhoneNumber: "",
-      workCity: "",
-      workCountry: "",
-      workStartDate: "",
-      workEndDate: "",
+      email_address: "",
+      phone_number: "",
+      city: "",
+      country: "",
+      from: "",
+      to: "",
+      main_activities: "",
     }));
   };
 
@@ -122,29 +123,30 @@ const WorkExperience = () => {
 
     setIsNewExperienceAdded(true);
 
-    let { listOfWorkExperiences, ...rest } = data;
+    let { work_experience, ...rest } = data;
 
-    listOfWorkExperiences = listOfWorkExperiences.concat({
-      id: listOfWorkExperiences.length + 1,
+    work_experience = work_experience.concat({
+      id: work_experience.length + 1,
       ...workExperience,
     });
 
     const resume = {
       ...rest,
-      listOfWorkExperiences,
+      work_experience,
     };
     dispatch(updateResume(resume));
   };
 
   const {
-    position,
+    occupation,
     company,
-    workEmail,
-    workPhoneNumber,
-    workCity,
-    workCountry,
-    workStartDate,
-    workEndDate,
+    email_address,
+    phone_number,
+    city,
+    country,
+    from,
+    to,
+    main_activities,
   } = workExperience;
   return (
     <WorkExperienceParent>
@@ -155,8 +157,8 @@ const WorkExperience = () => {
           <FormTextInput
             labelName="Occupation"
             placeholder=""
-            value={position}
-            name="position"
+            value={occupation}
+            name="occupation"
             handleChange={handleChange}
           />
           <FormTextInput
@@ -169,15 +171,15 @@ const WorkExperience = () => {
           <FormTextInput
             labelName="Enter email address"
             placeholder="enter Email address"
-            value={workEmail}
-            name="workEmail"
+            value={email_address}
+            name="email_address"
             handleChange={handleChange}
           />
           <FormTextInput
             labelName="Phone Number"
             placeholder="enter phone number"
-            value={workPhoneNumber}
-            name="workPhoneNumber"
+            value={phone_number}
+            name="phone_number"
             handleChange={handleChange}
           />
 
@@ -188,8 +190,8 @@ const WorkExperience = () => {
                 labelName="City"
                 placeholder="enter city"
                 width="100%"
-                value={workCity}
-                name="workCity"
+                value={city}
+                name="city"
                 handleChange={handleChange}
               />
             </Side>
@@ -200,8 +202,8 @@ const WorkExperience = () => {
                 labelName="Country"
                 placeholder="enter country"
                 width="100%"
-                value={workCountry}
-                name="workCountry"
+                value={country}
+                name="country"
                 handleChange={handleChange}
               />
             </Side>
@@ -214,8 +216,8 @@ const WorkExperience = () => {
                 labelName="From"
                 placeholder=""
                 width="100%"
-                value={workStartDate}
-                name="workStartDate"
+                value={from}
+                name="from"
                 handleChange={handleChange}
               />
             </Side>
@@ -226,14 +228,19 @@ const WorkExperience = () => {
                 labelName="To"
                 placeholder=""
                 width="100%"
-                value={workEndDate}
-                name="workEndDate"
+                value={to}
+                name="to"
                 handleChange={handleChange}
               />
             </Side>
           </DivideWrapper>
 
-          <FormTextArea labelName="More activities and responsibilities" />
+          <FormTextArea
+            labelName="More activities and responsibilities"
+            name="main_activities"
+            value={main_activities}
+            handleChange={handleChange}
+          />
 
           <FormButton
             text="Add more experience"

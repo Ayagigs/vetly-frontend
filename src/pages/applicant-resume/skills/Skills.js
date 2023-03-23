@@ -1,4 +1,4 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../../../components/custom-button/FormButton";
@@ -17,7 +17,11 @@ import {
 // };
 
 const Skills = () => {
-  // const [personalSkills, setPersonalSkills] = useState("");
+  const [personalSkills, setPersonalSkills] = useState("");
+
+  const handleChange = (e) => {
+    setPersonalSkills(e.target.value);
+  };
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,6 +33,7 @@ const Skills = () => {
     const newActiveHeaders = data.activeHeaders.filter((el) => el !== 3);
     const resume = {
       ...data,
+      personal_skill: [personalSkills],
       activeHeaders: newActiveHeaders,
     };
     dispatch(updateResume(resume));
@@ -40,7 +45,12 @@ const Skills = () => {
         {" "}
         <Heading>Personal Skills</Heading>
         <SkillsForm>
-          <FormTextArea labelName="Enter your personal skills" />
+          <FormTextArea
+            labelName="Enter your personal skills"
+            name="personalSkills"
+            value={personalSkills}
+            handleChange={handleChange}
+          />
 
           <DivideWrapper>
             <FormButton

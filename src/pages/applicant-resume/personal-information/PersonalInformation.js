@@ -18,16 +18,6 @@ import {
 } from "../../../slices/resume";
 import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 
-// const initialState = {
-//   firstName: "",
-//   lastName: "",
-//   email: "",
-//   phoneNumber: "",
-//   contactAddress: "",
-//   city: "",
-//   country: "",
-// };
-
 const PersonalInformation = () => {
   const [personalInfo, setPersonalInfo] = useState(
     useSelector(getPersonaalInfo)
@@ -36,10 +26,9 @@ const PersonalInformation = () => {
   const dispatch = useDispatch();
 
   // console.log(useSelector(getPersonaalInfo));
+  console.log(personalInfo);
 
   const { activeHeaders, ...rest } = useSelector(getResumeState);
-
-  console.log(rest);
 
   const routeToNextPage = () => {
     navigate("/applicant/resume/build/work-experience");
