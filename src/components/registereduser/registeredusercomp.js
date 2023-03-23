@@ -22,9 +22,6 @@ const useStyles = createStyles((theme) => ({
 }));
 
 
-
-
-
 export function TableSelection({ data }) {
 	const { classes, cx } = useStyles();
 	const [selection, setSelection] = useState(["1"]);
