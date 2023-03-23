@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import FormButton from "../../../components/custom-button/FormButton";
 import {
@@ -7,10 +7,25 @@ import {
   ResumeParent,
   Wrapper,
 } from "./resume.home.styles";
+import { APIConfig } from "../../../config/apiConfig";
 
 const ResumeHome = () => {
   const [isOutletActive, setIsOutletActive] = useState(false);
   const navigate = useNavigate();
+
+  const getResume = async () => {
+    try {
+      const { data } = await APIConfig.get("resume");
+      // console.log(data === "");
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getResume();
+  }, []);
 
   const routeToResumeBuildPage = () => {
     setIsOutletActive(true);
