@@ -1,0 +1,26 @@
+.registeredcomp {
+  padding: 20px 3%;
+}
+
+.registeredheader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.registeredheader h1 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.registeredheader button {
+  width: 175px;
+  height: 48px;
+  background: #0570FB;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}

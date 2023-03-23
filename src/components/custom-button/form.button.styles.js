@@ -14,6 +14,7 @@ export const NavigateButton = styled.button`
   line-height: 24px;
   border: 1px solid #0570fb;
   display: block;
+  outline: none;
 `;
 
 //#0570fb;
