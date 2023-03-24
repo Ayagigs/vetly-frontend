@@ -12,8 +12,14 @@ export const Container = styled.section`
   border-radius: 8px;
   margin: 4rem auto;
   width: 65%;
-`;
+  positive: relative;
 
+  & .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+`;
 
 export const DivideWrapper = styled.div`
   display: flex;

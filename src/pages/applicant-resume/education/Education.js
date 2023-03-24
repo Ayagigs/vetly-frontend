@@ -112,14 +112,14 @@ const Education = () => {
     seteducation((prev) => ({
       ...prev,
       uuid: uuidv4(),
-      educationExperience: "",
-      educationOrganization: "",
-      educationWebsite: "",
-      finalGrade: "",
-      educationCity: "",
-      educationCountry: "",
-      educationStartDate: "",
-      educationEndDate: "",
+      experience: "",
+      organization: "",
+      website: "",
+      final_grade: "",
+      city: "",
+      country: "",
+      from: "",
+      to: "",
       main_activities: "",
     }));
   };
@@ -142,14 +142,14 @@ const Education = () => {
   };
 
   const {
-    educationExperience,
-    educationOrganization,
-    educationWebsite,
-    finalGrade,
-    educationCity,
-    educationCountry,
-    educationStartDate,
-    educationEndDate,
+    experience,
+    organization,
+    website,
+    final_grade,
+    city,
+    country,
+    from,
+    to,
     main_activities,
   } = education;
   return (
@@ -161,22 +161,22 @@ const Education = () => {
           <FormTextInput
             labelName="Education and training experience"
             placeholder=""
-            value={educationExperience}
-            name="educationExperience"
+            value={experience}
+            name="experience"
             handleChange={handleChange}
           />
           <FormTextInput
             labelName="Organization providing education and training"
             placeholder=""
-            value={educationOrganization}
-            name="educationOrganization"
+            value={organization}
+            name="organization"
             handleChange={handleChange}
           />
           <FormTextInput
             labelName="Website"
             placeholder="enter email address"
-            value={educationWebsite}
-            name="educationWebsite"
+            value={website}
+            name="website"
             handleChange={handleChange}
           />
 
@@ -187,8 +187,8 @@ const Education = () => {
                 labelName="City"
                 placeholder="enter city"
                 width="100%"
-                value={educationCity}
-                name="educationCity"
+                value={city}
+                name="city"
                 handleChange={handleChange}
               />
             </Side>
@@ -199,8 +199,8 @@ const Education = () => {
                 labelName="Country"
                 placeholder="enter country"
                 width="100%"
-                value={educationCountry}
-                name="educationCountry"
+                value={country}
+                name="country"
                 handleChange={handleChange}
               />
             </Side>
@@ -213,8 +213,8 @@ const Education = () => {
                 labelName="From"
                 placeholder=""
                 width="100%"
-                value={educationStartDate}
-                name="educationStartDate"
+                value={from}
+                name="from"
                 handleChange={handleChange}
               />
             </Side>
@@ -225,8 +225,8 @@ const Education = () => {
                 labelName="To"
                 placeholder=""
                 width="100%"
-                value={educationEndDate}
-                name="educationEndDate"
+                value={to}
+                name="to"
                 handleChange={handleChange}
               />
             </Side>
@@ -235,8 +235,8 @@ const Education = () => {
           <FormTextInput
             labelName="Final grade"
             placeholder="enter email address"
-            value={finalGrade}
-            name="finalGrade"
+            value={final_grade}
+            name="final_grade"
             handleChange={handleChange}
           />
 

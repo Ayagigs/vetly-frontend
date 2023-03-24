@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Oval } from "react-loader-spinner";
 import { getResumeState, updateResume } from "../../../slices/resume";
 import {
   ActionsBox,
-  Box,
   ContactBox,
   Container,
   Details,
@@ -12,17 +12,39 @@ import {
   Segment,
   Wrapper,
 } from "./resume.preview.styles";
+import { APIConfig } from "../../../config/apiConfig";
 import mailIcon from "../../../assets/mail.png";
 import FormButton from "../../../components/custom-button/FormButton";
 import { useNavigate } from "react-router-dom";
+import { useToast, Box } from "@chakra-ui/react";
 
 const ResumePreview = () => {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   let data = useSelector(getResumeState);
-  console.log(data);
   let { work_experience, education_training, personal_skill } = data;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const toast = useToast();
+
+  useEffect(() => {
+    if (success) {
+      toast({
+        position: "top-right",
+        render: () => (
+          <Box color="white" p={3} bg="green.500" fontSize={15}>
+            Resume Saved Successfully!
+          </Box>
+        ),
+
+        onCloseComplete: () => {
+          setSuccess(false);
+        },
+      });
+    }
+  }, [success, toast]);
 
   const routeToPreviousPage = () => {
     navigate("/applicant/resume/build/skills");
@@ -68,9 +90,48 @@ const ResumePreview = () => {
     dispatch(updateResume(resume));
   };
 
+  const handleResumeSave = async () => {
+    setLoading(true);
+    const payload = {
+      work_experience: data.work_experience,
+      education_training: data.education_training,
+      resumeId: data.id,
+      saved: true,
+    };
+
+    console.log(payload);
+    try {
+      const { data } = await APIConfig.patch(
+        `resume/${payload.resumeId}`,
+        payload
+      );
+
+      if (data) {
+        setLoading(false);
+        setSuccess(true);
+      }
+    } catch (error) {
+      setLoading(false);
+      setSuccess(false);
+      console.log(error);
+    }
+  };
+
   return (
     <Parent>
       <Container>
+        <Oval
+          height={80}
+          width={80}
+          color="#0570FB"
+          wrapperStyle={{}}
+          wrapperClass="loader"
+          visible={loading}
+          ariaLabel="oval-loading"
+          secondaryColor="#0570FB"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
+        />
         <Wrapper>
           <Segment>
             <h1>Work Experience</h1>
@@ -113,7 +174,7 @@ const ResumePreview = () => {
             {education_training.map((education) => (
               <Details key={education.uuid}>
                 <Box>
-                  <h2>{education.educationExperience}</h2>
+                  <h2>{education.experience}</h2>
 
                   <ActionsBox>
                     <p onClick={() => handleEducationEdit(education.uuid)}>
@@ -124,16 +185,15 @@ const ResumePreview = () => {
                     </p>
                   </ActionsBox>
                 </Box>
-                <h2>{education.educationOrganization}</h2>
+                <h2>{education.organization}</h2>
                 <p>
-                  03/23 | {education.educationCity},{" "}
-                  {education.educationCountry}
+                  03/23 | {education.city}, {education.country}
                 </p>
                 <p>{education.main_activities}</p>
 
                 <ContactBox>
                   <img src={mailIcon} alt="mail-icon" />
-                  <p className="work-email">{education.educationWebsite}</p>
+                  <p className="work-email">{education.website}</p>
                 </ContactBox>
               </Details>
             ))}
@@ -152,7 +212,12 @@ const ResumePreview = () => {
           color="#0570fb"
           handleClick={routeToPreviousPage}
         />
-        <FormButton text="Save" backgroundColor="#0570fb" />
+        <FormButton
+          text="Save"
+          backgroundColor="#0570fb"
+          handleClick={handleResumeSave}
+          disabled={loading}
+        />
       </DivideWrapper>
     </Parent>
   );
