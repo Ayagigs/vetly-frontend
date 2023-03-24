@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../../../components/custom-button/FormButton";
 import FormTextArea from "../../../components/custom-textarea/FormTextArea";
-import { getResumeState, updateResume } from "../../../slices/resume";
+import {
+  getPersonalSkillsState,
+  getResumeState,
+  updateResume,
+} from "../../../slices/resume";
 import {
   DivideWrapper,
   Heading,
@@ -17,7 +21,9 @@ import {
 // };
 
 const Skills = () => {
-  const [personalSkills, setPersonalSkills] = useState("");
+  const [personalSkills, setPersonalSkills] = useState(
+    useSelector(getPersonalSkillsState)
+  );
 
   const handleChange = (e) => {
     setPersonalSkills(e.target.value);
@@ -26,10 +32,9 @@ const Skills = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const data = useSelector(getResumeState);
+  let data = useSelector(getResumeState);
 
   const routeToPreviousPage = () => {
-    navigate("/applicant/resume/build/education");
     const newActiveHeaders = data.activeHeaders.filter((el) => el !== 3);
     const resume = {
       ...data,
@@ -37,6 +42,26 @@ const Skills = () => {
       activeHeaders: newActiveHeaders,
     };
     dispatch(updateResume(resume));
+    navigate("/applicant/resume/build/education");
+  };
+
+  const handleSaveResume = () => {
+    const resume = {
+      ...data,
+      work_experience: data.work_experience.concat({
+        uid: data.work_experience.length + 1,
+        ...data.workExperience,
+      }),
+      education_training: data.education_training.concat({
+        ...data.education,
+        uid: data.education_training.length + 1,
+      }),
+      personal_skill: [personalSkills],
+    };
+    dispatch(updateResume(resume));
+
+    console.log(data);
+    navigate("/applicant/resume/build/preview");
   };
 
   return (
@@ -58,7 +83,11 @@ const Skills = () => {
               color="#0570fb"
               handleClick={routeToPreviousPage}
             />
-            <FormButton text="Save" backgroundColor="#0570fb" />
+            <FormButton
+              text="Preview"
+              backgroundColor="#0570fb"
+              handleClick={handleSaveResume}
+            />
           </DivideWrapper>
         </SkillsForm>
       </Wrapper>

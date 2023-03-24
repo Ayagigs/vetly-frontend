@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   // personal info inputs
+  saved: false,
   personalInfo: {
     firstName: "",
     lastName: "",
@@ -33,13 +34,15 @@ const initialState = {
     educationOrganization: "",
     educationWebsite: "",
     educationCity: "",
-    educationCompany: "",
+    educationCountry: "",
     educationStartDate: "",
     educationEndDate: "",
-    fullGrade: "",
+    finalGrade: "",
+    main_activities: "",
   },
+  education_training: [],
 
-  listOfEducationExperiences: [],
+  // listOfEducationExperiences: [],
   // personal skills inputs
   personal_skill: [],
   activeHeaders: [0],
@@ -51,6 +54,7 @@ const resumeSlice = createSlice({
   reducers: {
     updateResume: (state, action) => {
       state.value = action.payload;
+      // console.log(state.value);
     },
 
     // updateActiveHeaders: (state, action) => {
@@ -73,6 +77,8 @@ export const getPersonalSkillState = (state) =>
   state.resume.value.personal_skill;
 
 export const getEducationState = (state) => state.resume.value.education;
+
+export const getPersonalSkillsState = (state) => state.resume.value.personal_skill[0];
 
 // export const getWorkExperienceState = (state) =>
 //   state.resume.value.listOfWorkExperiences;

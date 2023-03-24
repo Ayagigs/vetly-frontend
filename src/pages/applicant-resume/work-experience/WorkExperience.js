@@ -11,7 +11,7 @@ import {
   updateResume,
   getWorkExperienceState,
 } from "../../../slices/resume";
-import { isObjectValuesEmpty } from "../../../utils";
+import { isObjectValuesEmpty, isSomeObjectValuesEmpty } from "../../../utils";
 import {
   DivideWrapper,
   Heading,
@@ -51,7 +51,7 @@ const WorkExperience = () => {
         position: "top-right",
         render: () => (
           <Box color="white" p={3} bg="red.500" fontSize={15}>
-            Form is empty
+            Please fill All fields
           </Box>
         ),
         onCloseComplete: () => {
@@ -66,11 +66,14 @@ const WorkExperience = () => {
 
   const data = useSelector(getResumeState);
 
-  console.log(data);
+  // console.log(data);
 
   const routeToNextPage = () => {
-    navigate("/applicant/resume/build/education");
-
+    const isEmpty = isSomeObjectValuesEmpty(workExperience);
+    if (isEmpty) {
+      setIsFormEmpty(true);
+      return;
+    }
     const newActiveHeaders = [...data?.activeHeaders, 2];
     const resume = {
       ...data,
@@ -78,6 +81,7 @@ const WorkExperience = () => {
       activeHeaders: newActiveHeaders,
     };
     dispatch(updateResume(resume));
+    navigate("/applicant/resume/build/education");
   };
 
   const routeToPreviousPage = () => {
