@@ -54,7 +54,7 @@ const resumeSlice = createSlice({
   reducers: {
     updateResume: (state, action) => {
       state.value = action.payload;
-      // console.log(state.value);
+      console.log(state.value);
     },
 
     // updateActiveHeaders: (state, action) => {

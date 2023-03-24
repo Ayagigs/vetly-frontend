@@ -21,3 +21,17 @@ export const getUserToken = () => {
 
   return token;
 };
+
+export const addItemToList = (list, itemToAdd) => {
+  const existingItem = list.find(
+    (el) => el.uuid === itemToAdd.uuid
+  );
+
+  if (existingItem) {
+    return list.map((item) =>
+      item.uuid === itemToAdd.uuid ? { ...itemToAdd } : item
+    );
+  }
+
+  return [...list, { ...itemToAdd }];
+};

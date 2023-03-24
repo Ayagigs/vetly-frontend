@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import FormButton from "../../../components/custom-button/FormButton";
 import {
   ButtonsContainer,
@@ -9,7 +10,11 @@ import {
 } from "./resume.home.styles";
 import { useDispatch, useSelector } from "react-redux";
 import { APIConfig } from "../../../config/apiConfig";
-import { updateResume, getWorkExperienceState } from "../../../slices/resume";
+import {
+  updateResume,
+  getWorkExperienceState,
+  getEducationState,
+} from "../../../slices/resume";
 
 const ResumeHome = () => {
   const [isOutletActive, setIsOutletActive] = useState(false);
@@ -18,15 +23,31 @@ const ResumeHome = () => {
   const dispatch = useDispatch();
 
   const workExperienceState = useSelector(getWorkExperienceState);
+  const educationState = useSelector(getEducationState);
   useEffect(() => {
     const fetchResume = async () => {
-      const experience = workExperienceState;
+      let experience = workExperienceState;
+      let education = educationState;
+      experience = {
+        uuid: uuidv4(),
+        ...experience,
+      };
+
+      education = {
+        uuid: uuidv4(),
+        ...education,
+      };
       try {
         const { data } = await APIConfig.get("resume");
         // console.log(data === "");
 
         if (data !== "") {
-          const { work_experience } = data;
+          let { work_experience } = data;
+
+          work_experience = work_experience.map((el) => ({
+            uuid: uuidv4(),
+            ...el,
+          }));
           setHasResume(true);
           dispatch(
             updateResume({
@@ -46,17 +67,7 @@ const ResumeHome = () => {
                 work_experience.length === 0
                   ? experience
                   : work_experience[work_experience.length - 1],
-              education: {
-                educationExperience: "",
-                educationOrganization: "",
-                educationWebsite: "",
-                educationCity: "",
-                educationCountry: "",
-                educationStartDate: "",
-                educationEndDate: "",
-                main_activities: "",
-                finalGrade: "",
-              },
+              education,
               activeHeaders: [0],
             })
           );

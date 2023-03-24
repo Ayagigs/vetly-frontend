@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 const ResumePreview = () => {
   let data = useSelector(getResumeState);
-  // console.log(data);
+  console.log(data);
   let { work_experience, education_training, personal_skill } = data;
 
   const navigate = useNavigate();
@@ -28,8 +28,30 @@ const ResumePreview = () => {
     navigate("/applicant/resume/build/skills");
   };
 
+  const handleWorkExpEdit = (id) => {
+    const experienceToBeEdited = work_experience.find((el) => el.uuid === id);
+    const resume = {
+      ...data,
+      workExperience: experienceToBeEdited,
+    };
+
+    navigate("/applicant/resume/build/work-experience");
+    dispatch(updateResume(resume));
+  };
+
+  const handleEducationEdit = (id) => {
+    const educationToBeEdited = education_training.find((el) => el.uuid === id);
+    const resume = {
+      ...data,
+      education: educationToBeEdited,
+    };
+
+    navigate("/applicant/resume/build/education");
+    dispatch(updateResume(resume));
+  };
+
   const handleWorkExpRemoval = (id) => {
-    const newData = work_experience.filter((el) => el.uid !== id);
+    const newData = work_experience.filter((el) => el.uuid !== id);
     const resume = {
       ...data,
       work_experience: newData,
@@ -38,7 +60,7 @@ const ResumePreview = () => {
   };
 
   const handleEducationRemoval = (id) => {
-    const newData = education_training.filter((el) => el.uid !== id);
+    const newData = education_training.filter((el) => el.uuid !== id);
     const resume = {
       ...data,
       education_training: newData,
@@ -55,17 +77,13 @@ const ResumePreview = () => {
             {work_experience.length > 0 ? (
               <>
                 {work_experience.map((exp) => (
-                  <Details key={exp.uid}>
+                  <Details key={exp.uuid}>
                     <Box>
                       <h2>{exp.occupation}</h2>
 
                       <ActionsBox>
-                        <p>Edit</p>
-                        <p
-                          onClick={() =>
-                            handleWorkExpRemoval(exp.uid)
-                          }
-                        >
+                        <p onClick={() => handleWorkExpEdit(exp.uuid)}>Edit</p>
+                        <p onClick={() => handleWorkExpRemoval(exp.uuid)}>
                           Delete
                         </p>
                       </ActionsBox>
@@ -93,13 +111,15 @@ const ResumePreview = () => {
           <Segment>
             <h1>Education and training</h1>
             {education_training.map((education) => (
-              <Details key={education.uid}>
+              <Details key={education.uuid}>
                 <Box>
                   <h2>{education.educationExperience}</h2>
 
                   <ActionsBox>
-                    <p>Edit</p>
-                    <p onClick={() => handleEducationRemoval(education.uid)}>
+                    <p onClick={() => handleEducationEdit(education.uuid)}>
+                      Edit
+                    </p>
+                    <p onClick={() => handleEducationRemoval(education.uuid)}>
                       Delete
                     </p>
                   </ActionsBox>

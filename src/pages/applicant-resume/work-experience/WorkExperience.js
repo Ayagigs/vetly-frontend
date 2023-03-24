@@ -2,6 +2,8 @@ import { Box, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+
 import FormButton from "../../../components/custom-button/FormButton";
 import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 import FormTextInput from "../../../components/custom-input/FormTextInput";
@@ -11,7 +13,11 @@ import {
   updateResume,
   getWorkExperienceState,
 } from "../../../slices/resume";
-import { isObjectValuesEmpty, isSomeObjectValuesEmpty } from "../../../utils";
+import {
+  addItemToList,
+  isObjectValuesEmpty,
+  isSomeObjectValuesEmpty,
+} from "../../../utils";
 import {
   DivideWrapper,
   Heading,
@@ -66,7 +72,6 @@ const WorkExperience = () => {
 
   const data = useSelector(getResumeState);
 
-  // console.log(data);
 
   const routeToNextPage = () => {
     const isEmpty = isSomeObjectValuesEmpty(workExperience);
@@ -106,6 +111,7 @@ const WorkExperience = () => {
   const clearInputs = () => {
     setWorkExperience((prev) => ({
       ...prev,
+      uuid: uuidv4(),
       occupation: "",
       company: "",
       email_address: "",
@@ -129,14 +135,9 @@ const WorkExperience = () => {
 
     let { work_experience, ...rest } = data;
 
-    work_experience = work_experience.concat({
-      id: work_experience.length + 1,
-      ...workExperience,
-    });
-
     const resume = {
       ...rest,
-      work_experience,
+      work_experience: addItemToList(work_experience, workExperience),
     };
     dispatch(updateResume(resume));
   };

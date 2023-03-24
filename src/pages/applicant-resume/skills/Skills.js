@@ -8,6 +8,7 @@ import {
   getResumeState,
   updateResume,
 } from "../../../slices/resume";
+import { addItemToList } from "../../../utils";
 import {
   DivideWrapper,
   Heading,
@@ -48,19 +49,14 @@ const Skills = () => {
   const handleSaveResume = () => {
     const resume = {
       ...data,
-      work_experience: data.work_experience.concat({
-        uid: data.work_experience.length + 1,
-        ...data.workExperience,
-      }),
-      education_training: data.education_training.concat({
-        ...data.education,
-        uid: data.education_training.length + 1,
-      }),
+      work_experience: addItemToList(data.work_experience, data.workExperience),
+      education_training: addItemToList(
+        data.education_training,
+        data.education
+      ),
       personal_skill: [personalSkills],
     };
     dispatch(updateResume(resume));
-
-    console.log(data);
     navigate("/applicant/resume/build/preview");
   };
 

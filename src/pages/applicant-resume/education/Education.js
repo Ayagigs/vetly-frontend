@@ -2,6 +2,8 @@ import { Box, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+
 import FormButton from "../../../components/custom-button/FormButton";
 import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 import FormTextInput from "../../../components/custom-input/FormTextInput";
@@ -11,7 +13,11 @@ import {
   getResumeState,
   updateResume,
 } from "../../../slices/resume";
-import { isSomeObjectValuesEmpty } from "../../../utils";
+import {
+  addItemToList,
+  isObjectValuesEmpty,
+  isSomeObjectValuesEmpty,
+} from "../../../utils";
 import {
   DivideWrapper,
   Heading,
@@ -24,6 +30,7 @@ import {
 const Education = () => {
   const [education, seteducation] = useState(useSelector(getEducationState));
   const [isFormEmpty, setIsFormEmpty] = useState(false);
+  const [isNewEducationAdded, setIsNewEducationAdded] = useState(false);
 
   const toast = useToast();
 
@@ -45,6 +52,22 @@ const Education = () => {
       });
     }
   }, [isFormEmpty, toast]);
+
+  useEffect(() => {
+    if (isNewEducationAdded) {
+      toast({
+        position: "top-left",
+        render: () => (
+          <Box color="white" p={3} bg="green.500" fontSize={15}>
+            New education added!
+          </Box>
+        ),
+        onCloseComplete: () => {
+          setIsNewEducationAdded(false);
+        },
+      });
+    }
+  }, [isNewEducationAdded, toast]);
 
   const data = useSelector(getResumeState);
   // console.log(data);
@@ -88,6 +111,7 @@ const Education = () => {
   const clearInputs = () => {
     seteducation((prev) => ({
       ...prev,
+      uuid: uuidv4(),
       educationExperience: "",
       educationOrganization: "",
       educationWebsite: "",
@@ -101,18 +125,18 @@ const Education = () => {
   };
 
   const handleAddNewEducation = () => {
+    if (isObjectValuesEmpty(education)) {
+      return setIsFormEmpty(true);
+    }
     clearInputs();
 
-    let { listOfEducationExperiences, ...rest } = data;
+    setIsNewEducationAdded(true);
 
-    listOfEducationExperiences = listOfEducationExperiences.concat({
-      id: listOfEducationExperiences.length + 1,
-      ...education,
-    });
+    let { education_training, ...rest } = data;
 
     const resume = {
       ...rest,
-      listOfEducationExperiences,
+      education_training: addItemToList(education_training, education),
     };
     dispatch(updateResume(resume));
   };
