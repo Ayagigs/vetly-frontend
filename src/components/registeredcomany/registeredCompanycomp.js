@@ -21,7 +21,7 @@ const useStyles = createStyles((theme) => ({
 	},
 }));
 
-export function TableSelection({ data }) {
+export function CompanyTableSelection({ data }) {
 	const { classes, cx } = useStyles();
 	const [selection, setSelection] = useState(["1"]);
 	const toggleRow = (id: string) =>
@@ -34,13 +34,22 @@ export function TableSelection({ data }) {
 		setSelection((current) =>
 			current.length === data.length ? [] : data.map((item) => item.id),
 		);
-
+	// const [color, setColor] = useState(data);
+	// setColor((prevcolor) => {
+	// 	return prevcolor.map((color) => {
+	// 		return color.status === "suspended" ? "#B21015" : color.status;
+	// 	});
+	// }
+	// );
 
 	const rows = data.map((item) => {
 		const selected = selection.includes(item.id);
 
+		const styles = {
+			color: item.status ? "#22A57E" : "#B21015",
+			fontSize: "14px",
+		};
 
-		
 		return (
 			<tr key={item.id} className={cx({ [classes.rowSelected]: selected })}>
 				<td>
@@ -61,7 +70,7 @@ export function TableSelection({ data }) {
 
 				<td style={{ fontSize: "14px", color: "#5D5E5F" }}>{item.email}</td>
 				<td style={{ fontSize: "14px", color: "#5D5E5F" }}>{item.date}</td>
-				<td style={{ fontSize: "14px", color: "#22A57E" }}>{item.status}</td>
+				<td style={styles}>{item.status ? "Active" : "Suspended"}</td>
 			</tr>
 		);
 	});

@@ -1,5 +1,6 @@
 .registeredcomp {
   padding: 20px 3%;
+  width: 100%;
 }
 
 .registeredheader{
@@ -23,4 +24,22 @@
   cursor: pointer;
   border: none;
   outline: none;
+}
+
+.registeredinput {
+	width: 371px;
+	height: 40px;
+	border-radius: 6px;
+	border: 1px solid #cccccc;
+  outline: none;
+  text-indent: 10px;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+.registeredcomptable {
+  /* width: 100%; */
+  /* background-color: red; */
+  margin-top: 20px;
+ 
 }
