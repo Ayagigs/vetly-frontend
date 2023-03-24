@@ -6,6 +6,12 @@ export const ResumeParent = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  & .loader {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+  }
 `;
 
 export const Wrapper = styled.section`

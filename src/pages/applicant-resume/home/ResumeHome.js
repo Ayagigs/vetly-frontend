@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { Oval } from "react-loader-spinner";
+
 import FormButton from "../../../components/custom-button/FormButton";
 import {
   ButtonsContainer,
@@ -19,6 +21,7 @@ import {
 const ResumeHome = () => {
   const [isOutletActive, setIsOutletActive] = useState(false);
   const [hasResume, setHasResume] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -37,6 +40,7 @@ const ResumeHome = () => {
         uuid: uuidv4(),
         ...education,
       };
+      setLoading(true);
       try {
         const { data } = await APIConfig.get("resume");
         // console.log(data === "");
@@ -72,6 +76,7 @@ const ResumeHome = () => {
             })
           );
         }
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -107,6 +112,18 @@ const ResumeHome = () => {
       {!isOutletActive ? (
         <ResumeParent>
           <Wrapper>
+            <Oval
+              height={80}
+              width={80}
+              color="#0570FB"
+              wrapperStyle={{}}
+              wrapperClass="loader"
+              visible={loading}
+              ariaLabel="oval-loading"
+              secondaryColor="#0570FB"
+              strokeWidth={2}
+              strokeWidthSecondary={2}
+            />
             <HeadingContainer>
               <h1>
                 Upload your resume document <br /> or create one for Vetly
