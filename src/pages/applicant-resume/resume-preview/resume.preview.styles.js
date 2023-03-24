@@ -12,7 +12,14 @@ export const Container = styled.section`
   border-radius: 8px;
   margin: 4rem auto;
   width: 65%;
-  //   height: 70%;
+`;
+
+
+export const DivideWrapper = styled.div`
+  display: flex;
+  width: 65%;
+  gap: 2rem;
+  margin: 2rem auto;
 `;
 
 export const Wrapper = styled.div`

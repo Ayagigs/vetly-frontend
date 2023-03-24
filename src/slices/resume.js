@@ -54,7 +54,7 @@ const resumeSlice = createSlice({
   reducers: {
     updateResume: (state, action) => {
       state.value = action.payload;
-      console.log(state.value);
+      // console.log(state.value);
     },
 
     // updateActiveHeaders: (state, action) => {
@@ -77,6 +77,8 @@ export const getPersonalSkillState = (state) =>
   state.resume.value.personal_skill;
 
 export const getEducationState = (state) => state.resume.value.education;
+
+export const getPersonalSkillsState = (state) => state.resume.value.personal_skill[0];
 
 // export const getWorkExperienceState = (state) =>
 //   state.resume.value.listOfWorkExperiences;

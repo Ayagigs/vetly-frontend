@@ -3,7 +3,6 @@ export const isObjectValuesEmpty = (obj) => {
 };
 
 export const isSomeObjectValuesEmpty = (obj) => {
-  console.log(Object.values(obj));
   return Object.values(obj).some((value) => !Boolean(value));
 };
 

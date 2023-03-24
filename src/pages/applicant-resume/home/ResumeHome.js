@@ -51,10 +51,11 @@ const ResumeHome = () => {
                 educationOrganization: "",
                 educationWebsite: "",
                 educationCity: "",
-                educationCompany: "",
+                educationCountry: "",
                 educationStartDate: "",
                 educationEndDate: "",
-                fullGrade: "",
+                main_activities: "",
+                finalGrade: "",
               },
               activeHeaders: [0],
             })
@@ -64,19 +65,19 @@ const ResumeHome = () => {
         console.log(error);
       }
     };
-    // fetchResume();
+    fetchResume();
     // eslint-disable-next-line
   }, [dispatch]);
 
-  const createNewResume = async () => {
-    try {
-      const { data } = await APIConfig.post("resume");
-      console.log(data);
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const createNewResume = async () => {
+  //   try {
+  //     const { data } = await APIConfig.post("resume");
+  //     console.log(data);
+  //     return data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const routeToResumeBuildPage = async () => {
     setIsOutletActive(true);
