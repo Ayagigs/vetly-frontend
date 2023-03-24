@@ -8,7 +8,40 @@ import { TableSelection } from "../../components/registereduser/registereduserco
 import "./registeredUser.css";
 const RegisteredUsers = () => {
   const [registeredUsers, setRegisteredUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      // 👇 Get input value
+      handleUserSearch(searchTerm);
+    }
+  };
+
+  const handleUserSearch = async (keyWord) => {
+    setLoading(true);
+    try {
+      const { data } = await APIConfig.get(`users/search?keyword=${keyWord}`);
+      const formattedData = data.map((el) => ({
+        id: el.id,
+        name: el.fullname,
+        email: el.local.email,
+        avatar:
+          "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
+        date: new Date(el.created_at).toDateString(),
+        status: "7/7",
+      }));
+
+      setLoading(false);
+      setRegisteredUsers(formattedData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -16,6 +49,7 @@ const RegisteredUsers = () => {
       try {
         const { data } = await APIConfig.get("users?user_type=applicant");
         const formattedData = data.map((el) => ({
+          id: el.id,
           name: el.fullname,
           email: el.local.email,
           avatar:
@@ -50,7 +84,12 @@ const RegisteredUsers = () => {
       />
       <div className="register-header">
         <h1>Registered Users</h1>
-        <input type="text" placeholder="Search by name or email" />
+        <input
+          type="text"
+          placeholder="Search by name or email"
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
       </div>
       <div className="registeredusertable">
         <TableSelection data={registeredUsers} />
