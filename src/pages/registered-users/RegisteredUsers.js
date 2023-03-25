@@ -6,10 +6,25 @@ import { Oval } from "react-loader-spinner";
 import { APIConfig } from "../../config/apiConfig";
 import { TableSelection } from "../../components/registereduser/registeredusercomp";
 import "./registeredUser.css";
+import { formatUsersData } from "./";
+
 const RegisteredUsers = () => {
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const fetchUsers = async () => {
+    setLoading(true);
+    try {
+      const { data } = await APIConfig.get("users?user_type=applicant");
+      const formattedData = formatUsersData(data);
+
+      setLoading(false);
+      setRegisteredUsers(formattedData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -17,8 +32,11 @@ const RegisteredUsers = () => {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      // 👇 Get input value
-      handleUserSearch(searchTerm);
+      if (searchTerm !== "") {
+        handleUserSearch(searchTerm);
+      } else {
+        fetchUsers();
+      }
     }
   };
 
@@ -26,15 +44,7 @@ const RegisteredUsers = () => {
     setLoading(true);
     try {
       const { data } = await APIConfig.get(`users/search?keyword=${keyWord}`);
-      const formattedData = data.map((el) => ({
-        id: el.id,
-        name: el.fullname,
-        email: el.local.email,
-        avatar:
-          "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-        date: new Date(el.created_at).toDateString(),
-        status: "7/7",
-      }));
+      const formattedData = formatUsersData(data);
 
       setLoading(false);
       setRegisteredUsers(formattedData);
@@ -44,27 +54,6 @@ const RegisteredUsers = () => {
   };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      setLoading(true);
-      try {
-        const { data } = await APIConfig.get("users?user_type=applicant");
-        const formattedData = data.map((el) => ({
-          id: el.id,
-          name: el.fullname,
-          email: el.local.email,
-          avatar:
-            "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-          date: new Date(el.created_at).toDateString(),
-          status: "7/7",
-        }));
-
-        setLoading(false);
-        setRegisteredUsers(formattedData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchUsers();
   }, []);
 
