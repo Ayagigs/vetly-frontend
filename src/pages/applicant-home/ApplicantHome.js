@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import ApplicantEmployersEmailModal from "../../components/modal/ApplicantEmployersEmailModal";
+import Modal from "../../components/modal/Modal";
+import { useSelector, useDispatch } from "react-redux";
+import { updateModalStatus, getEmployersModalStatus } from "../../slices/modal";
 import {
   ActivitiesContainer,
   ApplicantHomeParent,
   CenterWrapper,
+  DarkOverlayContainer,
   ProfileView,
   RecentActivities,
   RequestVettingContainer,
@@ -11,6 +16,14 @@ import {
 } from "./applicant.home.styles";
 
 const ApplicantHome = () => {
+  const [isModalOpened, setIsModalOpened] = useState(false);
+
+  const employersEmailModalStatus = useSelector(getEmployersModalStatus);
+  const modalStatus = employersEmailModalStatus.isModalOpened;
+  console.log(modalStatus);
+
+  const onOpenModal = () => setIsModalOpened(true);
+  const onCloseModal = () => setIsModalOpened(false);
   return (
     <ApplicantHomeParent>
       <CenterWrapper>
@@ -29,8 +42,20 @@ const ApplicantHome = () => {
           </SummaryCard>
         </SummaryContainer>
 
-        <RequestVettingContainer>Request Vetting</RequestVettingContainer>
+        <RequestVettingContainer onClick={onOpenModal}>
+          Request Vetting
+        </RequestVettingContainer>
 
+        {isModalOpened && <Modal closeModal={onCloseModal} />}
+        {modalStatus && (
+          <ApplicantEmployersEmailModal closeModal={onCloseModal} />
+        )}
+        {isModalOpened || modalStatus ? (
+          <DarkOverlayContainer onClick={onCloseModal} />
+        ) : (
+          <></>
+        )}
+        
         <ActivitiesContainer>
           <RecentActivities></RecentActivities>
           <ProfileView></ProfileView>
