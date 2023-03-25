@@ -21,7 +21,7 @@ export const SidebarLogoContainer = styled.div`
 
   & h1 {
     font-weight: 600;
-    font-size: 3.2rem;
+    font-size: 3.1rem;
   }
 `;
 
@@ -34,17 +34,17 @@ export const StyledNavLink = styled(NavLink)`
   align-items: center;
   color: #000;
   border: 1px solid #f5f5f5;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 3rem;
   margin-bottom: 1rem;
   background: #fff;
 
   & img {
-    margin-right: 0.8rem;
+    margin-right: 1rem;
   }
 
   & h3 {
     font-weight: 400;
-    font-size: 1.8rem;
+    font-size: 1.54rem;
     line-height: 2.8rem;
   }
 
