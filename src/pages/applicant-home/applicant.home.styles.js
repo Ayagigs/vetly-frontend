@@ -3,6 +3,12 @@ import styled from "styled-components";
 export const ApplicantHomeParent = styled.main`
   width: 100%;
   height: 100%;
+
+  & .loader {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+  }
 `;
 
 export const CenterWrapper = styled.div`

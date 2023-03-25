@@ -12,7 +12,6 @@ const Modal = ({ closeModal }) => {
   const dispatch = useDispatch();
 
   const employersEmailModalStatus = useSelector(getEmployersModalStatus);
-  console.log(employersEmailModalStatus);
 
   const changeToNextModal = () => {
     dispatch(

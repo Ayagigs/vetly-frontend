@@ -19,3 +19,19 @@ export const CheckboxContainer = styled.div`
     line-height: 28px;
   }
 `;
+
+export const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  margin-inline: auto;
+  position: relative;
+  // height: 90%;
+
+  & .spinner {
+    position: absolute;
+    top: 50px;
+    left: 190px;
+  }
+`;

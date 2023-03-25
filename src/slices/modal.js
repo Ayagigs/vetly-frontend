@@ -10,9 +10,7 @@ const modalSlice = createSlice({
 
   reducers: {
     updateModalStatus: (state, action) => {
-      //   console.log(action.payload);
       state.value = action.payload;
-      console.log(state.value);
     },
   },
 });

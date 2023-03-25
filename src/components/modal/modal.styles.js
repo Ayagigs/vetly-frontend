@@ -22,6 +22,7 @@ export const ModalContainer = styled.div`
     right: 2.5rem;
     cursor: pointer;
   }
+
 `;
 
 export const HeadingContainer = styled.div`
