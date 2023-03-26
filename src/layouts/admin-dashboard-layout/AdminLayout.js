@@ -11,10 +11,11 @@ import {
   InfoContainer,
   MainContentArea,
   NotificationContainer,
-  ParentContainer
+  ParentContainer,
 } from "./admin.dashboard.styles";
 import notification from "../../assets/notification.png";
 import { sideBarLinks } from "./admin.routes";
+import { getUserName } from "../../utils";
 
 const AdminLayout = () => {
   return (
@@ -25,7 +26,7 @@ const AdminLayout = () => {
         <AdminDashboardHeader>
           <AdminHeaderContainer>
             <InfoContainer>
-              <h2>Welcome Teemah</h2>
+              <h2>Welcome {getUserName()}</h2>
             </InfoContainer>
             <NotificationContainer>
               <img src={notification} alt="notification" />

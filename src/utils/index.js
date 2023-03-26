@@ -11,7 +11,11 @@ export const getUserName = () => {
     ? JSON.parse(localStorage.getItem("currentUser"))
     : "";
 
-  return user?.fullname?.split(" ")[0];
+  if (user) {
+    return user?.fullname?.split(" ")[0];
+  }
+
+  return "User";
 };
 
 export const getUserToken = () => {
@@ -23,9 +27,7 @@ export const getUserToken = () => {
 };
 
 export const addItemToList = (list, itemToAdd) => {
-  const existingItem = list.find(
-    (el) => el.uuid === itemToAdd.uuid
-  );
+  const existingItem = list.find((el) => el.uuid === itemToAdd.uuid);
 
   if (existingItem) {
     return list.map((item) =>
