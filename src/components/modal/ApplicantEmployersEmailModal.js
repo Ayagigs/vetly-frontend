@@ -14,13 +14,14 @@ import {
 } from "./modal.styles";
 import { APIConfig } from "../../config/apiConfig";
 import { Oval } from "react-loader-spinner";
-import { Box, useToast } from "@chakra-ui/react";
+import { Box, Spinner, useToast } from "@chakra-ui/react";
 
 const ApplicantEmployersEmailModal = ({ resumeId }) => {
   const [employersEmails, setEmployersEmails] = useState([]);
   const [selectedEmployersEmail, setSelectedEmployersEmail] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const toast = useToast();
 
@@ -42,6 +43,23 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
       });
     }
   }, [error, toast]);
+
+  useEffect(() => {
+    if (success) {
+      toast({
+        position: "top-left",
+        render: () => (
+          <Box color="white" p={3} bg="green.500" fontSize={15}>
+            Vetting request sent successfully!
+          </Box>
+        ),
+
+        onCloseComplete: () => {
+          setSuccess(false);
+        },
+      });
+    }
+  }, [success, toast]);
 
   useEffect(() => {
     const getEmployersEmail = async () => {
@@ -80,7 +98,7 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
     );
   };
 
-  const sendVettingEmails = () => {
+  const sendVettingEmails = async () => {
     if (selectedEmployersEmail.length === 0) {
       setError("Please select at least one email");
       return;
@@ -89,7 +107,19 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
     const payload = {
       emails: selectedEmployersEmail,
     };
-    console.log(payload);
+    setLoading(true);
+    try {
+      const { data } = await APIConfig.post("vetting/send-mails", payload);
+
+      if (data) {
+        setSuccess(true);
+        setLoading(true);
+      }
+    } catch (error) {
+      setLoading(false);
+      setSuccess(false);
+      console.log(error);
+    }
   };
 
   return (
@@ -112,7 +142,7 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
           </Wrapper>
           <ButtonsContainer>
             <FormButton
-              text="Done"
+              text={!loading ? "Done" : <Spinner size="sm" color="white.500" />}
               backgroundColor="#0570fb"
               width={"100%"}
               handleClick={sendVettingEmails}

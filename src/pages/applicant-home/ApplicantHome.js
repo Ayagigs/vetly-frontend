@@ -48,7 +48,7 @@ const ApplicantHome = () => {
 
   const modalStatus = employersEmailModalStatus.isModalOpened;
 
-  const initialVettingRequest = async () => {
+  const initiateVettingRequest = async () => {
     setLoading(true);
     try {
       const { data } = await APIConfig.get("resume");
@@ -101,7 +101,7 @@ const ApplicantHome = () => {
           </SummaryCard>
         </SummaryContainer>
 
-        <RequestVettingContainer onClick={initialVettingRequest}>
+        <RequestVettingContainer onClick={initiateVettingRequest}>
           Request Vetting
         </RequestVettingContainer>
 
