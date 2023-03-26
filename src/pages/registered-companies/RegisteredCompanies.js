@@ -3,6 +3,7 @@ import CompCard from "../../components/registeredcomptable/registercompcmp";
 import './registeredcomp.css'
 import data from "../../components/Registeredcompdata";
 import { RegisteredCompTable } from "../../components/registeredcomptable/registerdcomptable";
+import InputCard from "../../components/registeredcomptable/popupcrd";
 const RegisteredCompanies = () => {
 
 	const compCard = data.map((item) => {
@@ -60,6 +61,8 @@ const RegisteredCompanies = () => {
 					]}
 				/>
 			</div>
+			<InputCard/>
+		
 		</div>
 	);
 };
