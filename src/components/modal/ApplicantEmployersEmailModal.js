@@ -14,7 +14,7 @@ import {
 } from "./modal.styles";
 import { APIConfig } from "../../config/apiConfig";
 import { Oval } from "react-loader-spinner";
-import { Box, useToast } from "@chakra-ui/react";
+import { Box, Spinner, useToast } from "@chakra-ui/react";
 
 const ApplicantEmployersEmailModal = ({ resumeId }) => {
   const [employersEmails, setEmployersEmails] = useState([]);
@@ -47,12 +47,16 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
   useEffect(() => {
     if (success) {
       toast({
-        position: "top-right",
+        position: "top-left",
         render: () => (
-          <Box color="white" p={3} bg="red.500" fontSize={15}>
+          <Box color="white" p={3} bg="green.500" fontSize={15}>
             Vetting request sent successfully!
           </Box>
         ),
+
+        onCloseComplete: () => {
+          setSuccess(false);
+        },
       });
     }
   }, [success, toast]);
@@ -106,7 +110,7 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
     console.log(payload);
     setLoading(true);
     try {
-      const { data } = await APIConfig.post("vetting/send-mails");
+      const { data } = await APIConfig.post("vetting/send-mails", payload);
 
       if (data) {
         setSuccess(true);
@@ -114,6 +118,7 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
       }
     } catch (error) {
       setLoading(false);
+      setSuccess(false);
       console.log(error);
     }
   };
@@ -138,7 +143,7 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
           </Wrapper>
           <ButtonsContainer>
             <FormButton
-              text="Done"
+              text={!loading ? "Done" : <Spinner size="sm" color="white.500" />}
               backgroundColor="#0570fb"
               width={"100%"}
               handleClick={sendVettingEmails}
