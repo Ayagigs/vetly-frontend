@@ -107,7 +107,6 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
     const payload = {
       emails: selectedEmployersEmail,
     };
-    console.log(payload);
     setLoading(true);
     try {
       const { data } = await APIConfig.post("vetting/send-mails", payload);
