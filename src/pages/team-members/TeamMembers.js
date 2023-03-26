@@ -3,7 +3,7 @@
 // import React, { useState } from "react";
 import "./teamMember.css";
 import { CompanyTableSelection } from "../../components/Team-membercomp/Teammembercomp";
-const RegisteredCompanies = () => {
+const TeamMembers = () => {
 	// const [isactive, setIsactive] = useState(true)
 	// setIsactive(prevactive => !prevactive)
 	return (
@@ -64,4 +64,4 @@ const RegisteredCompanies = () => {
 	);
 };
 
-export default RegisteredCompanies;
+export default TeamMembers;
