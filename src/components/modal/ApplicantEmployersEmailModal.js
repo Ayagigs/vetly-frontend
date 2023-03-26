@@ -21,6 +21,7 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
   const [selectedEmployersEmail, setSelectedEmployersEmail] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const toast = useToast();
 
@@ -42,6 +43,19 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
       });
     }
   }, [error, toast]);
+
+  useEffect(() => {
+    if (success) {
+      toast({
+        position: "top-right",
+        render: () => (
+          <Box color="white" p={3} bg="red.500" fontSize={15}>
+            Vetting request sent successfully!
+          </Box>
+        ),
+      });
+    }
+  }, [success, toast]);
 
   useEffect(() => {
     const getEmployersEmail = async () => {
@@ -80,7 +94,7 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
     );
   };
 
-  const sendVettingEmails = () => {
+  const sendVettingEmails = async () => {
     if (selectedEmployersEmail.length === 0) {
       setError("Please select at least one email");
       return;
@@ -90,6 +104,18 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
       emails: selectedEmployersEmail,
     };
     console.log(payload);
+    setLoading(true);
+    try {
+      const { data } = await APIConfig.post("vetting/send-mails");
+
+      if (data) {
+        setSuccess(true);
+        setLoading(true);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
   };
 
   return (

@@ -82,9 +82,10 @@ export const Details = styled.div`
   }
 `;
 
-export const Box = styled.div`
+export const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   & h2,
   p {

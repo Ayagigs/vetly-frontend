@@ -8,6 +8,7 @@ import {
   Container,
   Details,
   DivideWrapper,
+  Header,
   Parent,
   Segment,
   Wrapper,
@@ -139,7 +140,7 @@ const ResumePreview = () => {
               <>
                 {work_experience.map((exp) => (
                   <Details key={exp.uuid}>
-                    <Box>
+                    <Header>
                       <h2>{exp.occupation}</h2>
 
                       <ActionsBox>
@@ -148,7 +149,7 @@ const ResumePreview = () => {
                           Delete
                         </p>
                       </ActionsBox>
-                    </Box>
+                    </Header>
                     <h2>{exp.company}</h2>
                     <p>
                       03/23 | {exp.city}, {exp.country}
@@ -173,7 +174,7 @@ const ResumePreview = () => {
             <h1>Education and training</h1>
             {education_training.map((education) => (
               <Details key={education.uuid}>
-                <Box>
+                <Header>
                   <h2>{education.experience}</h2>
 
                   <ActionsBox>
@@ -184,7 +185,7 @@ const ResumePreview = () => {
                       Delete
                     </p>
                   </ActionsBox>
-                </Box>
+                </Header>
                 <h2>{education.organization}</h2>
                 <p>
                   03/23 | {education.city}, {education.country}
