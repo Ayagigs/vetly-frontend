@@ -37,3 +37,8 @@
 .registeredusertable {
   margin-top: 50px;
 }
+
+.registeredusertable .spinner {
+  margin: 0 auto !important;
+  text-align: center;
+}
