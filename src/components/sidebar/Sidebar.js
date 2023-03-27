@@ -1,4 +1,5 @@
 import React from "react";
+import { BsBoxArrowLeft } from "react-icons/bs";
 import {
   SidebarLogoContainer,
   SidebarParent,
@@ -18,7 +19,7 @@ const Sidebar = ({ routes }) => {
 
     navigate("/");
   };
-  
+
   return (
     <SidebarParent>
       <SidebarLogoContainer>
@@ -32,12 +33,13 @@ const Sidebar = ({ routes }) => {
             style={{ textDecoration: "none" }}
             key={link.text}
           >
-            <img src={link.imagePath} alt={link.alt} />
+            <span>{link.icon}</span>
             <h3>{link.text}</h3>
           </StyledNavLink>
         ))}
       </SidebarLinksContainer>
       <LogoutArea onClick={handleLogout}>
+        <span><BsBoxArrowLeft size={25} /></span>
         <h3>Logout</h3>
       </LogoutArea>
     </SidebarParent>
