@@ -31,11 +31,7 @@ function App() {
           <AdminLayout />
         </ProtectedRoute>
       } />
-      <Route path="/verify-account/:token" element={<Verifyaccount />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password/:token" element={<Resetpassword />} />
-      <Route path="/business/*" element={<BusinessLayout />} />
-      <Route path="/admin/*" element={<AdminLayout />} />
       <Route
         path="/applicant/*"
         element={
@@ -44,6 +40,8 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route path="/verify-account/:token" element={<Verifyaccount />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
     </Routes>
   );
 }
