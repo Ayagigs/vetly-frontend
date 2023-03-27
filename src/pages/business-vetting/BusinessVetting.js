@@ -40,25 +40,13 @@ const BusinessVetting = () => {
     setCountData(data);
   };
 
-  const fetchVetting = async (userToken) => {
-    const { data } = await APIConfig.get(`vetting`, {
-      headers: {
-        'Authorization': `Bearer ${userToken}`
-      }
-    });
-
-    const filteredData = data.filter(activeHeader === 0 ? (item) => item.status === "success"
-      : activeHeader === 1 ? (item) => item.status === "failed"
-        : (item) => item.status === "pending");
-
-    setVetting(filteredData);
-  };
+  const fetchVetting = fetchVettingFunction(activeHeader, setVetting);
 
   useEffect(() => {
     const userToken = localStorage.getItem("userToken");
     fetchVettingCount(userToken);
     fetchVetting(userToken);
-  }, [activeHeader]);
+  }, [activeHeader, fetchVetting]);
 
   return <BusinessVettingParent>
     <BusinessVettingTop>
@@ -117,3 +105,20 @@ const BusinessVetting = () => {
 };
 
 export default BusinessVetting;
+
+function fetchVettingFunction(activeHeader, setVetting) {
+  return async (userToken) => {
+    const { data } = await APIConfig.get(`vetting`, {
+      headers: {
+        'Authorization': `Bearer ${userToken}`
+      }
+    });
+
+    const filteredData = data.filter(activeHeader === 0 ? (item) => item.status === "success"
+      : activeHeader === 1 ? (item) => item.status === "failed"
+        : (item) => item.status === "pending");
+
+    setVetting(filteredData);
+  };
+}
+
