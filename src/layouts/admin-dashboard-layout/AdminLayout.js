@@ -7,6 +7,7 @@ import RegisteredUsers from "../../pages/registered-users/RegisteredUsers";
 import TeamMembers from "../../pages/team-members/TeamMembers";
 import { MainContentArea, ParentContainer } from "./admin.dashboard.styles";
 import { sideBarLinks } from "./admin.routes";
+import Navbar from "../../components/navbar/Navbar";
 
 const AdminLayout = () => {
   return (
@@ -15,6 +16,7 @@ const AdminLayout = () => {
 
       <MainContentArea>
         {/* Build the admin dashboard header here. See the applicant dashboard for inspiration */}
+        <Navbar profileRoute={"/business/profile"} />
 
         <div
           className=""
