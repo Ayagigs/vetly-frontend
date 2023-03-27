@@ -1,7 +1,6 @@
 /** @format */
 
 import { Route, Routes } from "react-router-dom";
-// import Home from "./pages/home/Home";
 import Signup from "./pages/signup/Signup";
 import Signin from "./pages/signin/Signin";
 import Verifyaccount from "./pages/verifyaccount/Verifyaccount";
@@ -32,6 +31,11 @@ function App() {
           <AdminLayout />
         </ProtectedRoute>
       } />
+      <Route path="/verify-account/:token" element={<Verifyaccount />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password/:token" element={<Resetpassword />} />
+      <Route path="/business/*" element={<BusinessLayout />} />
+      <Route path="/admin/*" element={<AdminLayout />} />
       <Route
         path="/applicant/*"
         element={

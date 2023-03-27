@@ -15,8 +15,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 100px auto 35px auto;
-  padding-top: 20px;
+  margin: 0px auto 35px auto;
+  padding-top: 10px;
+  width: 50%;
 }
 
 .logo-container h3 {
@@ -29,6 +30,7 @@
 
 .frm-container {
   height: 100%;
+  margin-bottom: 5rem;
 }
 
 .frm-container form {
@@ -37,7 +39,7 @@
   border: 1px solid white;
   width: 60%;
   margin: 10px auto 10px auto;
-  height: 74%;
+  height: 80%;
   background-color: #ffffff;
   padding: 4rem 4rem;
 }

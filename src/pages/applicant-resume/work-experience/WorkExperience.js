@@ -2,6 +2,8 @@ import { Box, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+
 import FormButton from "../../../components/custom-button/FormButton";
 import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 import FormTextInput from "../../../components/custom-input/FormTextInput";
@@ -11,7 +13,11 @@ import {
   updateResume,
   getWorkExperienceState,
 } from "../../../slices/resume";
-import { isObjectValuesEmpty } from "../../../utils";
+import {
+  addItemToList,
+  isObjectValuesEmpty,
+  isSomeObjectValuesEmpty,
+} from "../../../utils";
 import {
   DivideWrapper,
   Heading,
@@ -51,7 +57,7 @@ const WorkExperience = () => {
         position: "top-right",
         render: () => (
           <Box color="white" p={3} bg="red.500" fontSize={15}>
-            Form is empty
+            Please fill All fields
           </Box>
         ),
         onCloseComplete: () => {
@@ -66,11 +72,13 @@ const WorkExperience = () => {
 
   const data = useSelector(getResumeState);
 
-  console.log(data);
 
   const routeToNextPage = () => {
-    navigate("/applicant/resume/build/education");
-
+    const isEmpty = isSomeObjectValuesEmpty(workExperience);
+    if (isEmpty) {
+      setIsFormEmpty(true);
+      return;
+    }
     const newActiveHeaders = [...data?.activeHeaders, 2];
     const resume = {
       ...data,
@@ -78,6 +86,7 @@ const WorkExperience = () => {
       activeHeaders: newActiveHeaders,
     };
     dispatch(updateResume(resume));
+    navigate("/applicant/resume/build/education");
   };
 
   const routeToPreviousPage = () => {
@@ -102,14 +111,16 @@ const WorkExperience = () => {
   const clearInputs = () => {
     setWorkExperience((prev) => ({
       ...prev,
-      position: "",
+      uuid: uuidv4(),
+      occupation: "",
       company: "",
-      workEmail: "",
-      workPhoneNumber: "",
-      workCity: "",
-      workCountry: "",
-      workStartDate: "",
-      workEndDate: "",
+      email_address: "",
+      phone_number: "",
+      city: "",
+      country: "",
+      from: "",
+      to: "",
+      main_activities: "",
     }));
   };
 
@@ -122,29 +133,25 @@ const WorkExperience = () => {
 
     setIsNewExperienceAdded(true);
 
-    let { listOfWorkExperiences, ...rest } = data;
-
-    listOfWorkExperiences = listOfWorkExperiences.concat({
-      id: listOfWorkExperiences.length + 1,
-      ...workExperience,
-    });
+    let { work_experience, ...rest } = data;
 
     const resume = {
       ...rest,
-      listOfWorkExperiences,
+      work_experience: addItemToList(work_experience, workExperience),
     };
     dispatch(updateResume(resume));
   };
 
   const {
-    position,
+    occupation,
     company,
-    workEmail,
-    workPhoneNumber,
-    workCity,
-    workCountry,
-    workStartDate,
-    workEndDate,
+    email_address,
+    phone_number,
+    city,
+    country,
+    from,
+    to,
+    main_activities,
   } = workExperience;
   return (
     <WorkExperienceParent>
@@ -155,8 +162,8 @@ const WorkExperience = () => {
           <FormTextInput
             labelName="Occupation"
             placeholder=""
-            value={position}
-            name="position"
+            value={occupation}
+            name="occupation"
             handleChange={handleChange}
           />
           <FormTextInput
@@ -169,15 +176,15 @@ const WorkExperience = () => {
           <FormTextInput
             labelName="Enter email address"
             placeholder="enter Email address"
-            value={workEmail}
-            name="workEmail"
+            value={email_address}
+            name="email_address"
             handleChange={handleChange}
           />
           <FormTextInput
             labelName="Phone Number"
             placeholder="enter phone number"
-            value={workPhoneNumber}
-            name="workPhoneNumber"
+            value={phone_number}
+            name="phone_number"
             handleChange={handleChange}
           />
 
@@ -188,8 +195,8 @@ const WorkExperience = () => {
                 labelName="City"
                 placeholder="enter city"
                 width="100%"
-                value={workCity}
-                name="workCity"
+                value={city}
+                name="city"
                 handleChange={handleChange}
               />
             </Side>
@@ -200,8 +207,8 @@ const WorkExperience = () => {
                 labelName="Country"
                 placeholder="enter country"
                 width="100%"
-                value={workCountry}
-                name="workCountry"
+                value={country}
+                name="country"
                 handleChange={handleChange}
               />
             </Side>
@@ -214,8 +221,8 @@ const WorkExperience = () => {
                 labelName="From"
                 placeholder=""
                 width="100%"
-                value={workStartDate}
-                name="workStartDate"
+                value={from}
+                name="from"
                 handleChange={handleChange}
               />
             </Side>
@@ -226,14 +233,19 @@ const WorkExperience = () => {
                 labelName="To"
                 placeholder=""
                 width="100%"
-                value={workEndDate}
-                name="workEndDate"
+                value={to}
+                name="to"
                 handleChange={handleChange}
               />
             </Side>
           </DivideWrapper>
 
-          <FormTextArea labelName="More activities and responsibilities" />
+          <FormTextArea
+            labelName="More activities and responsibilities"
+            name="main_activities"
+            value={main_activities}
+            handleChange={handleChange}
+          />
 
           <FormButton
             text="Add more experience"

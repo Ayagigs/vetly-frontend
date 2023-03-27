@@ -8,6 +8,7 @@ const FormButton = ({
   borderColor,
   handleClick,
   width,
+  disabled = false,
 }) => {
   return (
     <>
@@ -18,6 +19,7 @@ const FormButton = ({
         onClick={() => handleClick()}
         type="button"
         width={width}
+        disabled={disabled}
       >
         {text}
       </NavigateButton>

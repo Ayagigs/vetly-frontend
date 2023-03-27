@@ -14,15 +14,19 @@ import {
   useToast,
   Box,
 } from "@chakra-ui/react";
+// import { useDispatch } from "react-redux";
+
 import facebook from "../../assets/facebook.png";
 import google from "../../assets/google.png";
 import { APIConfig } from "../../config/apiConfig";
+// import { setUser } from "../../slices/users";
 
 const Signup = () => {
   const [form, setForm] = useState({
     fullname: "",
     email: "",
     password: "",
+    confirmPassword: "",
     user_type: "",
   });
   const [loading, setLoading] = useState(false);
@@ -30,14 +34,15 @@ const Signup = () => {
   const [error, setError] = useState("");
 
   const toast = useToast();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     if (success) {
-      return toast({
+      toast({
         position: "top-left",
         render: () => (
           <Box color="white" p={3} bg="green.500" fontSize={15}>
-            Sign in successful. Please check your mail.
+            Sign up successful. Please check your mail for verification.
           </Box>
         ),
       });
@@ -54,15 +59,45 @@ const Signup = () => {
       });
   }, [success, toast, error]);
 
-  const { fullname, email, password, user_type } = form;
+  const { fullname, email, password, confirmPassword, user_type } = form;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!fullname || !user_type || !email || !password || !confirmPassword) {
+      toast({
+        position: "top-right",
+        render: () => (
+          <Box color="white" p={3} bg="red.500" fontSize={15}>
+            All fields are required!
+          </Box>
+        ),
+      });
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      toast({
+        position: "top-right",
+        render: () => (
+          <Box color="white" p={3} bg="red.500" fontSize={15}>
+            Passwords do not match
+          </Box>
+        ),
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
       const { data } = await APIConfig.post("auth/register", form);
       console.log(data);
+      // dispatch(
+      //   setUser({
+      //     fullname: data.fullname,
+      //     email: data.local.email,
+      //   })
+      // );
       setLoading(false);
       setSuccess(true);
     } catch (error) {
@@ -144,9 +179,26 @@ const Signup = () => {
                 fontWeight="400"
                 fontFamily="inherit"
                 height={"3.2rem"}
-                placeholder="Create a password"
+                placeholder="Enter a password"
                 name="password"
                 value={password}
+                onChange={handleChange}
+              />
+            </FormControl>
+
+            <FormControl mt={4} marginBottom={"7px"}>
+              <FormLabel fontSize="12" fontWeight="500" fontFamily="inherit">
+                Confirm Password
+              </FormLabel>
+              <Input
+                type="password"
+                fontSize="12"
+                fontWeight="400"
+                fontFamily="inherit"
+                height={"3.2rem"}
+                placeholder="Enter a password"
+                name="confirmPassword"
+                value={confirmPassword}
                 onChange={handleChange}
               />
             </FormControl>
@@ -183,7 +235,7 @@ const Signup = () => {
                 marginBottom={"5px"}
                 onClick={handleSubmit}
               >
-                {!loading ? "Sign in" : <Spinner size="sm" color="white.500" />}
+                {!loading ? "Sign up" : <Spinner size="sm" color="white.500" />}
               </Button>
             </FormControl>
 

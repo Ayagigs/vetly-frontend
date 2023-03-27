@@ -26,6 +26,12 @@ export const VettingHeadersContainer = styled.section`
   border-radius: 8px;
 `;
 
+export const NoDataFeedback = styled.p`
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.4rem;
+`;
+
 export const Header = styled.h1`
   font-weight: 500;
   font-size: 1.4rem;
@@ -46,6 +52,11 @@ export const DataHeadersContainer = styled.section`
   height: 5.8rem;
   width: 100%;
   gap: 5rem;
+
+  & .spinner {
+    margin: 0 auto !important;
+    text-align: center;
+  }s
 `;
 
 export const DataHeader = styled.div`
@@ -72,6 +83,13 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   width: 90%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  & .spinner {
+    margin: 0 auto !important;
+    text-align: center;
+  }
 `;
 
 export const Rows = styled.section`
@@ -86,7 +104,7 @@ export const Rows = styled.section`
 
 export const EmployerContainer = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   flex: 20%;
   height: 100%;
   align-items: center;

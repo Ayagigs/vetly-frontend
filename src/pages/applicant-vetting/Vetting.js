@@ -9,6 +9,7 @@ import {
   EmailContainer,
   EmployerContainer,
   Header,
+  NoDataFeedback,
   Rows,
   StatusBadge,
   StatusContainer,
@@ -16,6 +17,9 @@ import {
   Wrapper,
 } from "./applicant.vetting.styles";
 import avatar from "../../assets/avatar.png";
+import { APIConfig } from "../../config/apiConfig";
+import { formatVettingData } from ".";
+import { Spinner } from "@chakra-ui/react";
 
 const headers = [
   {
@@ -32,58 +36,7 @@ const headers = [
   },
 ];
 
-const data = [
-  {
-    id: 0,
-    name: "Oluwaseun Jayeoba",
-    date: "March 8, 2023",
-    email: "seunjay92@gmail.com",
-    status: "pending",
-    avatar: "../../assets/avatar.png",
-  },
-  {
-    id: 1,
-    name: "Oluwaseun Jayeoba",
-    date: "March 8, 2023",
-    email: "seunjay92@gmail.com",
-    status: "success",
-    avatar: "../../assets/avatar.png",
-  },
-  {
-    id: 2,
-    name: "Oluwaseun Jayeoba",
-    date: "March 8, 2023",
-    email: "seunjay92@gmail.com",
-    status: "declined",
-    avatar: "../../assets/avatar.png",
-  },
-  {
-    id: 3,
-    name: "Oluwaseun Jayeoba",
-    date: "March 8, 2023",
-    email: "seunjay92@gmail.com",
-    status: "success",
-    avatar: "../../assets/avatar.png",
-  },
-  {
-    id: 4,
-    name: "Oluwaseun Jayeoba",
-    date: "March 8, 2023",
-    email: "seunjay92@gmail.com",
-    status: "declined",
-    avatar: "../../assets/avatar.png",
-  },
-  {
-    id: 5,
-    name: "Oluwaseun Jayeoba",
-    date: "March 8, 2023",
-    email: "seunjay92@gmail.com",
-    status: "pending",
-    avatar: "../../assets/avatar.png",
-  },
-];
-
-const filter = (statuscode = 0) => {
+const filter = (statuscode = 0, data) => {
   const status =
     statuscode === 0 ? "success" : statuscode === 1 ? "pending" : "declined";
 
@@ -93,12 +46,25 @@ const filter = (statuscode = 0) => {
 const Vetting = () => {
   const [activeHeader, setActiveHeader] = useState(0);
   const [vettingData, setVettingData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const data = filter(activeHeader);
-    setVettingData(data);
-  }, [activeHeader]);
+    const getVettingRequests = async () => {
+      setLoading(true);
+      try {
+        const { data } = await APIConfig.get("vetting");
+        const formattedData = formatVettingData(data);
 
+        const vettingRequests = filter(activeHeader, formattedData);
+        setVettingData(vettingRequests);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
+    };
+    getVettingRequests();
+  }, [activeHeader]);
 
   return (
     <ApplicantVettingParent>
@@ -116,31 +82,58 @@ const Vetting = () => {
         </VettingHeadersContainer>
 
         <DataHeadersContainer>
-          <DataHeader>Employer</DataHeader>
-          <DataHeader>Date</DataHeader>
-          <DataHeader>Status</DataHeader>
-          <DataHeader>Email</DataHeader>
+          {loading ? (
+            <Spinner
+              thickness="2px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+              className="spinner"
+            />
+          ) : (
+            <>
+              {" "}
+              <DataHeader>Employer</DataHeader>
+              <DataHeader>Date</DataHeader>
+              <DataHeader>Status</DataHeader>
+              <DataHeader>Email</DataHeader>
+            </>
+          )}
         </DataHeadersContainer>
 
         <DataRowsContainer>
           <Wrapper>
-            {vettingData.map((el) => (
-              <Rows key={el.id}>
-                <EmployerContainer>
-                  <img src={avatar} alt="avatar" className="employee-avatar" />
-                  <h1 className="employee-name">{el.name}</h1>
-                </EmployerContainer>
-                <DateContainer>
-                  <p className="date">{el.date}</p>
-                </DateContainer>
-                <StatusContainer>
-                  <StatusBadge status={el.status}>{el.status}</StatusBadge>
-                </StatusContainer>
-                <EmailContainer>
-                  <p className="email">{el.email}</p>
-                </EmailContainer>
-              </Rows>
-            ))}
+            {!loading && vettingData.length === 0 && (
+              <>
+                <NoDataFeedback>No data</NoDataFeedback>
+              </>
+            )}
+            {!loading && vettingData.length > 0 && (
+              <>
+                {vettingData.map((el) => (
+                  <Rows key={el.id}>
+                    <EmployerContainer>
+                      <img
+                        src={avatar}
+                        alt="avatar"
+                        className="employee-avatar"
+                      />
+                      <h1 className="employee-name">{el.employer}</h1>
+                    </EmployerContainer>
+                    <DateContainer>
+                      <p className="date">{el.date}</p>
+                    </DateContainer>
+                    <StatusContainer>
+                      <StatusBadge status={el.status}>{el.status}</StatusBadge>
+                    </StatusContainer>
+                    <EmailContainer>
+                      <p className="email">{el.email}</p>
+                    </EmailContainer>
+                  </Rows>
+                ))}
+              </>
+            )}
           </Wrapper>
         </DataRowsContainer>
       </CenterWrapper>

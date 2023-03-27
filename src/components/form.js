@@ -28,6 +28,10 @@ const Form = () => {
           </Box>
         ),
         onCloseComplete: () => {
+          const user = JSON.parse(localStorage.getItem("currentUser"));
+          if (user?.userType === "admin") {
+            return navigate("/admin/");
+          }
           navigate("/applicant/");
         },
       });
@@ -38,6 +42,7 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setLoading(true);
     try {
       const { data } = await APIConfig.post("auth/login", form);
@@ -46,7 +51,7 @@ const Form = () => {
       localStorage.setItem("currentUser", JSON.stringify(data?.user));
       localStorage.setItem("userToken", data?.token);
 
-    //   navigate("/applicant/");
+      //   navigate("/applicant/");
     } catch (error) {
       console.log(error.message);
     }

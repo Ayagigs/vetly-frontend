@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   // personal info inputs
+  saved: false,
   personalInfo: {
     firstName: "",
     lastName: "",
@@ -15,32 +16,35 @@ const initialState = {
   },
   // work experience inputs
   workExperience: {
-    position: "",
+    occupation: "",
     company: "",
-    workEmail: "",
-    workPhoneNumber: "",
-    workCity: "",
-    workCountry: "",
-    workStartDate: "",
-    workEndDate: "",
+    email_address: "",
+    phone_number: "",
+    city: "",
+    country: "",
+    from: "",
+    to: "",
+    main_activities: "",
   },
 
-  listOfWorkExperiences: [],
+  work_experience: [],
   // education/training inputs
   education: {
-    educationExperience: "",
-    educationOrganization: "",
-    educationWebsite: "",
-    educationCity: "",
-    educationCompany: "",
-    educationStartDate: "",
-    educationEndDate: "",
-    fullGrade: "",
+    experience: "",
+    organization: "",
+    website: "",
+    city: "",
+    country: "",
+    from: "",
+    to: "",
+    final_grade: "",
+    main_activities: "",
   },
+  education_training: [],
 
-  listOfEducationExperiences: [],
+  // listOfEducationExperiences: [],
   // personal skills inputs
-  personalSkills: "",
+  personal_skill: [],
   activeHeaders: [0],
 };
 
@@ -50,6 +54,7 @@ const resumeSlice = createSlice({
   reducers: {
     updateResume: (state, action) => {
       state.value = action.payload;
+      console.log(state.value);
     },
 
     // updateActiveHeaders: (state, action) => {
@@ -68,7 +73,12 @@ export const getPersonaalInfo = (state) => state.resume.value.personalInfo;
 export const getWorkExperienceState = (state) =>
   state.resume.value.workExperience;
 
+export const getPersonalSkillState = (state) =>
+  state.resume.value.personal_skill;
+
 export const getEducationState = (state) => state.resume.value.education;
+
+export const getPersonalSkillsState = (state) => state.resume.value.personal_skill[0];
 
 // export const getWorkExperienceState = (state) =>
 //   state.resume.value.listOfWorkExperiences;
