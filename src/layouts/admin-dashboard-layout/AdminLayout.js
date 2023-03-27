@@ -23,6 +23,7 @@ const AdminLayout = () => {
       <Sidebar routes={sideBarLinks} />
 
       <MainContentArea>
+        {/* Build the admin dashboard header here. See the applicant dashboard for inspiration */}
         <AdminDashboardHeader>
           <AdminHeaderContainer>
             <InfoContainer>

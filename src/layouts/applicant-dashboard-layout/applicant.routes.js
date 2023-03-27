@@ -1,31 +1,35 @@
+import { CgHomeAlt } from "react-icons/cg";
+import { MdOutlineVerified, MdPayment, MdOutlineEventNote } from "react-icons/md";
+import { TbSettings } from "react-icons/tb";
+
 export const sideBarLinks = [
   {
     path: "/applicant/",
-    imagePath: require("../../assets/vetting-icon.png"),
+    icon: <CgHomeAlt size={22} />,
     text: "Dashboard",
     alt: "dashboard-icon",
   },
   {
     path: "/applicant/vetting",
-    imagePath: require("../../assets/vetting-icon.png"),
+    icon: <MdOutlineVerified size={22} />,
     text: "Vetting",
     alt: "vetting-icon",
   },
   {
     path: "/applicant/wallet",
-    imagePath: require("../../assets/vetting-icon.png"),
+    icon: <MdPayment size={22} />,
     text: "Wallet",
     alt: "vetting-icon",
   },
   {
     path: "/applicant/resume",
-    imagePath: require("../../assets/vetting-icon.png"),
+    icon: <MdOutlineEventNote size={22} />,
     text: "Resume",
     alt: "resume-icon",
   },
   {
     path: "/applicant/setting",
-    imagePath: require("../../assets/vetting-icon.png"),
+    icon: <TbSettings size={22} />,
     text: "Setting",
     alt: "setting-icon",
   },

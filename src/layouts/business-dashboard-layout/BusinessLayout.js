@@ -6,14 +6,16 @@ import { sideBarLinks } from "./business.routes";
 import BusinessHome from "../../pages/business-home/BusinessHome";
 import BusinessVetting from "../../pages/business-vetting/BusinessVetting";
 import BusinessSubscription from "../../pages/business-subscription/BusinessSubscription";
+import BusinessProfile from "../../pages/business-profile/BusinessProfile";
+import Navbar from "../../components/navbar/Navbar";
 
 const BusinessLayout = () => {
   return (
     <ParentContainer>
       <Sidebar routes={sideBarLinks} />
-
       <MainContentArea>
         {/* Build the business dashboard header here. See the applicant dashboard for inspiration */}
+        <Navbar profileRoute={"/business/profile"} />
 
         <div
           className=""
@@ -28,6 +30,7 @@ const BusinessLayout = () => {
             <Route path="/" element={<BusinessHome />} />
             <Route path="/vetting" element={<BusinessVetting />} />
             <Route path="/subscription" element={<BusinessSubscription />} />
+            <Route path="/profile" element={<BusinessProfile />} />
           </Routes>
         </div>
       </MainContentArea>
