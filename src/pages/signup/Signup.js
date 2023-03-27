@@ -242,7 +242,7 @@ const Signup = () => {
               marginTop={2}
             >
               Already have an account?
-              <Link to="/">Sign in</Link>
+              <Link to="/sign-in">Sign in</Link>
             </Text>
           </form>
         </div>
