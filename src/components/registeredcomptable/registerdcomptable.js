@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState } from "react";
-import InputCard from "../../components/registeredcomptable/popupcrd";
+
 import {
 	createStyles,
 	Table,
@@ -35,19 +35,20 @@ export function RegisteredCompTable({ data }) {
 		setSelection((current) =>
 			current.length === data.length ? [] : data.map((item) => item.id),
 		);
-
+	
 	const rows = data.map((item) => {
 		const selected = selection.includes(item.id);
 		const styles = {
 			display: item.displayed ? "none" : "block",
 			cursor: "pointer",
 		};
+		
 		return (
 			<tr
 				key={item.id}
 				className={cx({ [classes.rowSelected]: selected })}
 				style={{ styles }}
-				onClick={item.handletoggle}>
+				>
 				<td>
 					<Checkbox
 						checked={selection.includes(item.id)}

@@ -7,12 +7,13 @@ import { TableSelection } from "../../components/registereduser/registereduserco
 import "./registeredUser.css";
 import { formatUsersData } from "./";
 import { Spinner } from "@chakra-ui/react";
-
+import InputCard from "../../components/registeredcomptable/popupcrd";
 const RegisteredUsers = () => {
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
 
+	
   const fetchUsers = async () => {
     setLoading(true);
     try {
@@ -58,35 +59,39 @@ const RegisteredUsers = () => {
   }, []);
 
   return (
-    <div className="registereduser">
-      <div className="register-header">
-        <h1>Registered Users</h1>
-        <input
-          type="text"
-          placeholder="Search by name or email"
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-        />
-      </div>
-      <div className="registeredusertable">
-        {loading ? (
-          <Spinner
-            thickness="2px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-            className="spinner"
-          />
-        ) : (
-          <>
-            {" "}
-            <TableSelection data={registeredUsers} />
-          </>
-        )}
-      </div>
-    </div>
-  );
+		<div className="registereduserelmnts">
+			<div className="registereduser">
+				<div className="register-header">
+					<h1>Registered Users</h1>
+					<input
+						type="text"
+						placeholder="Search by name or email"
+						onChange={handleChange}
+						onKeyDown={handleKeyDown}
+					/>
+				</div>
+				<div className="registeredusertable">
+					{loading ? (
+						<Spinner
+							thickness="2px"
+							speed="0.65s"
+							emptyColor="gray.200"
+							color="blue.500"
+							size="xl"
+							className="spinner"
+						/>
+					) : (
+						<>
+							{" "}
+							<TableSelection data={registeredUsers} />
+						</>
+					)}
+				</div>
+			</div>
+
+			<InputCard />
+		</div>
+	);
 };
 
 export default RegisteredUsers;
