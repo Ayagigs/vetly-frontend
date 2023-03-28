@@ -26,7 +26,7 @@ const Verifyaccount = () => {
           </Box>
         ),
         onCloseComplete: () => {
-          navigate("/");
+          navigate("/sign-in");
         },
       });
     }
