@@ -11,6 +11,7 @@ import { ProtectedRoute } from "./custom-routes/ProtectedRoutes";
 import BusinessLayout from "./layouts/business-dashboard-layout/BusinessLayout";
 import AdminLayout from "./layouts/admin-dashboard-layout/AdminLayout";
 import Home from "./pages/home/Home";
+import Organization from "./pages/organization/Organization";
 
 function App() {
   return (
@@ -21,12 +22,14 @@ function App() {
       <Route path="/verify-account" element={<Verifyaccount />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<Resetpassword />} />
-      {/* <Route path="/business/*" element={
-        <ProtectedRoute redirectPath="/sign-in">
-          <BusinessLayout />
-        </ProtectedRoute>
-      } /> */}
-      <Route path="/business/*" element={<BusinessLayout />} />
+      <Route
+        path="/business/*"
+        element={
+          <ProtectedRoute redirectPath="/sign-in">
+            <BusinessLayout />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/admin/*"
         element={
@@ -45,6 +48,7 @@ function App() {
         }
       />
       <Route path="/verify-account/:token" element={<Verifyaccount />} />
+      <Route path="/organization/:token" element={<Organization />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
     </Routes>
   );
