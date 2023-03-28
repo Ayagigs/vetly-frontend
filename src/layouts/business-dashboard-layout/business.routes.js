@@ -1,26 +1,30 @@
+import { CgHomeAlt } from "react-icons/cg";
+import { MdOutlineVerified, MdPayment } from "react-icons/md";
+import { TbSettings } from "react-icons/tb";
+
 export const sideBarLinks = [
   {
     path: "/business/",
-    imagePath: require("../../assets/vetting-icon.png"),
+    icon: <CgHomeAlt size={22} />,
     text: "Dashboard",
     alt: "dashboard-icon",
   },
   {
     path: "/business/vetting",
-    imagePath: require("../../assets/vetting-icon.png"),
+    icon: <MdOutlineVerified size={22} />,
     text: "Vetting",
     alt: "vetting-icon",
   },
   {
     path: "/business/subscription",
-    imagePath: require("../../assets/vetting-icon.png"),
+    icon: <MdPayment size={22} />,
     text: "Subscription",
     alt: "vetting-icon",
   },
   {
     path: "/business/setting",
-    imagePath: require("../../assets/vetting-icon.png"),
-    text: "Setting",
+    icon: <TbSettings size={22} />,
+    text: "Settings",
     alt: "setting-icon",
   },
 ];

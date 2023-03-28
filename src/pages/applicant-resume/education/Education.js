@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import { Box, useToast } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+
 import FormButton from "../../../components/custom-button/FormButton";
 import FormDateInput from "../../../components/custom-date-input/FormDateInput";
 import FormTextInput from "../../../components/custom-input/FormTextInput";
@@ -10,6 +13,11 @@ import {
   getResumeState,
   updateResume,
 } from "../../../slices/resume";
+import {
+  addItemToList,
+  isObjectValuesEmpty,
+  isSomeObjectValuesEmpty,
+} from "../../../utils";
 import {
   DivideWrapper,
   Heading,
@@ -21,21 +29,64 @@ import {
 
 const Education = () => {
   const [education, seteducation] = useState(useSelector(getEducationState));
+  const [isFormEmpty, setIsFormEmpty] = useState(false);
+  const [isNewEducationAdded, setIsNewEducationAdded] = useState(false);
+
+  const toast = useToast();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (isFormEmpty) {
+      toast({
+        position: "top-right",
+        render: () => (
+          <Box color="white" p={3} bg="red.500" fontSize={15}>
+            Please fill All fields
+          </Box>
+        ),
+        onCloseComplete: () => {
+          setIsFormEmpty(false);
+        },
+      });
+    }
+  }, [isFormEmpty, toast]);
+
+  useEffect(() => {
+    if (isNewEducationAdded) {
+      toast({
+        position: "top-left",
+        render: () => (
+          <Box color="white" p={3} bg="green.500" fontSize={15}>
+            New education added!
+          </Box>
+        ),
+        onCloseComplete: () => {
+          setIsNewEducationAdded(false);
+        },
+      });
+    }
+  }, [isNewEducationAdded, toast]);
+
   const data = useSelector(getResumeState);
+  // console.log(data);
 
   const routeToNextPage = () => {
-    navigate("/applicant/resume/build/skills");
+    const isEmpty = isSomeObjectValuesEmpty(education);
+    if (isEmpty) {
+      setIsFormEmpty(true);
+      return;
+    }
     const newActiveHeaders = [...data?.activeHeaders, 3];
     const resume = {
       ...data,
-      ...education,
+      education,
       activeHeaders: newActiveHeaders,
     };
     dispatch(updateResume(resume));
+
+    navigate("/applicant/resume/build/skills");
   };
 
   const routeToPreviousPage = () => {
@@ -60,43 +111,46 @@ const Education = () => {
   const clearInputs = () => {
     seteducation((prev) => ({
       ...prev,
-      educationExperience: "",
-      educationOrganization: "",
-      educationWebsite: "",
-      finalGrade: "",
-      educationCity: "",
+      uuid: uuidv4(),
+      experience: "",
+      organization: "",
+      website: "",
+      final_grade: "",
+      city: "",
       country: "",
-      educationStartDate: "",
-      educationEndDate: "",
+      from: "",
+      to: "",
+      main_activities: "",
     }));
   };
 
   const handleAddNewEducation = () => {
+    if (isObjectValuesEmpty(education)) {
+      return setIsFormEmpty(true);
+    }
     clearInputs();
-    
-    let { listOfEducationExperiences, ...rest } = data;
 
-    listOfEducationExperiences = listOfEducationExperiences.concat({
-      id: listOfEducationExperiences.length + 1,
-      ...education,
-    });
+    setIsNewEducationAdded(true);
+
+    let { education_training, ...rest } = data;
 
     const resume = {
       ...rest,
-      listOfEducationExperiences,
+      education_training: addItemToList(education_training, education),
     };
     dispatch(updateResume(resume));
   };
 
   const {
-    educationExperience,
-    educationOrganization,
-    educationWebsite,
-    finalGrade,
-    educationCity,
+    experience,
+    organization,
+    website,
+    final_grade,
+    city,
     country,
-    educationStartDate,
-    educationEndDate,
+    from,
+    to,
+    main_activities,
   } = education;
   return (
     <Parent>
@@ -107,22 +161,22 @@ const Education = () => {
           <FormTextInput
             labelName="Education and training experience"
             placeholder=""
-            value={educationExperience}
-            name="educationExperience"
+            value={experience}
+            name="experience"
             handleChange={handleChange}
           />
           <FormTextInput
             labelName="Organization providing education and training"
             placeholder=""
-            value={educationOrganization}
-            name="educationOrganization"
+            value={organization}
+            name="organization"
             handleChange={handleChange}
           />
           <FormTextInput
             labelName="Website"
             placeholder="enter email address"
-            value={educationWebsite}
-            name="educationWebsite"
+            value={website}
+            name="website"
             handleChange={handleChange}
           />
 
@@ -133,8 +187,8 @@ const Education = () => {
                 labelName="City"
                 placeholder="enter city"
                 width="100%"
-                value={educationCity}
-                name="educationCity"
+                value={city}
+                name="city"
                 handleChange={handleChange}
               />
             </Side>
@@ -159,8 +213,8 @@ const Education = () => {
                 labelName="From"
                 placeholder=""
                 width="100%"
-                value={educationStartDate}
-                name="educationStartDate"
+                value={from}
+                name="from"
                 handleChange={handleChange}
               />
             </Side>
@@ -171,8 +225,8 @@ const Education = () => {
                 labelName="To"
                 placeholder=""
                 width="100%"
-                value={educationEndDate}
-                name="educationEndDate"
+                value={to}
+                name="to"
                 handleChange={handleChange}
               />
             </Side>
@@ -181,12 +235,17 @@ const Education = () => {
           <FormTextInput
             labelName="Final grade"
             placeholder="enter email address"
-            value={finalGrade}
-            name="finalGrade"
+            value={final_grade}
+            name="final_grade"
             handleChange={handleChange}
           />
 
-          <FormTextArea labelName="More activities and responsibilities" />
+          <FormTextArea
+            labelName="More activities and responsibilities"
+            name="main_activities"
+            value={main_activities}
+            handleChange={handleChange}
+          />
 
           <FormButton
             text="Add more experience"

@@ -3,12 +3,19 @@ import styled from "styled-components";
 export const ApplicantHomeParent = styled.main`
   width: 100%;
   height: 100%;
+
+  & .loader {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+  }
 `;
 
 export const CenterWrapper = styled.div`
   width: 93%;
   height: 90%;
   margin: 5rem auto;
+  // position: relative;
 `;
 
 export const SummaryContainer = styled.section`
@@ -71,7 +78,6 @@ export const ActivitiesContainer = styled.section`
   height: 80%;
 `;
 
-
 export const RecentActivities = styled.div`
   height: 100%;
   flex: 40%;
@@ -86,4 +92,15 @@ export const ProfileView = styled.div`
   background: #f2fcf9;
   border: 1px solid #22a57e;
   border-radius: 12px;
+`;
+
+export const DarkOverlayContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(29, 29, 29, 0.6);
+  z-index: 9;
+  cursor: pointer;
 `;

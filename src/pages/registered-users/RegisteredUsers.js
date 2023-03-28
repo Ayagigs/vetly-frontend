@@ -1,59 +1,92 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import { APIConfig } from "../../config/apiConfig";
 import { TableSelection } from "../../components/registereduser/registeredusercomp";
 import "./registeredUser.css";
+import { formatUsersData } from "./";
+import { Spinner } from "@chakra-ui/react";
+
 const RegisteredUsers = () => {
-	return (
-		<div className="registereduser">
-			<div className="register-header">
-				<h1>Registered Users</h1>
-				<input type="text" placeholder="Search by name or email" />
-			</div>
-			<div className="registeredusertable">
-				<TableSelection
-					data={[
-						{
-							id: 0,
-							name: "Fatima Aminu",
-							avatar:
-								"https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-							email: "Teemah@vetly.com",
-							date: "20th February, 2023",
-							status: "7/7",
-						},
-						{
-							id: 1,
-							name: "Fatima Aminu",
-							avatar:
-								"https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-							email: "Teemah@vetly.com",
-							date: "20th February, 2023",
-							status: "7/7",
-						},
-						{
-							id: 2,
-							name: "Fatima Aminu",
-							avatar:
-								"https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-							email: "Teemah@vetly.com",
-							date: "20th February, 2023",
-							status: "7/7",
-						},
-						{
-							id: 3,
-							name: "Fatima Aminu",
-							avatar:
-								"https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=250&q=80",
-							email: "Teemah@vetly.com",
-							date: "20th February, 2023",
-							status: "7/7",
-						},
-					]}
-				/>
-			</div>
-		</div>
-	);
+  const [registeredUsers, setRegisteredUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const fetchUsers = async () => {
+    setLoading(true);
+    try {
+      const { data } = await APIConfig.get("users?user_type=applicant");
+      const formattedData = formatUsersData(data);
+
+      setLoading(false);
+      setRegisteredUsers(formattedData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      if (searchTerm !== "") {
+        handleUserSearch(searchTerm);
+      } else {
+        fetchUsers();
+      }
+    }
+  };
+
+  const handleUserSearch = async (keyWord) => {
+    setLoading(true);
+    try {
+      const { data } = await APIConfig.get(`users/search?keyword=${keyWord}`);
+      const formattedData = formatUsersData(data);
+
+      setLoading(false);
+      setRegisteredUsers(formattedData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  return (
+    <div className="registereduser">
+      <div className="register-header">
+        <h1>Registered Users</h1>
+        <input
+          type="text"
+          placeholder="Search by name or email"
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+      <div className="registeredusertable">
+        {loading ? (
+          <Spinner
+            thickness="2px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+            className="spinner"
+          />
+        ) : (
+          <>
+            {" "}
+            <TableSelection data={registeredUsers} />
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default RegisteredUsers;

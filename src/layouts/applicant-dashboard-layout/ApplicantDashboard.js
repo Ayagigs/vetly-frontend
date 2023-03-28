@@ -24,6 +24,8 @@ import ResumeHome from "../../pages/applicant-resume/home/ResumeHome";
 import ResumeUpload from "../../pages/applicant-resume/upload/ResumeUpload";
 import { getUserName } from "../../utils";
 import { sideBarLinks } from "./applicant.routes";
+import ResumePreview from "../../pages/applicant-resume/resume-preview/ResumePreview";
+import ApplicantWallet from "../../pages/applicant-wallet/ApplicantWallet";
 
 const ApplicantDashboard = () => {
   return (
@@ -66,6 +68,7 @@ const ApplicantDashboard = () => {
             <Route index element={<ApplicantHome />} />
             <Route path="/" element={<ApplicantHome />} />
             <Route path="/vetting" element={<Vetting />} />
+            <Route path="wallet" element={<ApplicantWallet />} />
             <Route path="/resume" element={<ResumeHome />}>
               <Route path="upload" element={<ResumeUpload />} />
               <Route path="build" element={<ApplicantBuildResume />}>
@@ -77,6 +80,7 @@ const ApplicantDashboard = () => {
                 <Route path="work-experience" element={<WorkExperience />} />
                 <Route path="education" element={<Education />} />
                 <Route path="skills" element={<Skills />} />
+                <Route path="preview" element={<ResumePreview />} />
               </Route>
             </Route>
           </Routes>

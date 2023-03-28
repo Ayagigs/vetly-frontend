@@ -26,7 +26,6 @@ const PersonalInformation = () => {
   const dispatch = useDispatch();
 
   // console.log(useSelector(getPersonaalInfo));
-  console.log(personalInfo);
 
   const { activeHeaders, ...rest } = useSelector(getResumeState);
 

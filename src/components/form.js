@@ -31,6 +31,8 @@ const Form = () => {
           const user = JSON.parse(localStorage.getItem("currentUser"));
           if (user?.userType === "admin") {
             return navigate("/admin/");
+          } else if (user?.userType === "business") {
+            return navigate("/business/");
           }
           navigate("/applicant/");
         },
@@ -53,6 +55,7 @@ const Form = () => {
 
       //   navigate("/applicant/");
     } catch (error) {
+      setLoading(false);
       console.log(error.message);
     }
   };

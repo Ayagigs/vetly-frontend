@@ -37,7 +37,7 @@ const Resetpassword = () => {
           </Box>
         ),
         onCloseComplete: () => {
-          navigate("/");
+          navigate("/sign-in");
         },
       });
     }
@@ -53,6 +53,10 @@ const Resetpassword = () => {
       });
   }, [success, toast, navigate, error]);
 
+  useEffect(() => {
+    setError("");
+  }, [password, confirmPassword]);
+
   const handleResetPassword = async (e) => {
     e.preventDefault();
 
@@ -67,9 +71,10 @@ const Resetpassword = () => {
         token,
       });
 
-      setLoading(false);
-      setSuccess(true);
-      console.log(data);
+      if (data) {
+        setLoading(false);
+        setSuccess(true);
+      }
     } catch (error) {
       setLoading(false);
       console.log(error);
