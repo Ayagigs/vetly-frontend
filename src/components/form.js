@@ -53,6 +53,7 @@ const Form = () => {
 
       //   navigate("/applicant/");
     } catch (error) {
+      setLoading(false);
       console.log(error.message);
     }
   };

@@ -21,16 +21,20 @@ function App() {
       <Route path="/verify-account" element={<Verifyaccount />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<Resetpassword />} />
-      <Route path="/business/*" element={
+      {/* <Route path="/business/*" element={
         <ProtectedRoute redirectPath="/sign-in">
           <BusinessLayout />
         </ProtectedRoute>
-      } />
-      <Route path="/admin/*" element={
-        <ProtectedRoute redirectPath="/sign-in">
-          <AdminLayout />
-        </ProtectedRoute>
-      } />
+      } /> */}
+      <Route path="/business/*" element={<BusinessLayout />} />
+      <Route
+        path="/admin/*"
+        element={
+          <ProtectedRoute redirectPath="/sign-in">
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/reset-password/:token" element={<Resetpassword />} />
       <Route
         path="/applicant/*"
