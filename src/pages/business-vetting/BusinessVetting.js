@@ -28,24 +28,24 @@ const headers = [
 
 const BusinessVetting = () => {
   const [activeHeader, setActiveHeader] = useState(0);
-  const [countData, setCountData] = useState({});
+  const [countData] = useState({});
   const [vetting, setVetting] = useState([]);
 
-  const fetchVettingCount = async (userToken) => {
-    const { data } = await APIConfig.get(`vetting/count`, {
-      headers: {
-        'Authorization': `Bearer ${userToken}`
-      }
-    });
-    setCountData(data);
-  };
+  // const fetchVettingCount = async (userToken) => {
+  //   const { data } = await APIConfig.get(`vetting/count`, {
+  //     headers: {
+  //       'Authorization': `Bearer ${userToken}`
+  //     }
+  //   });
+  //   setCountData(data);
+  // };
 
   const fetchVetting = fetchVettingFunction(activeHeader, setVetting);
 
   useEffect(() => {
-    const userToken = localStorage.getItem("userToken");
-    fetchVettingCount(userToken);
-    fetchVetting(userToken);
+    // const userToken = localStorage.getItem("userToken");
+    // fetchVettingCount(userToken);
+    // fetchVetting(userToken);
   }, [activeHeader, fetchVetting]);
 
   return <BusinessVettingParent>
