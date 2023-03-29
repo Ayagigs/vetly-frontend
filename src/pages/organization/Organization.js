@@ -19,7 +19,7 @@ import {
 import FormButton from "../../components/custom-button/FormButton";
 
 const Organization = () => {
-  const [workExperience, setWorkExperience] = useState([1]);
+  const [workExperience, setWorkExperience] = useState([]);
   const { token } = useParams();
 
   useEffect(() => {
@@ -51,7 +51,10 @@ const Organization = () => {
     }
   };
 
-  const rejectRequest = async () => {};
+  const rejectRequest = async () => { };
+  
+
+  // Remove the hardcoded details and uncomment what is commented in the details section
 
   return (
     <OrganizationParent>
