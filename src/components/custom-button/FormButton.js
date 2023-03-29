@@ -10,6 +10,7 @@ const FormButton = ({
   width,
   disabled = false,
 }) => {
+  console.log(borderColor);
   return (
     <>
       <NavigateButton
