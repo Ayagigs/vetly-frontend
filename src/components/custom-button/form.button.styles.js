@@ -12,7 +12,8 @@ export const NavigateButton = styled.button`
   font-weight: 500;
   font-size: 1.4rem;
   line-height: 24px;
-  border: 1px solid #0570fb;
+  border: 1px solid
+    ${(props) => (props.borderColor ? props.borderColor : "#fff")};
   display: block;
   outline: none;
 `;
