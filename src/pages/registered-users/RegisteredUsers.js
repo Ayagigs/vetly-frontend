@@ -12,7 +12,7 @@ const RegisteredUsers = () => {
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
-  const [modal, setModal] = useState(false)
+ 
 	
   const fetchUsers = async () => {
     setLoading(true);
