@@ -7,12 +7,12 @@ import { TableSelection } from "../../components/registereduser/registereduserco
 import "./registeredUser.css";
 import { formatUsersData } from "./";
 import { Spinner } from "@chakra-ui/react";
-import InputCard from "../../components/registeredcomptable/popupcrd";
+// import InputCard from "../../components/registeredcomptable/popupcrd";
 const RegisteredUsers = () => {
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [modal, setModal] = useState(false)
 	
   const fetchUsers = async () => {
     setLoading(true);
@@ -88,8 +88,6 @@ const RegisteredUsers = () => {
 					)}
 				</div>
 			</div>
-
-			<InputCard />
 		</div>
 	);
 };

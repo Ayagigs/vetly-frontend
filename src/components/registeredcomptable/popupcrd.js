@@ -5,7 +5,7 @@ const InputCard = (props) => {
 		<div className="popcrdelmnts">
 			<div className="popupcrd">
 				<div className="popupheadr">
-					<AiOutlineCloseCircle className="close" />
+					<AiOutlineCloseCircle className="close" onClick={()=> props.setModal(false)} />
 					<img src={avatar} alt="" />
 				</div>
 				<div className="inputelmnts">
