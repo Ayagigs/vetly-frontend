@@ -4,7 +4,20 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import avatar from "../../assets/avatar.svg";
 import moment from "moment";
 
-const RegModal = (props) => {
+const TeamMemberModal = (props) => {
+	const buttonstyles = {
+		backgroundColor: props.user.status ? "#B21015" : "#0570FB",
+		width: "176px",
+		height: "48px",
+		fontSize: "16px",
+		fontWeight: "500",
+		color: "#FFFFFF",
+		margin: "10px auto",
+		borderRadius: "5px",
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+	};
 	return (
 		<div className="modal">
 			<div className="modalelmnts">
@@ -19,7 +32,7 @@ const RegModal = (props) => {
 					<div className="inputelmnts">
 						<div className="inputname">
 							<label>
-								<h1>Company Name</h1>
+								<h1>Name</h1>
 								<input
 									type="text"
 									placeholder={props.user.name.split(" ")[0]}
@@ -32,19 +45,19 @@ const RegModal = (props) => {
 								<input type="email" placeholder={props.user.email} id="email" />
 							</label>
 						</div>
-						<div className="subtype">
+						{/* <div className="subtype">
 							<label>
-								<h1>Subscription type</h1>
+								<h1>Gender</h1>
 								<input
-									type="text"
-									placeholder={props.user.substype}
-									id="subscription"
+									type="gender"
+									placeholder={props.user.gender}
+									id="gender"
 								/>
 							</label>
-						</div>
+						</div> */}
 						<div className="date">
 							<label>
-								<h1>Duration</h1>
+								<h1>Date Joined</h1>
 								<input
 									// type="date"
 									//   placeholder={props.user.date}
@@ -54,10 +67,14 @@ const RegModal = (props) => {
 								/>
 							</label>
 						</div>
+						<button style={buttonstyles}>
+							{props.user.status ? "Suspend User" : "Authorize User"}
+						</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	);
 };
-export default RegModal;
+
+export default TeamMemberModal;

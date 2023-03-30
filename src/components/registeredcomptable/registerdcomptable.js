@@ -56,7 +56,7 @@ const handleSetUser = (item) => {
 
 		return (
 			<>
-				{modal && <RegModal setModal = {setModal} user = {clickedUser}/>}
+			
 				<tr
 					key={item.id}
 					className={cx({ [classes.rowSelected]: selected })}
@@ -100,11 +100,10 @@ const handleSetUser = (item) => {
 
 	return (
 		<>
-			
+			{modal && <RegModal setModal={setModal} user={clickedUser} />}
 
 			<ScrollArea>
 				<Table miw={800} verticalSpacing="sm">
-					<h2>hello</h2>
 
 					<thead>
 						<tr>
@@ -119,12 +118,10 @@ const handleSetUser = (item) => {
 								/>
 							</th>
 
-							<th style={{ fontSize: "12px" }}>
-							</th>
+							<th style={{ fontSize: "12px" }}>Name</th>
 							<th style={{ fontSize: "12px" }}>Email</th>
 							<th style={{ fontSize: "12px" }}>Subs Type</th>
-							<th style={{ fontSize: "12px", paddingLeft: "60px" }}>
-							</th>
+							<th style={{ fontSize: "12px", paddingLeft: "60px" }}>Duration</th>
 						</tr>
 					</thead>
 					<tbody>{rows}</tbody>

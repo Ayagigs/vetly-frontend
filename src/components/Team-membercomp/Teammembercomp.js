@@ -12,6 +12,8 @@ import {
 	rem,
 } from "@mantine/core";
 
+import TeamMemberModal from "./TeamModal";
+
 const useStyles = createStyles((theme) => ({
 	rowSelected: {
 		backgroundColor:
@@ -22,6 +24,8 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function CompanyTableSelection({ data }) {
+	const [modal, setModal] = useState(false)
+	const [clickedUser, setClickedUser] = useState({})
 	const { classes, cx } = useStyles();
 	const [selection, setSelection] = useState(["1"]);
 	const toggleRow = (id: string) =>
@@ -30,17 +34,18 @@ export function CompanyTableSelection({ data }) {
 				? current.filter((item) => item !== id)
 				: [...current, id],
 		);
-	const toggleAll = () =>
-		setSelection((current) =>
-			current.length === data.length ? [] : data.map((item) => item.id),
-		);
-	// const [color, setColor] = useState(data);
-	// setColor((prevcolor) => {
-	// 	return prevcolor.map((color) => {
-	// 		return color.status === "suspended" ? "#B21015" : color.status;
-	// 	});
-	// }
-	// );
+
+		const handleSetUser = (item) => {
+				setModal(true)
+				setClickedUser(item);
+		}
+const toggleAll = (item) => {
+	setClickedUser(item);
+	setSelection((current) =>
+		current.length === data.length ? [] : data.map((item) => item.id),
+	);
+};
+
 
 	const rows = data.map((item) => {
 		const selected = selection.includes(item.id);
@@ -51,7 +56,10 @@ export function CompanyTableSelection({ data }) {
 		};
 
 		return (
-			<tr key={item.id} className={cx({ [classes.rowSelected]: selected })}>
+			<tr
+				key={item.id}
+				className={cx({ [classes.rowSelected]: selected })}
+				onClick={() => handleSetUser(item)}>
 				<td>
 					<Checkbox
 						checked={selection.includes(item.id)}
@@ -76,28 +84,31 @@ export function CompanyTableSelection({ data }) {
 	});
 
 	return (
-		<ScrollArea>
-			<Table miw={800} verticalSpacing="sm">
-				<thead>
-					<tr>
-						<th style={{ width: rem(40) }}>
-							<Checkbox
-								onChange={toggleAll}
-								checked={selection.length === data.length}
-								indeterminate={
-									selection.length > 0 && selection.length !== data.length
-								}
-								transitionDuration={0}
-							/>
-						</th>
-						<th style={{ fontSize: "12px" }}>Name</th>
-						<th style={{ fontSize: "12px" }}>Email</th>
-						<th style={{ fontSize: "12px" }}>Date</th>
-						<th style={{ fontSize: "12px" }}>Status</th>
-					</tr>
-				</thead>
-				<tbody>{rows}</tbody>
-			</Table>
-		</ScrollArea>
+		<>
+		{modal && <TeamMemberModal setModal = {setModal} user = {clickedUser} />}
+			<ScrollArea>
+				<Table miw={800} verticalSpacing="sm">
+					<thead>
+						<tr>
+							<th style={{ width: rem(40) }}>
+								<Checkbox
+									onChange={toggleAll}
+									checked={selection.length === data.length}
+									indeterminate={
+										selection.length > 0 && selection.length !== data.length
+									}
+									transitionDuration={0}
+								/>
+							</th>
+							<th style={{ fontSize: "12px" }}>Name</th>
+							<th style={{ fontSize: "12px" }}>Email</th>
+							<th style={{ fontSize: "12px" }}>Date</th>
+							<th style={{ fontSize: "12px" }}>Status</th>
+						</tr>
+					</thead>
+					<tbody>{rows}</tbody>
+				</Table>
+			</ScrollArea>
+		</>
 	);
 }
