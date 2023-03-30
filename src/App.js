@@ -12,6 +12,7 @@ import { ProtectedRoute } from "./custom-routes/ProtectedRoutes";
 import BusinessLayout from "./layouts/business-dashboard-layout/BusinessLayout";
 import AdminLayout from "./layouts/admin-dashboard-layout/AdminLayout";
 
+
 function App() {
   return (
     <Routes>
