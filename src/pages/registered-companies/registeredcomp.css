@@ -18,7 +18,14 @@
   display: block;
 }
 
-
+.modal {
+  position: fixed;
+  display: flex;     /*flex */
+  align-items: center;
+  justify-content: center;
+    background-color: rgba(0, 0, 0, 0.699);
+    z-index: 100;
+}
 
 .carditems {
 	width: 100%;
@@ -74,3 +81,99 @@
 
 
 
+.popcrdelmnts {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0px 10%;
+  z-index: 100;
+}
+
+.popupcrd {
+	background-color: rgb(255, 255, 255);
+	width: 45%;
+	height: 500px;
+  border-radius: 10px;
+  position: fixed;
+}
+
+.close {
+  font-size: 24px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.popupheadr {
+	background: #f8f8f8;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 180px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.popupheadr img {
+	width: 120px;
+	height: 120px;
+	object-fit: cover;
+}
+
+.registeredheader h1 {
+	display: none;
+}
+
+.inputelmnts {
+  padding: 0px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputelmnts h1 {
+	font-size: 15px;
+	font-weight: 500;
+}
+
+
+
+.inputelmnts input {
+	width: 100%;
+	height: 38px;
+	border-radius: 4px;
+	border: 1px solid #CCCCCC;
+	outline: none;
+	text-indent: 10px;
+	font-size: 14px;
+  font-weight: 700;
+}
+
+.inputname {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+	margin-top: 10px;
+  width: 100%;
+}
+
+
+.email {
+  width: 100%;
+  margin-top: 10px;
+  /* background-color: red; */
+}
+
+.inputelmnts label {
+  width: 100%;
+  /* background-color: blue; */
+}
