@@ -47,7 +47,7 @@ const InputCard = (props) => {
               <label>
                 <h1>Date of Registration</h1>
                 <input
-                  type="date"
+                  // type="date"
                   //   placeholder={props.user.date}
                   id="date"
                   value={moment(props.user.rawDate).format("yyyy-MM-dd")}

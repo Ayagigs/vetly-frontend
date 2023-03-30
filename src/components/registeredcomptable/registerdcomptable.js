@@ -12,7 +12,7 @@ import {
 	Text,
 	rem,
 } from "@mantine/core";
-import InputCard from "./popupcrd";
+import RegModal from "../registereduser/modal";
 
 const useStyles = createStyles((theme) => ({
 	rowSelected: {
@@ -25,7 +25,7 @@ const useStyles = createStyles((theme) => ({
 
 export function RegisteredCompTable({ data }) {
 	const [modal, setModal] = useState(false);
-
+	const [clickedUser, setClickedUser] = useState({});
 	const { classes, cx } = useStyles();
 	const [selection, setSelection] = useState(["1"]);
 	const toggleRow = (id: string) =>
@@ -34,10 +34,18 @@ export function RegisteredCompTable({ data }) {
 				? current.filter((item) => item !== id)
 				: [...current, id],
 		);
-	const toggleAll = () =>
+
+const handleSetUser = (item) => {
+	setModal(true)
+	setClickedUser(item)
+}
+
+  const toggleAll = (item) => {
+		setClickedUser(item);
 		setSelection((current) =>
 			current.length === data.length ? [] : data.map((item) => item.id),
 		);
+	};
 
 	const rows = data.map((item) => {
 		const selected = selection.includes(item.id);
@@ -48,11 +56,12 @@ export function RegisteredCompTable({ data }) {
 
 		return (
 			<>
+			
 				<tr
 					key={item.id}
 					className={cx({ [classes.rowSelected]: selected })}
 					style={{ styles }}
-					onClick={() => setModal(true)}>
+					onClick={() => handleSetUser(item)}>
 					<td>
 						<Checkbox
 							checked={selection.includes(item.id)}
@@ -91,11 +100,10 @@ export function RegisteredCompTable({ data }) {
 
 	return (
 		<>
-			{modal && <InputCard />}
+			{modal && <RegModal setModal={setModal} user={clickedUser} />}
 
 			<ScrollArea>
 				<Table miw={800} verticalSpacing="sm">
-					<h2>hello</h2>
 
 					<thead>
 						<tr>
@@ -110,12 +118,10 @@ export function RegisteredCompTable({ data }) {
 								/>
 							</th>
 
-							<th style={{ fontSize: "12px" }}>
-							</th>
+							<th style={{ fontSize: "12px" }}>Name</th>
 							<th style={{ fontSize: "12px" }}>Email</th>
 							<th style={{ fontSize: "12px" }}>Subs Type</th>
-							<th style={{ fontSize: "12px", paddingLeft: "60px" }}>
-							</th>
+							<th style={{ fontSize: "12px", paddingLeft: "60px" }}>Duration</th>
 						</tr>
 					</thead>
 					<tbody>{rows}</tbody>
