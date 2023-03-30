@@ -1,51 +1,76 @@
-.carditems {
+/**
+ * .registeredcomp {
+ *   display: none;
+ * }
+ *
+ * @format
+ */
+
+ .registeredcompelmnts {
+  
   width: 100%;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
+  height: 100vh;
+  /* background-color: blue; */
+ }
+
+.registeredcomp {
+  position: relative;
+  display: block;
+}
+
+
+
+.carditems {
+	width: 100%;
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	gap: 20px;
 }
 
 .card {
-  width: 50%;
-  height: 150px;
-  border-radius: 6px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+	width: 50%;
+	height: 150px;
+	border-radius: 6px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 }
 
-.card img{
-  width: 24px;
-  height: 24px;
+.card img {
+	width: 24px;
+	height: 24px;
 }
 
 .card h1 {
-  font-size: 34px;
-  font-weight: 500;
-  color: #5D5E5F;
-  padding-top: 10px;
+	font-size: 34px;
+	font-weight: 500;
+	color: #5d5e5f;
+	padding-top: 10px;
 }
 
 .card p {
-  color: #5D5E5F;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
+	color: #5d5e5f;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
 }
 
 .compinput {
 	width: 371px;
 	height: 40px;
 	border-radius: 6px;
-	border: 1px solid #cccccc;
-  outline: none;
-  text-indent: 10px;
-  font-size: 12px;
-  margin-top: 50px;
+	border: 1px solid #c9c9c9;
+	outline: none;
+	text-indent: 10px;
+	font-size: 12px;
+	margin-top: 50px;
 }
 
 .registeredcmpnytable {
-  margin-top: 20px;
+	margin-top: 20px;
 }
+
+
+
