@@ -1,7 +1,8 @@
-.registeredcomp {
+.teamcomp {
   padding: 20px 3%;
   width: 100%;
   position: relative;
+  display: block;
 }
 
 .modal {
@@ -51,7 +52,6 @@
   /* width: 100%; */
   /* background-color: red; */
   margin-top: 20px;
- 
 }
 
 
@@ -73,7 +73,7 @@
 
 .modalcrd {
 	background-color: rgb(255, 255, 255);
-	width: 35%;
+	width: 40%;
 	height: 500px;
   border-radius: 10px;
   position: fixed;
@@ -120,9 +120,7 @@
 	font-weight: 500;
 }
 
-
-
-.inputelmnts input {
+.temail {
 	width: 100%;
 	height: 38px;
 	border-radius: 4px;
@@ -140,21 +138,74 @@
 }
 
 
-.email {
+.temail {
   width: 100%;
   margin-top: 10px;
-  /* background-color: red; */
 }
 
 .inputelmnts label {
   width: 100%;
-  /* background-color: blue; */
 }
 
 .date label {
   width: 40%;
 }
 
+.email label {
+  width: 100%;
+}
+
+.tinputelmnts {
+  padding: 0px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.check {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.checkedbxtxt {
+  font-size: 14px;
+  color: #5D5E5F;
+
+}
+
+.checkboxitems {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 20px;
+  column-gap: 10px;
+  margin: 20px 0px;
+}
+
+.m-email {
+  font-size: 15px;
+}
+
+.tmodal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;     /*flex */
+  align-items: center;
+  justify-content: center;
+    background-color: rgba(0, 0, 0, 0.699);
+    z-index: 100;
+}
 /* .inputelmnts button {
 
 } */

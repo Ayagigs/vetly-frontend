@@ -17,6 +17,7 @@ const TeamMemberModal = (props) => {
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
+		outline: "none",
 	};
 	return (
 		<div className="modal">
@@ -42,7 +43,11 @@ const TeamMemberModal = (props) => {
 						<div className="email">
 							<label>
 								<h1>Email</h1>
-								<input type="email" placeholder={props.user.email} id="email" />
+								<input
+									type="email"
+									placeholder={props.user.email}
+									id="email"
+								/>
 							</label>
 						</div>
 						{/* <div className="subtype">

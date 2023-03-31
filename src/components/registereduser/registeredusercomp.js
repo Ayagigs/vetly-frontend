@@ -25,7 +25,7 @@ export function TableSelection({ data }) {
   const { classes, cx } = useStyles();
   const [selection, setSelection] = useState(["1"]);
   const [modal, setModal] = useState(false);
-  const [clickedUser, setClickedUser] = useState({});
+  const [clickedUser, setClickedUser] = useState({});    
 
   const toggleRow = (item) => {
     setClickedUser(item);
