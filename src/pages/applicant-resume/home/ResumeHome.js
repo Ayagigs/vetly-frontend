@@ -135,6 +135,7 @@ const ResumeHome = () => {
                 text="Upload Resume"
                 color="#0570fb"
                 handleClick={routeToResumeUploadPage}
+                borderColor="#0570fb"
               />
               <FormButton
                 text="Build Resume"
