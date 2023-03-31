@@ -251,6 +251,7 @@ const Education = () => {
             text="Add more experience"
             color="#0570fb"
             width={"75%"}
+            borderColor="#0570fb"
             handleClick={handleAddNewEducation}
           />
 
@@ -258,6 +259,7 @@ const Education = () => {
             <FormButton
               text="Previous"
               color="#0570fb"
+              borderColor="#0570fb"
               handleClick={routeToPreviousPage}
             />
             <FormButton

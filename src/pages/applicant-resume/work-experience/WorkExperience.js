@@ -72,7 +72,6 @@ const WorkExperience = () => {
 
   const data = useSelector(getResumeState);
 
-
   const routeToNextPage = () => {
     const isEmpty = isSomeObjectValuesEmpty(workExperience);
     if (isEmpty) {
@@ -250,6 +249,7 @@ const WorkExperience = () => {
           <FormButton
             text="Add more experience"
             color="#0570fb"
+            borderColor="#0570fb"
             width={"75%"}
             handleClick={handleAddNewExperience}
           />
@@ -258,6 +258,7 @@ const WorkExperience = () => {
             <FormButton
               text="Previous"
               color="#0570fb"
+              borderColor="#0570fb"
               handleClick={routeToPreviousPage}
             />
             <FormButton
