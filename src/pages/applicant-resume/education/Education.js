@@ -251,6 +251,7 @@ const Education = () => {
             text="Add more experience"
             color="#0570fb"
             width={"75%"}
+            borderColor="#0570fb"
             handleClick={handleAddNewEducation}
           />
 

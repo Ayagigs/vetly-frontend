@@ -85,20 +85,57 @@ const ResumeHome = () => {
     // eslint-disable-next-line
   }, [dispatch]);
 
-  // const createNewResume = async () => {
-  //   try {
-  //     const { data } = await APIConfig.post("resume");
-  //     console.log(data);
-  //     return data;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const createNewResume = async () => {
+    let experience = workExperienceState;
+    let education = educationState;
+    experience = {
+      uuid: uuidv4(),
+      ...experience,
+    };
+    education = {
+      uuid: uuidv4(),
+      ...education,
+    };
+    setLoading(true);
+    try {
+      const { data } = await APIConfig.post("resume");
+      setHasResume(true);
+      dispatch(
+        updateResume({
+          ...data,
+          personalInfo: {
+            firstName: "",
+            lastName: "",
+            email: "",
+            phoneNumber: "",
+            contactAddress: "",
+            city: "",
+            country: "",
+            dateOfBirth: "",
+            gender: "",
+          },
+          workExperience: experience,
+          education,
+          activeHeaders: [0],
+        })
+      );
+      setLoading(false);
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const routeToResumeBuildPage = async () => {
     setIsOutletActive(true);
     if (!hasResume) {
-      // await createNewResume();
+      const data = await createNewResume();
+
+      if (data) {
+        navigate("/applicant/resume/build");
+        return;
+      }
     }
     navigate("/applicant/resume/build");
   };
