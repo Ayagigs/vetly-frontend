@@ -3,7 +3,7 @@
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Checkbox } from "@mantine/core";
 import avatar from "../../assets/avatar.svg";
-import swal from "sweetalert";
+// import swal from "sweetalert";
 
 // import "./inviteModal.css";
 const InviteModal = (props) => {
