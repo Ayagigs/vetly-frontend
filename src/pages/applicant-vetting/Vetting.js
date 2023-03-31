@@ -53,6 +53,7 @@ const Vetting = () => {
       setLoading(true);
       try {
         const { data } = await APIConfig.get("vetting");
+        console.log(data);
         const formattedData = formatVettingData(data);
 
         const vettingRequests = filter(activeHeader, formattedData);

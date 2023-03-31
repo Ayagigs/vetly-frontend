@@ -27,6 +27,10 @@ const PersonalInformation = () => {
 
   // console.log(useSelector(getPersonaalInfo));
 
+  const routeToResumeHomePage = () => {
+    navigate("/applicant/");
+  };
+
   const { activeHeaders, ...rest } = useSelector(getResumeState);
 
   const routeToNextPage = () => {
@@ -137,7 +141,12 @@ const PersonalInformation = () => {
           </DivideWrapper>
 
           <DivideWrapper>
-            <FormButton text="Previous" color="#0570fb" />
+            <FormButton
+              text="Previous"
+              color="#0570fb"
+              borderColor="#0570fb"
+              handleClick={routeToResumeHomePage}
+            />
             <FormButton
               text="Next"
               backgroundColor="#0570fb"
