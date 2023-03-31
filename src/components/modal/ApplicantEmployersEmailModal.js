@@ -64,6 +64,7 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
         },
       });
     }
+    // eslint-disable-next-line
   }, [success, toast, navigate]);
 
   useEffect(() => {
