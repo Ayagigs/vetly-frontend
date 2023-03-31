@@ -38,7 +38,7 @@ const headers = [
 
 const filter = (statuscode = 0, data) => {
   const status =
-    statuscode === 0 ? "success" : statuscode === 1 ? "pending" : "declined";
+    statuscode === 0 ? "success" : statuscode === 1 ? "pending" : "failed";
 
   return data.filter((el) => el.status === status);
 };

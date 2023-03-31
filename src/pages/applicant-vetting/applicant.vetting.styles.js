@@ -150,7 +150,7 @@ export const StatusBadge = styled.div`
   background: ${(props) =>
     props.status === "success"
       ? "#F2FCF9"
-      : props.status === "declined"
+      : props.status === "failed"
       ? "#FEF1F1"
       : "#fff9e5"};
   border-radius: 100px;
@@ -164,7 +164,7 @@ export const StatusBadge = styled.div`
   color: ${(props) =>
     props.status === "success"
       ? "#22A57E"
-      : props.status === "declined"
+      : props.status === "failed"
       ? "#B21015"
       : "#BFA24C"};
 `;
