@@ -59,6 +59,7 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
 
         onCloseComplete: () => {
           setSuccess(false);
+          closeModal();
           navigate("/applicant/");
         },
       });
