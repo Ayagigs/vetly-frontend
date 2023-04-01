@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import { getEmployersModalStatus, updateModalStatus } from "../../slices/modal";
 import FormButton from "../custom-button/FormButton";
 import {
@@ -24,6 +26,7 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
   const [success, setSuccess] = useState(false);
 
   const toast = useToast();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const employersEmailModalStatus = useSelector(getEmployersModalStatus);
@@ -56,10 +59,13 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
 
         onCloseComplete: () => {
           setSuccess(false);
+          closeModal();
+          navigate("/applicant/");
         },
       });
     }
-  }, [success, toast]);
+    // eslint-disable-next-line
+  }, [success, toast, navigate]);
 
   useEffect(() => {
     const getEmployersEmail = async () => {
@@ -113,7 +119,7 @@ const ApplicantEmployersEmailModal = ({ resumeId }) => {
 
       if (data) {
         setSuccess(true);
-        setLoading(true);
+        setLoading(false);
       }
     } catch (error) {
       setLoading(false);

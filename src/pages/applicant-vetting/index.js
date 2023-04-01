@@ -3,7 +3,7 @@ export const formatVettingData = (data) => {
     id: el._id,
     status: el.status,
     employer: el.resume.work_experience[0].company,
-    email: el.resume.work_experience[0].email_address,
+    email: el.email,
     date: new Date(el.created_at).toDateString(),
   }));
 };

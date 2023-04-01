@@ -38,7 +38,7 @@ const headers = [
 
 const filter = (statuscode = 0, data) => {
   const status =
-    statuscode === 0 ? "success" : statuscode === 1 ? "pending" : "declined";
+    statuscode === 0 ? "success" : statuscode === 1 ? "pending" : "failed";
 
   return data.filter((el) => el.status === status);
 };
@@ -53,6 +53,7 @@ const Vetting = () => {
       setLoading(true);
       try {
         const { data } = await APIConfig.get("vetting");
+        console.log(data);
         const formattedData = formatVettingData(data);
 
         const vettingRequests = filter(activeHeader, formattedData);

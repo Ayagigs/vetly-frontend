@@ -211,6 +211,7 @@ const ResumePreview = () => {
         <FormButton
           text="Previous"
           color="#0570fb"
+          borderColor="#0570fb"
           handleClick={routeToPreviousPage}
         />
         <FormButton
