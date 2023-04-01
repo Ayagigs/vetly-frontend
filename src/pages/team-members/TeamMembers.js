@@ -4,6 +4,7 @@
 import "./teamMember.css";
 import { CompanyTableSelection } from "../../components/Team-membercomp/Teammembercomp";
 import InviteModal from "../../components/Team-membercomp/inviteModal";
+
 import { useState } from "react";
 const TeamMembers = () => {
 	const [modal, setModal] = useState(false)
@@ -68,6 +69,7 @@ const TeamMembers = () => {
 						/>
 					</div>
 				</div>
+				
 			</div>
 		</>
 	);

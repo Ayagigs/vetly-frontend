@@ -21,80 +21,83 @@ const InviteModal = (props) => {
 		justifyContent: "center",
 		outline: "none",
 	};
-	
+
+
 	return (
-		<div className="tmodal">
-			<div className="modalelmnts">
-				<div className="modalcrd">
-					<div className="popupheadr">
-						<AiOutlineCloseCircle
-							className="close"
-							onClick={() => props.setModal(false)}
-						/>
-						<img src={avatar} alt="" />
-					</div>
-					<div className="tinputelmnts">
-						<div className="email">
-							<label>
-								<h1 className="m-email">Email</h1>
-								<input
-									type="email"
-									placeholder="Victony@vetly.com"
-									id="email"
-									className="temail"
-								/>
-							</label>
+		<>
+			<div className="tmodal">
+				<div className="modalelmnts">
+					<div className="modalcrd">
+						<div className="popupheadr">
+							<AiOutlineCloseCircle
+								className="close"
+								onClick={() => props.setModal(false)}
+							/>
+							<img src={avatar} alt="" />
 						</div>
-						<div className="checkboxitems">
-							<div className="checkbox">
-								<Checkbox
-									className="check"
-
-									// label="I agree to sell my privacy"
-								/>
-								<h1 className="checkedbxtxt">See other team members</h1>
+						<div className="tinputelmnts">
+							<div className="email">
+								<label>
+									<h1 className="m-email">Email</h1>
+									<input
+										type="email"
+										placeholder="Victony@vetly.com"
+										id="email"
+										className="temail"
+									/>
+								</label>
 							</div>
-							<div className="checkbox">
-								<Checkbox
-									className="check"
+							<div className="checkboxitems">
+								<div className="checkbox">
+									<Checkbox
+										className="check"
 
-									// label="I agree to sell my privacy"
-								/>
-								<h1 className="checkedbxtxt">See other team members</h1>
-							</div>
-							<div className="checkbox">
-								<Checkbox
-									className="check"
+										// label="I agree to sell my privacy"
+									/>
+									<h1 className="checkedbxtxt">See other team members</h1>
+								</div>
+								<div className="checkbox">
+									<Checkbox
+										className="check"
 
-									// label="I agree to sell my privacy"
-								/>
-								<h1 className="checkedbxtxt">See other team members</h1>
-							</div>
-							<div className="checkbox">
-								<Checkbox
-									className="check"
+										// label="I agree to sell my privacy"
+									/>
+									<h1 className="checkedbxtxt">See other team members</h1>
+								</div>
+								<div className="checkbox">
+									<Checkbox
+										className="check"
 
-									// label="I agree to sell my privacy"
-								/>
-								<h1 className="checkedbxtxt">See other team members</h1>
-							</div>
-							<div className="checkbox">
-								<Checkbox
-									className="check"
+										// label="I agree to sell my privacy"
+									/>
+									<h1 className="checkedbxtxt">See other team members</h1>
+								</div>
+								<div className="checkbox">
+									<Checkbox
+										className="check"
 
-									// label="I agree to sell my privacy"
-								/>
-								<h1 className="checkedbxtxt">See other team members</h1>
+										// label="I agree to sell my privacy"
+									/>
+									<h1 className="checkedbxtxt">See other team members</h1>
+								</div>
+								<div className="checkbox">
+									<Checkbox
+										className="check"
+
+										// label="I agree to sell my privacy"
+									/>
+									<h1 className="checkedbxtxt">See other team members</h1>
+								</div>
 							</div>
+
+							<button style={buttonstyles}>
+								Send Invite
+							</button>
 						</div>
-
-						<button style={buttonstyles}>
-							Send Invite
-						</button>
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
